@@ -1,0 +1,2739 @@
+/* 
+  Localizable.strings
+  iara
+
+  Created by Serge Heitzler on 16/03/2020.
+  Copyright © 2020 Serge Heitzler. All rights reserved.
+*/
+
+"INVALID_TOKEN_ALERT" = "Your session expired. Login again on iara ✨";
+"FORCE_UPDATE_TITLE" = "The app is evolving! ✨";
+"FORCE_UPDATE_DESC" = "Update the app to take advantage of the latest features.";
+"FORCE_UPDATE_BUTTON_TEXT" = "Update";
+
+"NOTIFICATION_ALERT_TITLE" = "Don't miss any more";
+"NOTIFICATION_ALERT_DESCRIPTION" = "Receive a notification when your appointments are reminded, the professionals answer your questions or a new comment from your friends.These authorisations are necessary for the application to work correctly and to use all its functions";
+"NOTIFICATION_ALERT_BUTTON" = "Authorise";
+
+/* ADD WORKPLACE */
+"ADD_WORKPLACE_TITLE" = "Add your workplace address.";
+"ADD_WORKPLACE_TITLE_NO_LINEBREAK" = "Add your workplace address.";
+"ADD_WORKPLACE_COUNTRY" = "Country";
+"ADD_WORKPLACE_ADDRESS" = "Address";
+"ADD_WORKPLACE_CITY" = "City";
+"ADD_WORKPLACE_ZIPCODE" = "Zipcode";
+"ADD_WORKPLACE_FOOTER" = "The address provided to clients is approximate and will only be available 24 hours before the appointment.";
+"ADD_WORKPLACE_BUTTON_TITLE" = "Confirm";
+
+/* ACTION SUCCESS */
+"ACTION_SUCCESS_BUTTON_TEXT" = "Ended";
+
+/* SIGN CONTROLLER */
+"SIGN_HEADER_LABEL_TITLE" = "To continue, please connect";
+"SIGN_EMAIL_INPUT_TITLE" = "Email address";
+"SIGN_FORGET_PASSWORD_BUTTON_TITLE" = "Forget password?";
+"SIGN_MAIN_BUTTON_SIGN_UP_TITLE" = "Sign up";
+"SIGN_MAIN_BUTTON_SIGN_IN_TITLE" = "Sign in";
+"SIGN_OR_LABEL_TITLE" = "or";
+"SIGN_SWITCH_TO_SIGN_UP_BUTTON_TITLE" = "No account? Sign up here.";
+"SIGN_SWITCH_TO_SIGN_IN_LABEL_TITLE" = "Already have an account?";
+"SIGN_SWITCH_TO_SIGN_IN_BUTTON_TITLE" = "Sign in here.";
+"SIGN_CONDITIONS_AND_AGREEMENTS_TITLE" = "By clicking on Sign in, you accept our General Terms and Conditions. If you want to know more about information we get from your account, we use, share and protect your data privacy. To know more ,consult our privacy section on iara's website.";
+
+/* FORGET PASSWORD CONTROLLER */
+"FORGET_PASSWORD_RESET_PASSWORD" = "Reset password";
+"FORGET_PASSWORD_EMAIL_OR_USERNAME" = "Email address or username";
+"FORGET_PASSWORD_DIRECTIVE" = "Please enter your iara username or email address. We will send you an email with a link to change or reset your password.";
+"FORGET_PASSWORD_SEND_BUTTON" = "Send";
+"FORGET_PASSWORD_SENT_SUCCESSFULLY" = "An email has been sent to your email address";
+
+/* ONBOARDING STEPS */
+
+"SUBSCRIPTION_CONGRATS_PREFIX" = "Congrats";
+"SUBSCRIPTION_ACCESS_MESSAGE" = "You now have access to all features of the plan!";
+"SUBSCRIPTION_SETUP_FEATURES" = "Set up features";
+
+"ONBOARDING_BIG_BUTTON_TITLE" = "Continue";
+"ONBOARDING_SKIP_BUTTON_TITLE" = "Skip";
+"ONBOARDING_COMPLETE_REGISTRATION_TITLE" = "Complete your registration\nto continue";
+"ONBOARDING_ALMOST_DONE_MESSAGE" = "Just a few more details to complete\nand your profile will be ready.";
+"ONBOARDING_CONTINUE_REGISTRATION_BUTTON" = "Continue my registration";
+
+"ONBOARDING_USERNAME_TITLE" = "Your @username";
+"ONBOARDING_PHONE_NUMBER_TITLE" = "Your phone number";
+"ONBOARDING_EMAIL_TITLE" = "Your email";
+"ONBOARDING_IDENTITY_TITLE" = "Your first and last name";
+"ONBOARDING_GENDER_TITLE" = "Your gender";
+"ONBOARDING_BIRTHDATE_TITLE" = "Your birthdate";
+"ONBOARDING_CURRENCY_TITLE" = "Your currency";
+"ONBOARDING_PROFILE_PICTURE_TITLE" = "Your profile picture";
+
+"ONBOARDING_COMPLETION_PERCENTAGE" = "%d%% completed";
+
+"ONBOARDING_GREETING" = "Hello!✨ \nTell us about yourself.";
+"ONBOARDING_CUSTOMER_OPTION" = "I am a customer";
+"ONBOARDING_CUSTOMER_DESCRIPTION" = "I want to book appointments";
+"ONBOARDING_PRO_OPTION" = "I am a professional";
+"ONBOARDING_PRO_DESCRIPTION" = "I want to set up my business";
+"ONBOARDING_HAVE_ACCOUNT" = "Already have an account?";
+"ONBOARDING_LOGIN_LINK" = "Sign in.";
+"ONBOARDING_CONTINUE" = "Continue";
+"ONBOARDING_TERMS_PREFIX" = "By signing up, you accept our ";
+"ONBOARDING_TERMS_LINK" = "terms and conditions";
+
+
+"ONBOARDING_SLIDE_TOP_TEXT" = "Features designed for professionals.";
+
+"ONBOARDING_SLIDE1_TITLE" = "The first app dedicated to independent professionals.";
+"ONBOARDING_SLIDE1_COLORED_PART" = "dedicated to independent professionals";
+"ONBOARDING_SLIDE1_SUBTITLE" = "Access all the features to manage your business: 24/7 appointment booking, personalized profile, dashboard, messaging with your clients & much more.";
+
+"ONBOARDING_SLIDE2_TITLE" = "All the tools for a magical experience.";
+"ONBOARDING_SLIDE2_COLORED_PART" = "a magical experience";
+"ONBOARDING_SLIDE2_SUBTITLE" = "Offer your clients unique advantages: loyalty card, flexibility on cancellations and birthday reminders for personalized follow-up.";
+
+"ONBOARDING_SLIDE3_TITLE" = "The first social network for beauty.";
+"ONBOARDING_SLIDE3_COLORED_PART" = "social network";
+"ONBOARDING_SLIDE3_SUBTITLE" = "Post photos of your services and be recommended by your clients by being directly tagged in their posts.";
+
+"ONBOARDING_PRO_NAME_TITLE" = "What is your professional name?";
+"ONBOARDING_PRO_NAME_COLORED_PART" = "your professional name";
+"ONBOARDING_PRO_NAME_SUBTITLE" = "This is the name that will be displayed on your profile.";
+"ONBOARDING_PRO_NAME_PLACEHOLDER" = "Your professional name";
+"ONBOARDING_PRO_USERNAME_PLACEHOLDER" = "Your @username";
+
+"ONBOARDING_NAME_TITLE" = "What is your first name?";
+"ONBOARDING_NAME_COLORED_PART" = "your first name?";
+"ONBOARDING_NAME_SUBTITLE" = "Your first name will be displayed on your profile, but your last name will only be shared with professionals you book with.";
+"ONBOARDING_FIRSTNAME_PLACEHOLDER" = "Your first name";
+"ONBOARDING_LASTNAME_PLACEHOLDER" = "Your last name (optional)";
+
+"ONBOARDING_STEP_PHONE_NUMBER_DESCRIPTION_PRO" = "You can choose whether it's visible to your clients in your settings.";
+
+"ONBOARDING_CODE_SENT_TITLE" = "Code sent to %@";
+"ONBOARDING_CODE_SENT_SUBTITLE" = "The code will arrive in a few seconds, please wait a moment before trying again.";
+
+"EXPERIENCE_LEVEL_LESS_THAN_YEAR" = "Less than a year";
+"EXPERIENCE_LEVEL_ONE_TO_THREE" = "Between 1 and 3 years";
+"EXPERIENCE_LEVEL_FOUR_TO_SIX" = "Between 4 and 6 years";
+"EXPERIENCE_LEVEL_SEVEN_PLUS" = "More than 7 years";
+
+"ONBOARDING_EXPERIENCE_TITLE" = "Great, tell us a bit about your experience:";
+"ONBOARDING_EXPERIENCE_COLORED_PART" = "your experience:";
+
+"PASSWORD_REQ_LOWERCASE" = "One lowercase character";
+"PASSWORD_REQ_UPPERCASE" = "One uppercase character";
+"PASSWORD_REQ_NUMBER" = "One number";
+"PASSWORD_REQ_SPECIAL" = "One special character";
+"PASSWORD_REQ_LENGTH" = "8 characters min";
+
+"WELCOME_GREETING" = "Welcome,";
+"WELCOME_SETUP_PROFILE_TITLE" = "Set up my profile";
+"WELCOME_SETUP_PROFILE_SUBTITLE" = "You're already familiar with the app";
+"WELCOME_TOUR_TITLE" = "Tour the app";
+"WELCOME_TOUR_SUBTITLE" = "We'll create sample data so you can visualize the experience";
+
+"TOUR_STEP1_DESCRIPTION" = "We'll quickly show you the most important features. 👋";
+"TOUR_STEP2_DESCRIPTION" = "Here's your schedule where all your clients' appointments appear.";
+"TOUR_STEP3_DESCRIPTION" = "You can add appointments manually by clicking on the small ➕ in the top right.";
+"TOUR_STEP4_DESCRIPTION" = "You have a tracking sheet with each of your clients to help you offer them a magical experience. ✨";
+"TOUR_STEP5_DESCRIPTION" = "You can communicate directly through the messaging system! 💬";
+"TOUR_STEP6_DESCRIPTION" = "Here's your mini dashboard to find all your figures, your best clients, and the most popular services.";
+"TOUR_STEP7_DESCRIPTION" = "And finally, you have access to the feed with millions of photos already posted by professionals and their clients. 📸";
+
+"BUTTON_NEXT" = "Next";
+
+"ONBOARDING_SETUP_TITLE" = "Now, let's set up\nyour profile";
+"ONBOARDING_SETUP_COLORED_PART" = "your profile";
+"ONBOARDING_SETUP_START_BUTTON" = "Get Started";
+
+"ONBOARDING_PHOTO_TITLE" = "To get started, add a profile picture or logo.";
+"ONBOARDING_PHOTO_COLORED_PART" = "a profile picture";
+"ONBOARDING_SKIP_BUTTON" = "Later";
+
+"ONBOARDING_ADDRESS_SEARCH_PLACEHOLDER" = "Search for an address";
+"ONBOARDING_ADDRESS_TITLE" = "What is your address?";
+"ONBOARDING_ADDRESS_COLORED_PART" = "What is your address";
+"ONBOARDING_LOCATION_ALERT_TITLE" = "Location Access";
+"ONBOARDING_LOCATION_ALERT_MESSAGE" = "To use your current location, please allow location access in settings.";
+"ONBOARDING_LOCATION_ALERT_SETTINGS" = "Settings";
+"ONBOARDING_LOCATION_ALERT_CANCEL" = "Cancel";
+"ONBOARDING_COUNTRY_SEARCH_PLACEHOLDER" = "Search for a country";
+"ONBOARDING_COUNTRY_SELECTOR_TITLE" = "Select a country";
+"ONBOARDING_CLOSE_BUTTON" = "Close";
+
+"ONBOARDING_CURRENCY_TITLE" = "Which currency do you use?";
+"ONBOARDING_CURRENCY_COLORED_PART" = "do you use";
+
+"ONBOARDING_ADD_SERVICES_TITLE" = "Add your services to your profile";
+"ONBOARDING_ADD_SERVICES_COLORED_PART" = "Add your services";
+"ONBOARDING_ADD_ANOTHER_SERVICE" = "+ Add another service";
+"ONBOARDING_NO_OPTIONS" = "No options";
+
+"ONBOARDING_DEPOSIT_TITLE" = "Avoid last-minute cancellations, set up deposits.";
+"ONBOARDING_DEPOSIT_COLORED_PART" = "set up deposits";
+"ONBOARDING_DEPOSIT_SUBTITLE" = "Deposits will be paid online and the amount will be transferred to your wallet at the end of the appointment.";
+
+"ONBOARDING_LOYAL_DEPOSIT_TITLE" = "Would you like to customize the deposit percentage for your loyal customers?";
+"ONBOARDING_LOYAL_DEPOSIT_COLORED_PART" = "customize the deposit percentage";
+"ONBOARDING_LOYAL_DEPOSIT_SUBTITLE" = "You will need to select your favorite customers in the 'My Customers' section.";
+"ONBOARDING_DEPOSIT_INFO_TITLE" = "Deposits for \"new customers\".";
+"ONBOARDING_DEPOSIT_INFO_TEXT" = "You can choose to apply deposits only to new customers by selecting your regular customers as \"Loyal Customers\".";
+
+"ONBOARDING_HOURS_TITLE" = "Your opening hours.";
+"ONBOARDING_HOURS_COLORED_PART" = "opening";
+"ONBOARDING_HOURS_SUBTITLE" = "Select your first working day.";
+"ONBOARDING_HOURS_SUBTITLE_COLORED_PART" = "first working day";
+
+"ONBOARDING_SLOTS_TITLE" = "Show appointment slots to my clients every %@ min.";
+"ONBOARDING_SLOTS_COLORED_PART" = "every %@ min.";
+"ONBOARDING_SLOTS_SUBTITLE" = "This includes treatment time and preparation of your space for each slot.";
+"ONBOARDING_SLOTS_EXAMPLE_DATE" = "For example, on %@, your proposed slots will be:";
+"ONBOARDING_SLOTS_EXAMPLE_GENERIC" = "For example, if you start at 9am and finish at 5pm, the slots displayed to your clients will be:";
+
+"ONBOARDING_AUTO_SLOTS_TITLE" = "Would you like to activate automatic slot creation?";
+"ONBOARDING_AUTO_SLOTS_COLORED_PART" = "automatic slot creation";
+"ONBOARDING_AUTO_SLOTS_SUBTITLE" = "This option allows automatic creation of slots to fill 'gap hours'.";
+"ONBOARDING_AUTO_SLOTS_COLORED_SUBTITLE_PART" = "gap hours";
+"ONBOARDING_AUTO_SLOTS_SKIP_BUTTON" = "Not now";
+"ONBOARDING_AUTO_SLOTS_ACTIVATE_BUTTON" = "Activate";
+
+"ONBOARDING_BOOKING_LIMIT_TITLE" = "Your clients can book %@ days before the appointment date.";
+"ONBOARDING_BOOKING_LIMIT_COLORED_PART" = "%@ days before";
+
+"ONBOARDING_BOOKING_LIMIT_FOR_LOYALS_TITLE" = "Your loyal customers will be able to book %@ days ahead of the appointment date.";
+"ONBOARDING_BOOKING_LIMIT_FOR_LOYALS_COLORED_PART" = "%@ days ahead";
+
+"ONBOARDING_LATE_BOOKING_TITLE" = "Your clients will be able to book up to %@ hours before the appointment.";
+"ONBOARDING_LATE_BOOKING_COLORED_PART" = "up to %@ hours";
+
+"ONBOARDING_LATE_BOOKING_FOR_LOYALS_TITLE" = "Your loyal customers will be able to book up to %@ hours before the appointment.";
+"ONBOARDING_LATE_BOOKING_FOR_LOYALS_COLORED_PART" = "up to %@ hours";
+
+"ONBOARDING_CANCEL_POLICY_TITLE" = "Free cancellation up to %@ hours before the appointment.";
+"ONBOARDING_CANCEL_POLICY_COLORED_PART" = "free up to %@ hours";
+"ONBOARDING_CANCEL_POLICY_SUBTITLE" = "After this deadline, your clients will no longer be able to reschedule their appointment and will lose their deposit in case of cancellation.";
+
+"ONBOARDING_CANCEL_POLICY_FOR_LOYALS_TITLE" = "Cancellation/modification free under %@, for your loyal customers";
+"ONBOARDING_CANCEL_POLICY_FOR_LOYALS_COLORED_PART" = "free under %@";
+
+"ONBOARDING_LOYAL_CUSTOMERS_TITLE" = "You can customize your settings for your loyal clients.";
+"ONBOARDING_LOYAL_CUSTOMERS_COLORED_PART" = "your loyal clients";
+"ONBOARDING_LOYAL_CUSTOMERS_SUBTITLE" = "You'll need to select your favorite clients in 'My Clients' and then customize your settings in 'My Booking Policy'.";
+"ONBOARDING_GOT_IT_BUTTON" = "Got it";
+
+"ONBOARDING_LOYALTY_TITLE" = "Would you like to activate the loyalty program?";
+"ONBOARDING_LOYALTY_COLORED_PART" = "the loyalty program";
+"ONBOARDING_LOYALTY_SUBTITLE" = "You can modify these settings from 'My Profile > Manage my Business'.";
+
+"ONBOARDING_SMS_REMINDER_TITLE" = "Activate appointment reminder SMS.";
+"ONBOARDING_SMS_REMINDER_COLORED_PART" = "reminder SMS";
+"ONBOARDING_SMS_REMINDER_SUBTITLE" = "These SMS will be sent to your clients 24 hours before the appointment so they don't forget to show up.";
+
+"ONBOARDING_BOOKING_CONDITIONS_TITLE" = "Define your booking conditions.";
+"ONBOARDING_BOOKING_CONDITIONS_COLORED_PART" = "your booking conditions";
+
+"ONBOARDING_BIO_TITLE" = "Add a bio to your profile.";
+"ONBOARDING_BIO_COLORED_PART" = "a bio";
+
+"ONBOARDING_INSTAGRAM_TITLE" = "Add your Instagram @username.";
+"ONBOARDING_INSTAGRAM_COLORED_PART" = "Instagram @username";
+"ONBOARDING_INSTAGRAM_SUBTITLE" = "88% of clients check Instagram profiles before booking.";
+"ONBOARDING_INSTAGRAM_SUBTITLE_NON_PRO" = "It will be shared with professionals to help them contact you if needed.";
+
+"ONBOARDING_COVER_PHOTO_TITLE" = "Finally, a cover photo to enhance your profile.";
+"ONBOARDING_COVER_PHOTO_COLORED_PART" = "a cover photo";
+
+"ONBOARDING_BIRTHDATE_COLORED_PART" = "date of birth?";
+"ONBOARDING_BIRTHDATE_PICKER_LABEL" = "Please enter a date";
+
+"ONBOARDING_LOADING_TEXT_1" = "Great, your profile is being created 💜";
+"ONBOARDING_LOADING_TEXT_2" = "Setting up your preferences 💜";
+"ONBOARDING_LOADING_TEXT_3" = "Almost done 💜";
+"ONBOARDING_LOADING_TEXT_PRO" = "Preparing your professional space 💜";
+
+"ONBOARDING_PROFILE_COLOR_TITLE" = "Customize your profile color!";
+"ONBOARDING_PROFILE_COLOR_COLORED_PART" = "profile color";
+"ONBOARDING_PROFILE_COLOR_SKIP_BUTTON" = "Skip this step";
+"ONBOARDING_PROFILE_COLOR_ACTIVATE_BUTTON" = "Confirm this color";
+"ONBOARDING_PROFILE_COLOR_PREMIUM_BUTTON" = "Unlock premium colors";
+"ONBOARDING_PROFILE_COLOR_SKIP_PREMIUM_BUTTON" = "No thanks";
+"ONBOARDING_PROFILE_COLOR_SAVE_ERROR" = "Error saving your color";
+
+
+/* EMAIL */
+"ONBOARDING_STEP_EMAIL_NAME" = "Email";
+"ONBOARDING_STEP_EMAIL_LABEL" = "Email address";
+"ONBOARDING_STEP_EMAIL_PLACEHOLDER" = "email@example.com";
+"ONBOARDING_STEP_EMAIL_TITLE" = "What's your email?";
+"ONBOARDING_STEP_EMAIL_SUBTITLE" = "Your e-mail is required to receive confirmations and reminders of appointments.";
+"ONBOARDING_STEP_EMAIL_DESCRIPTION" = "Lets'get to know you.";
+"ONBOARDING_STEP_EMAIL_SIGN_UP_NEXT_BUTTON_TITLE" = "Agree & Continue";
+"ONBOARDING_STEP_EMAIL_SIGN_IN_NEXT_BUTTON_TITLE" = "Continue";
+
+
+/* PASSWORD */
+"ONBOARDING_STEP_PASSWORD_NAME" = "Password";
+"ONBOARDING_STEP_PASSWORD_TITLE" = "What's your password?";
+"ONBOARDING_STEP_PASSWORD_DESCRIPTION" = "This will let you sign into iara.";
+"ONBOARDING_STEP_PASSWORD_NEXT_BUTTON_TITLE" = "Connect";
+"ONBOARDING_STEP_PASSWORD_PLACEHOLDER" = "Password";
+
+/* PASSWORD CREATION */
+"ONBOARDING_STEP_PASSWORD_CREATION_NAME" = "Password";
+"ONBOARDING_STEP_PASSWORD_CREATION_TITLE" = "Choose your password";
+"ONBOARDING_STEP_PASSWORD_CREATION_TITLE_CLIENT" = "And finally, your password.";
+"ONBOARDING_STEP_PASSWORD_CREATION_DESCRIPTION" = "You can easily reconnect with your email to manage your appointments.\n\nYour password must contains at least 8 characters.";
+"ONBOARDING_STEP_PASSWORD_CREATION_NEXT_BUTTON_TITLE" = "Signup";
+"ONBOARDING_STEP_PASSWORD_CREATION_PLACEHOLDER" = "Password";
+"ONBOARDING_STEP_PASSWORD_CREATION_CONFIRMATION_PLACEHOLDER" = "Confirm password";
+"ONBOARDING_STEP_PASSWORD_CREATION_ERROR_LENGTH" = "Your password must contains at least 8 characters";
+"ONBOARDING_STEP_PASSWORD_CREATION_ERROR_NOT_MATCHING" = "Passwords doesn't match";
+
+/* USERNAME CONTROLLER */
+"ONBOARDING_STEP_USERNAME_NAME" = "Username";
+"ONBOARDING_STEP_USERNAME_TITLE" = "Hello! What's your pseudo?";
+"ONBOARDING_STEP_USERNAME_DESCRIPTION" = "This will let you sign into iara.";
+"ONBOARDING_STEP_USERNAME_NEXT_BUTTON_TITLE" = "Continue";
+"ONBOARDING_STEP_USERNAME_LABEL" = "Username";
+"ONBOARDING_STEP_USERNAME_PLACEHOLDER" = "Username";
+"ONBOARDING_STEP_USERNAME_ERROR_LENGTH" = "Your username must be at least 3 characters";
+"ONBOARDING_STEP_USERNAME_ERROR_USERNAME_ALREADY_TAKEN" = "This username is already taken.";
+"ONBOARDING_STEP_USERNAME_ERROR_USERNAME_REGEX" = "Your username must contain only letters and numbers";
+"ONBOARDING_STEP_USERNAME_ERROR_EMAIL_ALREADY_TAKEN" = "This email is already taken.";
+"ONBOARDING_STEP_USERNAME_ERROR_EMAIL_DOESNT_EXIST" = "This email does not exist on iara 😶‍🌫️";
+"ONBOARDING_STEP_USERNAME_SUCCESS_USERNAME" = "This username is available 👌";
+"ONBOARDING_STEP_BACK_TO_CHOOSE_ACCOUNT_TYPE" = "Made a mistake? Change account type.";
+
+/* PHONE NUMBER CONTROLLER */
+"ONBOARDING_STEP_PHONE_NUMBER_NAME" = "Phone number";
+"ONBOARDING_STEP_PHONE_NUMBER_TITLE" = "What's your phone number?";
+"ONBOARDING_STEP_PHONE_NUMBER_DESCRIPTION" = "The code is coming.\nWait a few seconds before trying again";
+"ONBOARDING_STEP_PHONE_NUMBER_DESCRIPTION_CLIENT" = "It will be visible only to the professionals you have an appointment with, so they can contact you.";
+"ONBOARDING_STEP_PHONE_NUMBER_NEXT_BUTTON_TITLE" = "Continue";
+"ONBOARDING_STEP_PHONE_NUMBER_PLACEHOLDER" = "+1XXXXXXXXX";
+
+/* CONFIRMATION CODE CONTROLLER */
+"ONBOARDING_STEP_CONFIRMATION_CODE_NAME" = "Confirmation code";
+"ONBOARDING_STEP_CONFIRMATION_CODE_TITLE" = "Enter your confirmation code";
+"ONBOARDING_STEP_CONFIRMATION_CODE_DESCRIPTION" = "You will receive it by text message.";
+"ONBOARDING_STEP_CONFIRMATION_CODE_NEXT_BUTTON_TITLE" = "Continue";
+"ONBOARDING_STEP_CONFIRMATION_CODE_PLACEHOLDER" = "XXX-XXX";
+"ONBOARDING_STEP_CONFIRMATION_CODE_SEND_BACK" = "Send again";
+
+/* IDENTITY CONTROLLER */
+"ONBOARDING_STEP_IDENTITY_NAME" = "Identity";
+"ONBOARDING_STEP_IDENTITY_TITLE" = "What's your name?";
+"ONBOARDING_STEP_IDENTITY_DESCRIPTION" = "To be able to use the money in your wallet, make sure you enter your legal details correctly.";
+"ONBOARDING_STEP_IDENTITY_NEXT_BUTTON_TITLE" = "Continue";
+"ONBOARDING_STEP_IDENTITY_FIRSTNAME_PLACEHOLDER" = "Firstname";
+"ONBOARDING_STEP_IDENTITY_DISPLAYNAME_PLACEHOLDER" = "Display name";
+"ONBOARDING_STEP_IDENTITY_LASTNAME_PLACEHOLDER" = "Lastname";
+"ONBOARDING_STEP_IDENTITY_CONDITIONS_LINE1" = "By registering, you accept our";
+"ONBOARDING_STEP_IDENTITY_CONDITIONS_LINE2" = "General conditions";
+
+/* GENDER CONTROLLER */
+"ONBOARDING_STEP_GENDER_NAME" = "Gender";
+"ONBOARDING_STEP_GENDER_TITLE" = "I am...";
+"ONBOARDING_STEP_GENDER_DESCRIPTION" = "";
+"ONBOARDING_STEP_GENDER_NEXT_BUTTON_TITLE" = "Continue";
+"ONBOARDING_STEP_GENDER_MALE" = "A male";
+"ONBOARDING_STEP_GENDER_FEMALE" = "A female";
+"ONBOARDING_STEP_GENDER_UNDEFINED" = "Other(s)";
+
+/* REFER CODE CONTROLLER */
+"ONBOARDING_STEP_REFER_CODE_NAME" = "Referral code";
+"ONBOARDING_STEP_REFER_CODE_TITLE" = "Creating account";
+"ONBOARDING_STEP_REFER_CODE_DESCRIPTION" = "Initializing account in progress...";
+"ONBOARDING_STEP_REFER_CODE_PLACEHOLDER" = "YOUR_CODE";
+"ONBOARDING_STEP_REFER_CODE_NEXT_BUTTON_TITLE" = "Continue";
+"ONBOARDING_STEP_REFER_CODE_NO_CODE" = "I don't have one";
+
+/* BIRTHDATE CONTROLLER */
+"ONBOARDING_STEP_BIRTHDATE_NAME" = "Birthday";
+"ONBOARDING_STEP_BIRTHDATE_TITLE" = "When is your birthday?";
+"ONBOARDING_STEP_BIRTHDATE_DESCRIPTION" = "You can benefit from birthday gifts at your favorite professionals.";
+"ONBOARDING_STEP_COUNTRY_TITLE" = "In which country do you live?";
+"ONBOARDING_STEP_BIRTHDATE_PLACEHOLDER" = "Your date of birth";
+"ONBOARDING_STEP_BIRTHDATE_NEXT_BUTTON_TITLE" = "Continue";
+"ONBOARDING_STEP_BIRTHDATE_WARNING" = "In order to transfer your earnings to your bank account, your date of birth must be the same as on your identity documents.";
+
+/* ONBAORDING CURRENCY */
+"ONBOARDING_STEP_CURRENCY_TITLE" = "Select your currency";
+"ONBOARDING_STEP_CURRENCY_DESC_CUSTOMER" = "The currency selected must be identical to the one used in your bank account. Otherwise, you will not be able to transfer your eanrings.";
+"ONBOARDING_STEP_CURRENCY_DESC_PRO" = "The currency selected will be displayed on the services proposed.";
+
+/* CHOOSE FLOW CONTROLLER */
+"ONBOARDING_STEP_CHOOSE_FLOW_NAME" = "Here for";
+"ONBOARDING_STEP_CHOOSE_FLOW_TITLE" = "You are here for...";
+"ONBOARDING_STEP_CHOOSE_FLOW_DESCRIPTION" = "What are you using the app for?";
+"ONBOARDING_STEP_CHOOSE_FLOW_NEXT_BUTTON_TITLE" = "Continue";
+"ONBOARDING_STEP_CHOOSE_FLOW_PRO" = "I want to sell my beauty services as a professional";
+"ONBOARDING_STEP_CHOOSE_FLOW_USER" = "I am a client";
+
+/* SUBMIT PRO FILE */
+"ONBOARDING_STEP_SUBMIT_PRO_FILE_TITLE" = "Necessary information";
+"ONBOARDING_STEP_SUBMIT_PRO_FILE_SUBTITLE" = "In order to be able to offer your beauty services as a professional on iara, we need to verify your identity.";
+"ONBOARDING_STEP_SUBMIT_PRO_FILE_ID_FRONT" = "ID (front)";
+"ONBOARDING_STEP_SUBMIT_PRO_FILE_ID_BACK" = "ID (back)";
+"ONBOARDING_STEP_SUBMIT_PRO_FILE_ID_ADDRESS_PROOF" = "Address proof";
+"ONBOARDING_STEP_SUBMIT_PRO_FILE_ID_SUBSTITLE" = "Your ID will be deleted as soon as we will validate your profile.";
+"ONBOARDING_STEP_SUBMIT_PRO_FILE_LIVE_PICTURE" = "Picture of yourself";
+"ONBOARDING_STEP_SUBMIT_PRO_FILE_WORK_PLACE_PICTURE" = "Picture of your work place";
+"ONBOARDING_STEP_SUBMIT_PRO_FILE_DIPLOMA" = "Your diploma or certificate";
+"ONBOARDING_STEP_SUBMIT_PRO_FILE_TAKE_PICTURE" = "Take a picture";
+"ONBOARDING_STEP_SUBMIT_PRO_FILE_SELECT_PICTURE" = "Select a picture";
+"ONBOARDING_STEP_SUBMIT_PRO_FILE_SELECT_OR_TAKE_PICTURE" = "Select/Take a picture";
+"ONBOARDING_STEP_SUBMIT_PRO_FILE_I_CERTIFY_DIPLOMA_AUTHENTICY" = "I hereby certify my diploma authencity";
+"ONBOARDING_STEP_SUBMIT_PRO_FILE_I_KNOW_AND_RESPECT_LAW" = "I am aware and respect the law to work as a professional in beauty field";
+"ONBOARDING_STEP_SUBMIT_PRO_FILE_VALIDATE_BUTTON" = "Validate";
+"ONBOARDING_STEP_SUBMIT_PRO_FILE_LATER_BUTTON" = "I will do it later";
+
+/* CHOOSE INTERESTS */
+"ONBOARDING_STEP_CHOOSE_INTERESTS_TITLE_PART1" = "Tell us";
+"ONBOARDING_STEP_CHOOSE_INTERESTS_TITLE_PART2" = "what you love";
+"ONBOARDING_STEP_CHOOSE_INTERESTS_DESCRIPTION" = "Create your feed with beauty treatments you love. Change at anytime.";
+
+/* ONBOARDING PRO COVER */
+"ONBOARDING_PRO_COVER_TITLE" = "Add a cover photo";
+"ONBOARDING_PRO_COVER_ADD_COVER" = "Add a cover";
+"ONBOARDING_PRO_COVER_CONTINUE" = "Continue";
+
+"ONBOARDING_PRO_CONTINUE_TITLE" = "Complete your profile\nto appear on the map.";
+"ONBOARDING_PRO_CONTINUE_DESC" = "Your profile is not yet visible and other users will not yet be able to book. To activate your profile, follow the steps:";
+"ONBOARDING_PRO_CONTINUE_DESC2" = "Ton enabled your profile, follow the steps.";
+"ONBOARDING_PRO_CONTINUE_START"= "Start";
+"ONBOARDING_PRO_CARE_TITLE" = "Add a first care\nto your profile";
+"ONBOARDING_PRO_CARE_DESC" = "You can change it at any time in \"My profile > Manage my activity";
+"ONBOARDING_PRO_DISPLAYNAME_DESC" = "This is your public name which will be displayed on your profile. You can change it at any time.";
+"ONBOARDING_PRO_DISPLAYNAME_INFO" = "Afin d'améliorer les résultats de recherche de ton profil, merci d'éviter les caractères spéciaux.";
+"ONBOARDING_PRO_DISPLAYNAME_TITLE" = "What's the name\nyou want your clients to see?";
+"ONBOARDING_PRO_DISPLAYNAME_MENU_TITLE" = "Add your name";
+"ONBOARDING_PRO_CARE_MENU_TITLE" = "Add your first service";
+"ONBOARDING_PRO_WORKADDRESS"= "Add your work address";
+"ONBOARDING_PRO_WORKADDRESS_MENU_TITLE" = "Add your work address";
+"ONBOARDING_PRO_POLICIES"= "Select the conditions you accept";
+"ONBOARDING_PRO_POLICIES_MENU_TITLE" = "Set up your conditions";
+"ONBOARDING_PRO_AVAILABILITY"= "Add an availability\non the day of your choice";
+"ONBOARDING_PRO_AVAILABILITY_MENU_TITLE" = "Add your first availability";
+"ONBOARDING_PRO_BOOKING_POLICIES_MENU_TITLE" = "Manage your booking policy";
+"ONBOARDING_PRO_RECURRENCY"= "Do these times recur?";
+"ONBOARDING_PRO_SLOT_DURATION"= "Select your slot duration";
+"ONBOARDING_PRO_SLOT_DURATION_DESC"= "For example, if you are available between 9am and 5pm, the time slots displayed to your clients will be :";
+"ONBOARDING_PRO_SLOT_DURATION_DESC2"= "And the last proposed slot will be :";
+"ONBOARDING_PRO_DAYS_ANTICIPATE_BOOKING"= "How many days in advance can your clients make an appointment?";
+"ONBOARDING_PRO_DAYS_ANTICIPATE_BOOKING_DESC"= "For a booking on %@, your clients will be able to book from %@.";
+"ONBOARDING_PRO_HOURS_LATE_BOOKING"= "How late can your clients make an appointment?";
+"ONBOARDING_PRO_HOURS_LATE_BOOKING_DESC"= "For a booking on %@, your clients will be able to book until %@.";
+"ONBOARDING_PRO_HOURS_REBOOKING"= "How late can your clients cancel or edit their booking?";
+"ONBOARDING_PRO_HOURS_REBOOKING_DESC"= "Until what time can your clients cancel their appointment?";
+"ONBOARDING_PRO_DEPOSIT"= "What % of deposit would you like to ask for when booking?";
+"ONBOARDING_PRO_DEPOSIT_MENU_TITLE" = "Activate online payments and deposits";
+"ONBOARDING_PRO_DEPOSIT_DESC"= "In the event of a last-minute cancellation, the deposit will be retained.";
+"ONBOARDING_PRO_ACTIVATE_WALLET" = "Enable your wallet";
+"ONBOARDING_PRO_PROFILE_READY"= "Congratulationbs !\nYour profile is now\nvisible on iara.";
+"ONBOARDING_PRO_UNTIL"= "Until";
+"ONBOARDING_PRO_EVERY"= "Every";
+
+"ONBOARDING_PRO_DEPOSIT_BUTTON1_TEXT"="Remain in free package";
+"ONBOARDING_PRO_DEPOSIT_BUTTON2_TEXT"="Start my trial period";
+"ONBOARDING_PRO_DEPOSIT_BUTTON2_REGULAR_TEXT" = "Subscribe now";
+"ONBOARDING_PRO_DEPOSIT_ERROR"="You cannot take a deposit with the free package";
+
+"ONBOARDING_PRO_SLOTS_BUTTON1_TEXT"="Use default duration";
+"ONBOARDING_PRO_SLOTS_BUTTON2_TEXT"="Start my trial period";
+"ONBOARDING_PRO_SLOTS_BUTTON2_REGULAR_TEXT" = "Subscribe now";
+
+"ONBOARDING_PRO_REMINDER_NOTIF_TITLE"="You haven't finished your onboarding 💫";
+"ONBOARDING_PRO_REMINDER_NOTIF_DESC"= "Come back to complete it to be visible on iara's map!";
+
+"ONBOARDING_CARE_OPTIONS_TITLE" = "You can now add options to all your services!";
+"ONBOARDING_CARE_OPTIONS_COLORED_PART" = "add options";
+
+/* MANAGE PROFILE  */
+"MANAGE_PROFILE_MY_EARNINGS" = "My earnings";
+"MANAGE_PROFILE_SWITCH_UI_TO_USER" = "Switch to client interface";
+"MANAGE_PROFILE_SWITCH_UI_TO_PRO" = "Switch to pro interface";
+
+"MANAGE_PROFILE_ROW_PERSONAL_INFO" = "My personal information";
+"MANAGE_PROFILE_ROW_ADDRESS" = "📍 My workplace";
+"MANAGE_PROFILE_ROW_MY_AVAILABILITIES" = "📆 My availabilities";
+"MANAGE_PROFILE_ROW_MY_CARES" = "💅🏼 My treatments";
+"MANAGE_PROFILE_ROW_MY_CONDITIONS" = "✅ My conditions";
+"MANAGE_PROFILE_ROW_BOOKING_RULES" = "🛠️ Booking rules";
+"MANAGE_PROFILE_ROW_PAYMENT_METHODS" = "💳 Payments and deposits";
+"MANAGE_PROFILE_ROW_REVIEWS" = "💬 Clients reviews";
+"MANAGE_PROFILE_ROW_INVITE_FRIENDS" = "📲 Share my profile";
+"MANAGE_PROFILE_ROW_MY_FAVORITES" = "💜 My favorites";
+"MANAGE_PROFILE_ROW_MY_CUSTOMERS" = "🧖🏼‍♀️ My clients";
+"MANAGE_PROFILE_ROW_LOYALTY_PROGRAM" = "🎁 Loyalty program";
+"MANAGE_PROFILE_ROW_PROMOTIONS" = "🛍 My promotions";
+"MANAGE_PROFILE_ROW_DISPUTES" = "My disputes";
+"MANAGE_PROFILE_ROW_MY_SUBSCRIPTION" = "Enable deposits 💫";
+"MANAGE_PROFILE_ROW_SMS" = "💬 Booking Reminder SMS";
+"MANAGE_PROFILE_ROW_SYNCHRONIZE_MY_SCHEDULE" = "📅 Synchronize my schedule";
+"MANAGE_PROFILE_ROW_CUSTOM_COLORS" = "🎨 Custom Colors";
+"MANAGE_PROFILE_ROW_NOTIFICATIONS_POLICIES" = "Notifications and emails";
+"MANAGE_PROFILE_ROW_BLOCKED_ACCOUNT" = "Blocked account(s)";
+"MANAGE_PROFILE_ROW_MY_PAYMENT_METHODS" = "Payment methods";
+"MANAGE_PROFILE_ROW_DELETE_ACCOUNT" = "Delete account";
+"MANAGE_PROFILE_ROW_LOGOUT" = "Log out";
+"MANAGE_PROFILE_ROW_CUSTOMER_SERVICE" = "Customer service";
+"MANAGE_PROFILE_ROW_GENERAL_CONDITIONS" = "General conditions";
+"MANAGE_PROFILE_ROW_PRIVACY_POLICY" = "Privacy policy";
+"MANAGE_PROFILE_ROW_MY_INTERESTS" = "My interests";
+"MANAGE_PROFILE_ROW_CONTACT_ME" = "Contact me";
+"MANAGE_PROFILE_RESET_AVAILABILITIES_TITLE" = "Do you really want to reset your planning?";
+"MANAGE_PROFILE_RESET_AVAILABILITIES_DESC" = "Yes, I'm resetting everything";
+"MANAGE_PROFILE_RESET_AVAILABILITIES_DELETION_SUCCESS" = "Your schedule has been reset";
+
+"MANAGE_PROFILE_SUCCESS_SENDING_PROFILE_PICTURE" = "Your profile picture has been updated";
+"MANAGE_PROFILE_ERROR_SENDING_PROFILE_PICTURE" = "An error has occured while uploading your profile picture";
+"MANAGE_PROFILE_SUCCESS_SENDING_COVER" = "Your cover has been updated";
+"MANAGE_PROFILE_ERROR_SENDING_COVER" = "An error has occured while uploading your cover";
+
+"MANAGE_PROFILE_UPDATED_SUCCESSFULLY" = "Your profile has been successfully updated";
+"MANAGE_PROFILE_ADDRESS_UPDATED_SUCCESSFULLY" = "Your address has been successfully updated";
+
+"MANAGE_PROFILE_LOGOUT_ALERT_TITLE" = "Are you sure you want to log out?";
+"MANAGE_PROFILE_LOGOUT_ALERTY_YES_ACTION" = "Yes";
+"MANAGE_PROFILE_LOGOUT_ALERTY_CANCEL_ACTION" = "Cancel";
+
+"MANAGE_PROFILE_DELETE_ACCOUNT_IMPOSSIBLE_TITLE" = "🔔 Contact the support!";
+"MANAGE_PROFILE_DELETE_ACCOUNT_TITLE" = "Are you sure you want to delete your account? This can't be undone.";
+"MANAGE_PROFILE_DELETE_ACCOUNT_IMPOSSIBLE_DESCRIPTION" = "For security reasons, users having enabled their wallet cannot delete their account.\n\nIf you want to delete your account, contact us at hello@iarabeauty.com or at our customer support on WhatsApp";
+"MANAGE_PROFILE_DELETE_ACCOUNT_YES_ACTION" = "Yes";
+"MANAGE_PROFILE_DELETE_ACCOUNT_CANCEL_ACTION" = "Cancel";
+"MANAGE_PROFILE_ROW_Q&A" = "Q&A";
+"MANAGE_PROFILE_DELETE_ACCOUNT_IMPOSSIBLE_ACTION" = "I understand";
+
+/* NOTIFICATIONS POLICIES */
+"NOTIFICATIONS_POLICIES_EMAIL" = "Email";
+"NOTIFICATIONS_POLICIES_MESSAGE" = "Message";
+"NOTIFICATIONS_POLICIES_PUSH" = "Push";
+"NOTIFICATIONS_POLICIES_ORDER_REMINDER" = "Booking reminder";
+"NOTIFICATIONS_POLICIES_NEW_ORDER" = "New booking";
+"NOTIFICATIONS_POLICIES_NEWSLETTER" = "Newsletter";
+"NOTIFICATIONS_POLICIES_SHOW_CONTENT_IN_PUSH" = "Show content in push";
+"NOTIFICATIONS_POLICIES_COMMENT" = "Comment";
+"NOTIFICATIONS_POLICIES_IDENTIFICATION" = "Identification";
+"NOTIFICATIONS_POLICIES_SMS" = "SMS";
+"NOTIFICATIONS_POLICIES_ACCOUNT_UPDATE" = "Account update";
+
+/* CUSTOMER CONTROLLER */
+"CUSTOMER_EXTERNAL_USER" = "External user";
+
+/* MANAGE BANK TRANSFER */
+"MANAGE_BANK_TRANSFER_TITLE" = "Transfer";
+"MANAGE_BANK_TRANSFER_HEADING" = "Transfer to your account can take up to 5 days.";
+"MANAGE_BANK_TRANSFER_SELECT_ACCOUNT" = "Select an account";
+"MANAGE_BANK_TRANSFER_ADD_NEW_ACCOUNT" = "Add a new account";
+"MANAGE_BANK_TRANSFER_AMOUT_TO_TRANSFER" = "Amount to transfer";
+"MANAGE_BANK_TRANSFER_MINIMUM_AMOUNT_INFO" = "Minimal amount to make a transfer to your bank account is 40,00";
+"MANAGE_BANK_TRANSFER_TRANSFER_SUCCESS" = "Your amount has been transfered. You will receive the money in 5 days or less.";
+"MANAGE_BANK_TRANSFER_TRANSFER_ERROR" = "Error while making transfer.";
+
+/* BOOKING POLICY */
+
+"BOOKING_POLICY_TITLE" = "Booking policy";
+"BOOKING_POLICY_ANTICIPED_BOOKING" = "Limit early bookings";
+"BOOKING_POLICY_ANTICIPED_BOOKING_DETAILS" = "Your customers will be able to book %d days before the appointment date";
+"BOOKING_POLICY_LESS_THAN_X_HOURS" = "less than %dh";
+"BOOKING_POLICY_LATE_BOOKING" = "Limit late bookings";
+"BOOKING_POLICY_LATE_BOOKING_DETAILS" = "Your customers will be able to book up to %d hours before the appointment";
+"BOOKING_POLICY_CANCELLATION_AND_REPROGRAMMATION" = "Cancellation and rescheduling";
+"BOOKING_POLICY_CANCELLATION_AND_REPROGRAMMATION_DETAILS" = "Your clients can cancel for free up to %d hours before the appointment. After this deadline, the client will no longer be able to reschedule their appointment themselves and will lose their deposit in case of cancellation.";
+"BOOKING_POLICY_CANCELLATION_KEYWORD" = "up to %dh";
+"BOOKING_POLICY_SLOTS_DURATION" = "Slots duration";
+"BOOKING_POLICY_SLOTS_DURATION_DETAILS" = "Define when your clients can make an appointment. Every...";
+"BOOKING_POLICY_DAYS" = "days";
+"BOOKING_POLICY_HOURS" = "hours";
+"BOOKING_POLICY_MINUTES" = "minutes";
+"BOOKING_POLICY_BUTTON_TITLE" = "validate";
+"BOOKING_POLICY_SLOT_DURATION_MIN" = "Slot duration must be at least 15 minutes.";
+"BOOKING_POLICY_ANTICIPATED_BOOKING_MIN" = "Anticipated bookings must be made at least 7 days in advance.";
+"BOOKING_POLICY_SAVED" = "Booking policy have been correctly saved.";
+"BOOKING_POLICY_SAVED_ERROR" = "Impossible to save. Try again later.";
+"BOOKING_POLICY_DEPOSIT_LOCKED" = "🔒 Deposit";
+"BOOKING_POLICY_DEPOSIT" = "Deposit";
+"BOOKING_POLICY_DEPOSIT_NONE" = "None";
+"BOOKING_POLICY_DEPOSIT_TITLE" = "Choose the deposit amount";
+"BOOKING_POLICY_CONTACT_TITLE" = "Contact me";
+"BOOKING_POLICY_CONTACT_DETAILS" = "I agree to be contacted by";
+"BOOKING_POLICY_CONTACT_PHONE_LABEL" = "My phone number";
+"BOOKING_POLICY_CONTACT_EMAIL_LABEL" = "My email";
+"BOOKING_POLICY_CONTACT_EDIT_TEXT" = "If you wish to modify your personal information, please contact customer service.";
+"BOOKING_POLICY_ATTACH_APPOINTMENT_TITLE" = "Attach an appointment to another";
+"BOOKING_POLICY_ATTACH_APPOINTMENT_DETAILS" = "This option allows for the automatic creation of a time slot to optimize your schedule and avoid gaps.";
+"BOOKING_POLICY_ATTACH_APPOINTMENT_TOGGLE_LABEL" = "Activate the option";
+"BOOKING_POLICY_ATTACH_APPOINTMENT_EXAMPLE" = "For example, if the time slots offered to my clients are 10:00, 12:00, 14:00, or 16:00, and a client books a 30-minute service at 10:00, a time slot will automatically be added at 10:30 to avoid an empty interval from 10:30 to 12:00.";
+"BOOKING_WARNING_ANTICIPATED_0_DAYS" = "Attention, your clients will not be able to book.";
+"BOOKING_WARNING_ANTICIPATED_LESS_THAN_7_DAYS" = "Attention, your clients will only be able to book %d days before the appointment.";
+"BOOKING_WARNING_LATE_0_HOURS" = "Attention, your clients will be able to book at the last minute.";
+
+
+/* SHARE VIEW */
+"SHARE_VIEW_SHARE_YOUR_LINK" = "Share my profile";
+"SHARE_VIEW_SUBSCRIPTION_LAST_DATE" = "The iara application will be available in";
+"SHARE_VIEW_SHARE_YOUR_LINK_AND_WIN_MONEY" = "Share your link now and earn €10 every time one of your friends signs up as a beauty professional!";
+"SHARE_VIEW_PENDING_COMMITTEE" = "Your pending earning 💰";
+"SHARE_VIEW_WELCOME" = "Welcome @";
+"SHARE_VIEW_PENDING" = "Waiting...";
+"SHARE_VIEW_DAY" = "day";
+"SHARE_VIEW_HOUR" = "hour";
+"SHARE_VIEW_MINUTE" = "minute";
+"SHARE_VIEW_COPY" = "Copy";
+
+
+/* INVITE YOUR FRIENDS */
+
+"INVITE_YOUR_FRIENDS_TITLE" = "Share your iara link";
+"INVITE_YOUR_FRIENDS_SHARE_TITLE_CUSTOMER" = "Earn money\nby sharing\nyour profile.";
+"INVITE_YOUR_FRIENDS_SHARE_TITLE_PRO" = "Enable your\nclients to\nbook by\nsharing your\nprofile.";
+"INVITE_YOUR_FRIENDS_YOUR_PROFILE" = "Your profile:";
+"INVITE_YOUR_FRIENDS_SHARE_MY_LINK" = "The link has been copied. Paste the link into your Instagram profile settings.";
+"INVITE_YOUR_FRIENDS_HOW_SPONSORSHIPS_WORK" = "How do sponsorships work?";
+"INVITE_YOUR_FRIENDS_SHARE_YOUR_CARE_PRO" = "Share your professional profile";
+"INVITE_YOUR_FRIENDS_SHARE_YOUR_CARE_CUSTOMER" = "Share your beauty routine";
+"INVITE_YOUR_FRIENDS_SHARE_YOUR_CARE_DETAILS_PRO" = "Put the link of your iara profile on your social media bio, or share it directly with your clients so they can book. Your new appointments will appear directly in your schedule.";
+"INVITE_YOUR_FRIENDS_SHARE_YOUR_CARE_DETAILS_CUSTOMER" = "After a service, post a photo of the result on your
+on your profile, identifying the professional. Each time one of your followers books a treatment with your professional, you earn up to €15.";
+"INVITE_YOUR_FRIENDS_SPONSOR_PROFESSIONALS_PRO" = "Sponsor your colleagues";
+"INVITE_YOUR_FRIENDS_SPONSOR_PROFESSIONALS_CUSTOMER" = "Sponsor new professionals";
+"INVITE_YOUR_FRIENDS_SPONSOR_PROFESSIONALS_DETAILS" = "Earn €10 when a professional joins the community! The offer is valid for each new active professional.";
+"INVITE_YOUR_FRIENDS_GET_THE_MONEY" = "Get the money !";
+"INVITE_YOUR_FRIENDS_GET_THE_MONEY_DETAILS" = "The money will automatically be transferred to your iara wallet. \nFor more information regarding these earnings, see our Sponsorship Terms & Conditions.";
+
+/* PROFILE PICTURE CONTROLLER */
+"ONBOARDING_STEP_PROFILE_PICTURE_NAME" = "Profile picture";
+"ONBOARDING_STEP_PROFILE_PICTURE_TITLE" = "Add a profile picture";
+"ONBOARDING_STEP_PROFILE_PICTURE_TITLE_PRO_ONBOARDING" = "Add a profile picture";
+"ONBOARDING_STEP_PROFILE_PICTURE_DESCRIPTION" = "If you want to add a personal touch to your profile.";
+"ONBOARDING_STEP_PROFILE_PICTURE_NEXT_BUTTON_TITLE" = "Continue";
+"ONBOARDING_STEP_PROFILE_PICTURE_ALERT_TITLE" = "Choose a profile picture";
+"ONBOARDING_STEP_PROFILE_PICTURE_ALERT_CAMERA_ACTION_TITLE" = "Take a picture";
+"ONBOARDING_STEP_PROFILE_PICTURE_ALERT_ALBUM_ACTION_TITLE" = "From my album";
+"ONBOARDING_STEP_PROFILE_PICTURE_ALERT_CANCEL_ACTION_TITLE" = "Cancel";
+
+/* CHOOSE SUBSCRIPTION CONTROLLER */
+"ONBOARDING_STEP_CHOOSE_SUBSCRIPTION_NAME" = "Subscription";
+"ONBOARDING_STEP_CHOOSE_SUBSCRIPTION_TITLE" = "Choose subscription";
+"ONBOARDING_STEP_CHOOSE_SUBSCRIPTION_DESCRIPTION" = "Cancel anytime";
+"ONBOARDING_STEP_CHOOSE_SUBSCRIPTION_NEXT_BUTTON_TITLE" = "Susbcribe";
+"ONBOARDING_STEP_CHOOSE_SUBSCRIPTION_PER_MONTH" = "/month";
+"SUBSCRIPTION_TYPE_PRO_TITLE" = "Pro";
+"SUBSCRIPTION_TYPE_INSTITUT_TITLE" = "Institute";
+
+"MY_SUBSCRIPTION_TITLE" = "The best platform for the best price.";
+"SUBSCRIPTION_MONÒTHLY" = "Monthly";
+"SUBSCRIPTION_ANNUAL" = "Annual";
+//FREE
+"SUBSCRIPTION_FREE_PACK_TITLE" = "Free Forever.";
+"SUBSCRIPTION_FREE_PACK_CONTENT_1" = "Online appointment booking";
+"SUBSCRIPTION_FREE_PACK_CONTENT_2" = "Personalized profile";
+"SUBSCRIPTION_FREE_PACK_CONTENT_3" = "Schedule management";
+"SUBSCRIPTION_FREE_PACK_CONTENT_4" = "Dashboard & statistics";
+"SUBSCRIPTION_FREE_PACK_CONTENT_5" = "Client follow-up";
+"SUBSCRIPTION_FREE_PACK_CONTENT_6" = "Appointment reminders";
+"SUBSCRIPTION_FREE_PACK_BUTTON_TITLE" = "Start for free";
+//LITE
+"SUBSCRIPTION_LITE_PACK_TITLE" = "Lite.";
+"SUBSCRIPTION_LITE_PACK_PRICE" = "The first 3 months are free. Auto renewal. Cancel at any time.";
+"SUBSCRIPTION_LITE_IN_ADDITION_TO" = "EVERYTHING IN THE FREE PACKAGE PLUS";
+"SUBSCRIPTION_LITE_PACK_CONTENT_1" = "Taking payments online";
+"SUBSCRIPTION_LITE_PACK_CONTENT_2" = "Setting up down payments";
+"SUBSCRIPTION_LITE_PACK_CONTENT_3" = "Loyal clients policy";
+//PREMIUM
+"SUBSCRIPTION_PREMIUM_PACK_TITLE" = "Premium.";
+"SUBSCRIPTION_PREMIUM_IN_ADDITION_TO" = "EVERYTHING IN THE PREMIUM PLUS PACKAGE";
+"SUBSCRIPTION_PREMIUM_PACK_CONTENT_1" = "Multiple account management";
+"SUBSCRIPTION_PREMIUM_PACK_CONTENT_2" = "Detailed statistics";
+"SUBSCRIPTION_PREMIUM_PACK_CONTENT_3" = "Billing";
+"SUBSCRIPTION_INSTITUT_PACK_BUTTON_TITLE" = "Coming soon";
+"SUBSCRIPTION_PREMIUM_PACK_BUTTON_TITLE" = "Coming soon";
+
+
+/* CREATE IARA WALLET */
+"ONBOARDING_STEP_CREATE_IARA_WALLET_SUBTITLE" = "We need your address to create your iara wallet account.";
+"ONBOARDING_STEP_CREATE_IARA_WALLET_ADDRESS" = "Your residential address";
+"ONBOARDING_STEP_CREATE_IARA_WALLET_I_ACCEPT_CONDITIONS" = "I accept Stripe Terms and Conditions";
+"ONBOARDING_STEP_CREATE_IARA_WALLET_CONDITIONS_BUTTON" = "More info on Stripe.com";
+"ONBOARDING_STEP_CREATE_IARA_WALLET_VALIDATE_BUTTON" = "Validate";
+"ONBOARDING_STEP_CREATE_IARA_WALLET_TITLE" = "Create my iara wallet";
+
+/* PRO_ONBOARDING_PROFILE_READY */
+"PRO_ONBOARDING_PROFILE_READY_VISIBLE" = "Your profile is now visible";
+"PRO_ONBOARDING_PROFILE_READY_COMPLETE" = "Feel free to continue improving your profile in « Manage my activity ».";
+
+/* VERIFY CONTROLLER */
+"ONBOARDING_STEP_VERIFY_ADDRESS_PLACEHOLDER" = "Your business address";
+"ONBOARDING_STEP_VERIFY_ZIP_CODE_PLACEHOLDER" = "Zip code";
+"ONBOARDING_STEP_VERIFY_BIRTHDAY_PLACEHOLDER" = "Birth date";
+"ONBOARDING_STEP_VERIFY_PROOF_BUTTON_TITLE" = "Proof of diplomas";
+"ONBOARDING_STEP_VERIFY_WORKPLACE_BUTTON_TITLE" = "Workplace";
+"ONBOARDING_STEP_VERIFY_LIVE_PICTURE_BUTTON_TITLE" = "Live picture";
+"ONBOARDING_STEP_VERIFY_SUBMIT_BUTTON_TITLE" = "Submit";
+"ONBOARDING_STEP_VERIFY_VIEW_CONTROLLER_TITLE" = "Verify identity";
+"ONBOARDING_STEP_VERIFY_VIEW_CONTROLLER_DESCRIPTION" = "Reviewed manually under 48 hours.";
+"ONBOARDING_STEP_VERIFY_CHOOSE_SOURCE_ALERT_TITLE" = "Add a picture";
+"ONBOARDING_STEP_VERIFY_ADMIN_WILL_REVIEW" = "A Iara admin will review your information under 48 hours.";
+"START_WITH_IARA_CONTENT" = "Your profile is not yet visible to other users and clients will not be able to book yet. To activate your profile, follow the steps below";
+"START_WITH_IARA_ADD_PROFILE_PICTURE" = "Add a profile picture";
+"START_WITH_IARA_ADD_COVER" = "Add a cover photo";
+"START_WITH_IARA_ADD_CARES" = "Add your beauty services";
+"START_WITH_IARA_ADD_WORKING_SCHEDULE" = "Set up your working hours";
+"START_WITH_IARA_ADD_WORKING_PLACE" = "Add your working place";
+"START_WITH_IARA_CHOOSE_SUBSCRIPTION" = "Choose your subscription";
+"START_WITH_IARA_INFORMATION_TITLE" = "Information";
+"START_WITH_IARA_INFORMATION_CONTENT" = "It is mandatory to connect to iara at least once a week to keep your profile active. Otherwise your profile will be flaged ed and your clients will not be able to book anymore.";
+
+
+/* WELCOME USER */
+"ONBOARDING_STEP_WELCOME_USER_HELLO" = "Hello";
+"ONBOARDING_STEP_WELCOME_USER_START_CREATE_PROFILE" = "Start to create your profile";
+"ONBOARDING_STEP_WELCOME_USER_BUTTON" = "Continue";
+"ONBOARDING_CONTINUE_BOOKING" = "You are now registered! Continue your booking";
+"ONBOARDING_CONTINUE_BOOKING" = "Your profile is created!";
+"ONBOARDING_CONTINUE_WELCOME" = "Congratulations!";
+"ONBOARDING_CONTINUE_PROFILE_CREATED_TITLE" = "Your profile is created!";
+"ONBOARDING_CONTINUE_PROFILE_CREATED_DESC_CUSTOMER" = "Discover now profesionals around you and book in one clic!";
+"ONBOARDING_CONTINUE_PROFILE_CREATED_DESC_PRO" = "Now, it's time to complete it!";
+
+/* ALTERNATIVE LAUNCH */
+"CHOOSE_ACCOUNT_TYPE_WELCOME" = "Welcome! Sign up";
+"CHOOSE_ACCOUNT_TYPE_CUSTOMER" = "I'm a client";
+"CHOOSE_ACCOUNT_TYPE_PRO" = "I'm a professional";
+"CHOOSE_ACCOUNT_TYPE_ALREADY_HAVE_AN_ACCOUNT" = "Already have an account?";
+"CHOOSE_ACCOUNT_TYPE_LOGIN" = "Sign in here.";
+
+/* COMPLETED SUBMISSION */
+"ONBOARDING_STEP_COMPLETED_SUBMISSION_TITLE" = "Waiting validation";
+"ONBOARDING_STEP_COMPLETED_SUBMISSION_SUBTITLE" = "Your profile will be visible when our team will validate it.";
+"ONBOARDING_STEP_COMPLETED_SUBMISSION_FOOTER" = "In the meantime, fill in your profile.";
+"ONBOARDING_STEP_COMPLETED_SUBMISSION_BUTTON" = "Continue";
+
+/* DASHBOARD VIEW CONTROLLER */
+"DASHBOARD_VIEW_CONTROLLER_TITLE" = "Dashboard";
+"DASHBOARD_CONTROLLER_TODAY_TITLE" = "Today";
+"DASHBOARD_CONTROLLER_YESTERDAY_TITLE" = "Yesterday";
+"DASHBOARD_CONTROLLER_LAST_WEEK_TITLE" = "Last week";
+"DASHBOARD_CONTROLLER_LAST_MONTH_TITLE" = "Last month";
+"DASHBOARD_CONTROLLER_LAST_YEAR_TITLE" = "Last year";
+"DASHBOARD_CONTROLLER_ALL_TITLE" = "All";
+"DASHBOARD_SYNTHESIS_PROFITS_TITLE" = "Profits";
+"DASHBOARD_SYNTHESIS_CHARGES_TITLE" = "Charges";
+"DASHBOARD_SYNTHESIS_WALLET_TITLE" = "Wallet";
+"DASHBOARD_SYNTHESIS_ORDERS_TITLE" = "Orders";
+
+"DASHBOARD_VIEW_SINCE_MONTH_START" = "Total revenue";
+"DASHBOARD_VIEW_AVERAGE_CART" = "Average cart";
+"DASHBOARD_VIEW_WALLET" = "Wallet";
+"DASHBOARD_VIEW_CASHED_ON_IARA" = "Cashed on iara";
+"DASHBOARD_VIEW_IDENTIFICATIONS" = "identifications";
+"DASHBOARD_VIEW_BOOKING" = "Bookings done";
+"DASHBOARD_VIEW_BOOKING_COMING" = "Incoming bookings";
+"DASHBOARD_VIEW_CUSTOMERS" = "Clients";
+"DASHBOARD_VIEW_AWAITING_TRANSACTIONS" = "Pending transactions";
+"DASHBOARD_VIEW_THIS_MONTH" = "This month";
+"DASHBOARD_VIEW_MY_BEST_CARES" = "Top services";
+"DASHBOARD_VIEW_MY_BEST_CUSTOMER" = "Best clients";
+"DASHBOARD_VIEW_MY_BEST_CUSTOMER_BOOKING" = "Bookings";
+
+"DASHBOARD_NOPHOTOS_TITLE" = "Pas de photos";
+"DASHBOARD_NOPHOTOS_DESC" = "Les posts s'afficheront ici s'il y en a pour cette date";
+
+/* ADD CHARGE */
+"ADD_CHARGE_VIEW_CONTROLLER_TITLE" = "Add charge";
+"ADD_CHARGE_ADD_BUTTON_TITLE" = "Add";
+"ADD_CHARGE_DATE_PLACEHOLDER" = "Date";
+
+/* TABBAR CONTROLLER */
+"TABBAR_SECTION_TITLE_FEED" = "Feed";
+"TABBAR_SECTION_TITLE_CONTACT" = "Contact";
+"TABBAR_SECTION_TITLE_CATALOG" = "Explore";
+"TABBAR_SECTION_TITLE_DASHBOARD" = "Dashboard";
+"TABBAR_SECTION_TITLE_BOOKING" = "Booking";
+"TABBAR_SECTION_TITLE_SCHEDULE" = "Calendar";
+"TABBAR_SECTION_TITLE_PROFILE" = "Profile";
+
+/* REVIEWS VIEW */
+"REVIEWS_VIEW_TITLE" = "Reviews";
+"REVIEWS_QUALITY_TITLE" = "Quality";
+"REVIEWS_CLEANLINESS_TITLE" = "Cleanliness";
+"REVIEWS_PUNCTUALITY_TITLE" = "Punctuality";
+"REVIEWS_REVIEWS_TITLE" = "Reviews";
+"REVIEWS_TOTAL_REVIEWS" = "reviews";
+
+/* ACCEPTED PAYMENT METHODS VIEW */
+"ACCEPTED_PAYMENT_METHODS_TITLE" = "Payment methods";
+"ACCEPTED_PAYMENT_METHODS_TITLE_SECTION" = "Accepted payment methods";
+"ACCEPTED_PAYMENT_METHODS_SUBTITLE" = "Select payment methods you accept";
+"ACCEPTED_PAYMENT_METHODS_TIPS_NO_PREMIUM" = "In order to set up deposit payments and/or accept online payments subscribe to the Lite plan.";
+"ACCEPTED_PAYMENT_METHODS_TIPS_PREMIUM" = "You subscribed to the Lite package so now you can enable deposits and/or accept online payments.";
+"ACCEPTED_PAYMENT_METHODS_DEPOSIT_DESCRIPTION" = "For simplicity, the deposit amount will be rounded. For example, instead of €17.64, the deposit will be €18.\n\nDeposits will be paid online and the amount will be transferred to your wallet 24 hours after the appointment.";
+"ACCEPTED_PAYMENT_METHODS_PAYMENT_DESCRIPTION" = "Payments will be transferred to your wallet 24 hours after the appointment.";
+"ACCEPTED_PAYMENT_METHODS_PAYMENT_INAPP" = "Online payment";
+"ACCEPTED_PAYMENT_METHODS_PAYMENT_ONSITE" = "On-site payment";
+"ACCEPTED_PAYMENT_METHODS_FOOTER" = "In order to accept payment inside the app, subscribe to Lite plan!";
+"ACCEPTED_PAYMENT_METHODS_VALIDATE" = "Validate";
+"ACCEPTED_PAYMENT_METHODS_SAVED" = "Your payment methods have been saved.";
+"ACCEPTED_PAYMENT_METHODS_SAVED_ERROR" = "Impossible to register your payment method. Please try again later.";
+
+"ACCEPTED_PAYMENT_METHODS_DEPOSIT_TITLE" = "Deposits";
+"ACCEPTED_PAYMENT_METHODS_DEPOSIT_DESCRIPTION" = "Deposits are paid by clients at the time of booking and will appear as 'pending' in your wallet. Once the appointment is completed, the amount will be 'available' and you can transfer it to your bank account.";
+"ACCEPTED_PAYMENT_METHODS_DEPOSIT_PERCENTAGE" = "Deposit in %";
+"ACCEPTED_PAYMENT_METHODS_DEPOSIT_FIXED" = "Fixed deposit in %@";
+"ACCEPTED_PAYMENT_METHODS_DEPOSIT_ROUNDING_INFO" = "For simplicity, the deposit amount will be rounded up to the nearest whole unit.";
+"ACCEPTED_PAYMENT_METHODS_LOYAL_CUSTOMERS_TITLE" = "My loyal clients";
+"ACCEPTED_PAYMENT_METHODS_LOYAL_CUSTOMERS_DESCRIPTION" = "You can customize the deposit amount for your loyal clients or simply set it to 0.";
+"ACCEPTED_PAYMENT_METHODS_SAVED" = "Deposit settings saved successfully";
+"ACCEPTED_PAYMENT_METHODS_SAVED_ERROR" = "Error saving deposit settings";
+"DEPOSIT_AMOUNT_EXCEEDS_TOTAL_ERROR" = "The deposit amount should not exceed the total care amount";
+
+/* PAYMENT METHODS */
+"PAYMENT_METHOD_TITLE_CASH" = "Cash";
+"PAYMENT_METHOD_TITLE_ON_SITE" = "On-site";
+"PAYMENT_METHOD_TITLE_CHECK" = "Check";
+"PAYMENT_METHOD_TITLE_CARD" = "Credit/Debit card";
+"PAYMENT_METHOD_TITLE_CARD_ONLINE" = "Payment by credit card";
+"PAYMENT_METHOD_TITLE_WALLET" = "Wallet iara";
+"PAYMENT_METHOD_TITLE_PAYPAL" = "PayPal & other";
+"PAYMENT_METHOD_COMMERCIAL_NAME_CASH" = "by cash";
+"PAYMENT_METHOD_COMMERCIAL_NAME_CHECK" = "by check";
+"PAYMENT_METHOD_COMMERCIAL_NAME_CARD" = "by credit card at your place";
+"PAYMENT_METHOD_COMMERCIAL_NAME_ONLINE" = "online";
+"PAYMENT_METHOD_COMMERCIAL_NAME_WALLET" = "by wallet";
+
+/* MY PAYMENT METHODS */
+"MY_PAYMENT_METHODS_TITLE" = "Payment methods";
+"MY_PAYMENT_METHODS_WALLET" = "Wallet";
+"MY_PAYMENT_METHODS_ADD_A_METHOD" = "Add a payment method";
+"MY_PAYMENT_METHODS_EMPTY" = "No payment method saved";
+"MY_PAYMENT_METHODS_SELECT_A_METHOD" = "Select a payment method";
+"MY_PAYMENT_METHODS_DELETE" = "Delete";
+"MY_PAYMENT_METHODS_DELETE_THIS_CARD" = "Delete this card";
+"MY_PAYMENT_METHODS_DEFAULT" = "By default";
+"MY_PAYMENT_METHODS_OTHER_METHODS" = "Other payment methods";
+"MY_PAYMENT_METHODS_CARD_DELETED" = "This card has been correctly deleted";
+"MY_PAYMENT_METHODS_GTC" = "GTC";
+"MY_PAYMENT_METHODS_ADDED" = "Your card has been correctly added";
+
+/* SUBSCRIPTION */
+"SUBSCRIPTION_CONGRATULATION" = "Congratulation";
+"SUBSCRIPTION_PROFILE_VALIDATED" = "Your profile has been validated by our team.
+Choose your package so that your profile becomes visible to clients";
+"SUBSCRIPTION_THREE_MONTHS_FREE" = "Get 3 FREE months";
+"SUBSCRIPTION_BUTTON_START" = "Start";
+"SUBSCRIPTION_BUTTON_RESTORE"= "Restore";
+"CHOOSE_SUBSCRIPTION_TITLE" = "Choose a package";
+"CHOOSE_SUBSCRIPTION_MONTHLY" = "Monthly";
+"CHOOSE_SUBSCRIPTION_ANNUAL" = "Annual";
+"CHOOSE_SUBSCRIPTION_FREE_TRY" = "Free 3 month trial";
+"CHOOSE_SUBSCRIPTION_MONTH_OFFERED" = "+ 1 month offered";
+"CHOOSE_SUBSCRIPTION_CONTENT" = "You then pay %d%@/month HT and can cancel at any time";
+"CHOOSE_SUBSCRIPTION_BUTTON_SELECT" = "Select";
+"SUBSCRIPTION_LATER" = "Later";
+
+/* PROFILE CONTROLLER */
+"PROFILE_SECTION_TITLE_CARES" = "Treatments";
+"PROFILE_SECTION_TITLE_BIO" = "Bio";
+"PROFILE_SECTION_TITLE_CONDITIONS" = "Terms";
+"PROFILE_SECTION_TITLE_REVIEWS" = "Reviews";
+"PROFILE_SECTION_TITLE_PHOTOS" = "%@'s photos";
+"PROFILE_SECTION_TITLE_BIO" = "%@'s bio";
+"PROFILE_SECTION_TITLE_MY_PHOTOS" = "My photos";
+"PROFILE_SECTION_TITLE_HIS_PHOTOS" = "Photos";
+"PROFILE_SECTION_TITLE_MY_CARES" = "My beauty routine";
+"PROFILE_SECTION_TITLE_HIS_CARES" = "Beauty routine" ;
+"PROFILE_SECTION_TITLE_MY_FAVORITES" = "My wishlist";
+"PROFILE_SECTION_TITLE_HIS_FAVORITES" = "Wishlist";
+"PROFILE_SECTION_TITLE_MY_FAVORITES_PRO" = "My beauty pros";
+"PROFILE_SECTION_TITLE_HIS_FAVORITES_PRO" = "Beauty pros";
+"PROFILE_SECTION_TITLE_CUSTOMERS_PHOTOS" = "Client's photos";
+"PROFILE_BUTTON_ALL_PICTURE" = "All pictures";
+"PROFILE_BUTTON_SUBSCRIBE" = "Subscribe";
+"PROFILE_BUTTON_WRITE" = "Contact";
+"PROFILE_BUTTON_SHARE" = "Share";
+"PROFILE_BUTTON_SHEET" = "History";
+"PROFILE_BUTTON_HIDDEN_PROFILE" = "Your profile is not visible on the map 👻";
+"PROFILE_BUTTON_CONTINUE_SIGNUP" = "Continue your registration 🚨";
+"PROFILE_BUTTON_ENABLE_NOTIFICATIONS" = "🔔 Enable notifications";
+
+"PROFILE_SEGMENTED_TITLE_INFORMATION" = "Information";
+"PROFILE_SEGMENTED_TITLE_PICTURES" = "Pictures";
+
+"PROFILE_EMPTY_PRIVATE_ACCOUNT_TITLE" = "Private account";
+"PROFILE_EMPTY_PRIVATE_ACCOUNT_DESCRIPTION" = "Follow this account to be able to see photos and treatments";
+"PROFILE_EMPTY_PHOTOS_LIST_TITLE" = "Your profile is empty.";
+"CUSTOMER_PROFILE_EMPTY_PHOTOS_SELF" = "You haven't bookmarked any photos.";
+"CUSTOMER_PROFILE_EMPTY_PHOTOS" = "%@ has not bookmarked any photos.";
+"CUSTOMER_PROFILE_EMPTY_PROS_SELF" = "You don't have any pros yet.";
+"CUSTOMER_PROFILE_EMPTY_PROS" = "%@ has no pros yet.";
+"PROFILE_EMPTY_PHOTOS_LIST_DESCRIPTION" = "Share your beauty cares now and earn money.";
+"PROFILE_EMPTY_PHOTOS_OTHER_USER_LIST_TITLE" = "This profile is empty";
+"PROFILE_EMPTY_PHOTOS_OTHER_USER_LIST_DESCRIPTION" = "The posts of %@ will appear here";
+"PROFILE_EMPTY_PHOTOS_THAT_PEOPLE" = "that people";
+"PROFILE_EMPTY_PHOTOS_LIST_ADD_BUTTON" = "Add a photo";
+"PROFILE_EMPTY_BIO" = "No bio added.";
+"PROFILE_EMPTY_CONDITIONS" = "No terms added.";
+"PROFILE_EMPTY_REVIEWS" = "has just arrived on iara and has no reviews yet";
+"PROFILE_EMPTY_PHOTOS" = "has no photos posted on iara for the moment";
+"PROFILE_EMPTY_CUSTOMERS_PHOTOS" = "has not been identified by clients on photos for the moment";
+"PROFILE_EMPTY_CARES" = "No services provided yet.";
+"PROFILE_EMPTY_LOADING" = "Loading in progress...";
+"PROFILE_EMPTY_MAP" = "This user has not given any information about his work location.";
+
+"PROFILE_SECTION_FOOTER_SEE_DETAIL" = "See in detail";
+"PROFILE_SECTION_FOOTER_SEE_ALL" = "See all";
+"PROFILE_MY_FOLLOWINGS_TITLE" = "My followings";
+"PROFILE_SECTION_EMPTY_MY_PHOTOS" = "Your profile is empty.\n Share your beauty tips now and earn money by recommending your favorite places.";
+
+"PROFILE_CONDITIONS_TITLE" = "Conditions";
+"PROFILE_TO_CONTACT_ME" = "To contact me";
+"PROFILE_CONDITIONS_MEN_GRANTED" = "Men admitted";
+"PROFILE_CONDITIONS_ACCOMPANYING_GRANTED" = "Accompanying persons admitted";
+"PROFILE_CONDITIONS_BABY_AT_WORKING_PLACE" = "Baby on site";
+"PROFILE_CONDITIONS_PETS_AT_WORKING_PLACE" = "Pets on site";
+"PROFILE_CONDITIONS_DEPOSIT_SELECTED" = "Deposit when booking";
+"PROFILE_CONDITIONS_DEPOSIT_UNSELECTED" = "Deposit when booking";
+"PROFILE_CONDITIONS_ADD_LEGAL_ID_TO_GET_CERTIFIED" = "Add your company legal id to get certified and be able to ask deposit from your clients.";
+
+"PROFILE_CONDITIONS_DISABLED_PERSON" = "Disabled access";
+"PROFILE_PERMISSION_LOCATION_WHEN_IN_USE_DESCRIPTION" = "Discover where you can find this pro.";
+
+"PROFILE_ADD_ALBUM" = "Add album";
+"PROFILE_NEED_VERIFICATION" = "Your account must be verified in order to appear in search results.";
+"PROFILE_PENDING_VERIFICATION" = "Your account will be reviewed soon by an admin.";
+
+"PROFILE_BUTTON_MY_ACCOUNT" = "My account";
+"PROFILE_BUTTON_MANAGE_BUSINESS" = "Manage business";
+"PROFILE_BUTTON_MANAGE_PROFILE" = "Manage profile";
+"PROFILE_BUTTON_SHARE_PROFILE_CUSTOMER" = "Invite my friends";
+"PROFILE_BUTTON_SHARE_PROFILE_PRO" = "Share my profile";
+"PROFILE_BUTTON_ALL_PICTURES" = "All pictures";
+"PROFILE_BUTTON_BOOK" = "Book";
+"PROFILE_BUTTON_ADD_CARE" = "Add a care";
+"PROFILE_BUTTON_ADD_PICTURES" = "Add pictures";
+"PROFILE_BUTTON_ADD_AVAILABILITIES" = "Add availability";
+
+"PROFILE_REPORT_TITLE" = "Report user for";
+"PROFILE_REPORT_PORN" = "Publishing pornographic content";
+"PROFILE_REPORT_HATE" = "Incitating hate";
+"PROFILE_REPORT_USURPER" = "Not owner of picture's posted";
+"PROFILE_REPORT_SUCCESS" = "Your report has been registered, iara team will investigate.";
+"PROFILE_REPORT_ERROR" = "You may have already filed a report in this regard.";
+
+"PROFILE_SUPPORT_INSTALL_WHATSAPP" = "Please install WhatsApp for customer support";
+
+"PROFILE_MORE_ACTION_TITLE" = "What would you like to do?";
+"PROFILE_MORE_ACTION_REPORT" = "Report";
+"PROFILE_MORE_ACTION_BLOCK" = "Block";
+"PROFILE_BLOCK_SUCCESS" = "User has been blocked.";
+"PROFILE_BLOCK_ERROR" = "An error occurred, user has not been blocked.";
+
+"PROFILE_NEXT_AVAILABILITY_TITLE" = "Next availability on";
+"PROFILE_NEXT_AVAILABILITY_EMPTY_TITLE" = "Contact the pro to have an availability";
+"PROFILE_NEXT_AVAILABILITY_EMPTY_TITLE_FOR_CURRENT_PRO" = "No availability provided.";
+
+"PROFILE_EMPTY_VIEW_TITLE" = "My profile";
+"PROFILE_EMPTY_VIEW_CONNECT_YOURSELF" = "Connect";
+"PROFILE_EMPTY_VIEW_DESCRIPTION" = "Find all the pros around you and book easily.";
+"PROFILE_EMPTY_VIEW_BUTTON_TITLE" = "Sign in";
+
+"PROFILE_EMPTY_VIEW_BECOMING_PRO_TITLE" = "Become a pro";
+"PROFILE_EMPTY_VIEW_BECOMING_PRO_DESCRIPTION" = "Manage your activity and find new clients by selling your beauty services.";
+"PROFILE_EMPTY_VIEW_BECOMING_PRO_DESCRIPTION_BUTTON_TITLE" = "Let's go!";
+
+"PROFILE_PLACE_TITLE" = "Location";
+"PROFILE_PLACE_DESCRIPTION" = "The exact address will only be communicated 24 hours before the appointment.";
+
+/* SET WORKING ADDRESS CONTROLLER */
+"SET_WORKING_ADDRESS_CONFIRM_BUTTON_TITLE" = "Confirm business address";
+
+"CUSTOMER_FAVORITES_CARES_EMPTY_TITLE" = "No treatments yet";
+"CUSTOMER_FAVORITES_CARES_EMPTY_DESC" = "Once the first reservation has been made, the treatments will be displayed here";
+"CUSTOMER_FAVORITES_CARES_ALERT_UNEDITABLE" = "This treatment is linked to a published post, you can't change its visibility here!";
+
+"CUSTOMER_FAVORITES_PROS_EMPTY_TITLE" = "No pros yet";
+"CUSTOMER_FAVORITES_PROS_EMPTY_DESC" = "Once the first booking has been made, the pros will be displayed here";
+
+/* PROFILE MORE CONTROLLER */
+"MORE_CELL_TYPE_TITLE_FOLLOW" = "Follow";
+"MORE_CELL_TYPE_TITLE_MESSAGE" = "Message";
+"MORE_CELL_TYPE_TITLE_REPORT" = "Report user";
+"MORE_CELL_TYPE_TITLE_SETTINGS" = "Settings";
+"MORE_CELL_TYPE_TITLE_FOLLOW_LOADING" = "Loading...";
+"MORE_CELL_TYPE_TITLE_FOLLOW_NON_FOLLOWING" = "Follow";
+"MORE_CELL_TYPE_TITLE_VERIFY_ACCOUNT" = "Verify my account";
+"MORE_CELL_TYPE_TITLE_VERIFY_ACCOUNT_ALREADY_VERIFIED" = "Your account is already verified";
+"MORE_REPORT_NOTIFICATION_SUCCESS" = "User reported";
+"MORE_FOLLOW_NOTIFICATION_SUCCESS" = "You are now following this user";
+"MORE_UNFOLLOW_NOTIFICATION_SUCCESS" = "You are no longer following this user";
+
+/* EDIT PROFILE CONTROLLER */
+"EDIT_PROFILE_TITLE" = "My profile";
+"EDIT_PROFILE_EDIT" = "Edit my profile photo";
+"EDIT_PROFILE_IS_PRIVATE" = "Private account";
+"EDIT_PROFILE_BIO_PLACEHOLDER" = "Biography";
+"EDIT_PROFILE_SUCCESS_SAVE" = "Profile updated!";
+"EDIT_PROFILE_ERROR_SAVE" = "Error while saving your edits.";
+"USER_GENDER_FEMALE" = "Female";
+"USER_GENDER_MALE" = "Male";
+"USER_GENDER_UNDEFINED" = "Undefined";
+"EDIT_PROFILE_YOUR_PROFILE" = "Link's profile";
+"EDIT_PROFILE_YOUR_PROFILE_LINK_COPIED" = "The link has been copied";
+"EDIT_PROFILE_USERNAME" = "Username";
+"EDIT_PROFILE_DISPLAYNAME" = "Displayed name";
+"EDIT_PROFILE_FIRSTNAME" = "First name";
+"EDIT_PROFILE_LAST_NAME" = "Last name";
+"EDIT_PROFILE_GENDER" = "Gender";
+"EDIT_PROFILE_BUILDING" = "Building";
+"EDIT_PROFILE_FLOOR" = "Floor";
+"EDIT_PROFILE_CODE" = "Code";
+"EDIT_CONTROLLER_BIRTHDATE" = "Birth date";
+"EDIT_PROFILE_DESCRIPTION" = "Description";
+"EDIT_PROFILE_INSTRAGRAM" = "Instagram";
+"EDIT_PROFILE_INSTRAGRAM_TEST_LINK" = "Test the link";
+"EDIT_PROFILE_INSTRAGRAM_INSERT_PSEUDO" = "Insert only your username.";
+"EDIT_PROFILE_INSTRAGRAM_PSEUDO_PLACEHOLDER" = "Your pseudo here";
+"EDIT_PROFILE_INSTRAGRAM_ERROR" = "The Instagram pseudo is incorrect";
+"EDIT_PROFILE_EMAIL" = "Email";
+"EDIT_PROFILE_EMAIL_PLACEHOLDER" = "Your e-mail address";
+"EDIT_PROFILE_PHONE_NUMBER" = "Phone number";
+"EDIT_PROFILE_EMAIL_INVALID" = "Email is invalid";
+"EDIT_PROFILE_COVER" = "Cover";
+"EDIT_PROFILE_WORKPLACE" = "Workplace";
+"EDIT_PROFILE_COUNTRY" = "Country";
+"EDIT_PROFILE_STREET_NAME" = "Number and name of the street";
+"EDIT_PROFILE_CITY" = "City";
+"EDIT_PROFILE_POSTAL_CODE" = "Zip Code";
+"EDIT_PROFILE_ABLE_LOCATION" = "Turn on my location";
+"EDIT_PROFILE_LOCATION_DESCRIPTION" = "Your exact address will be sent to your clients 24 hours before the appointment date.";
+"EDIT_PROFILE_LOCATION_INFO" = "If you wish to change your work address, please contact us at hello@iarabeauty.com";
+"EDIT_PROFILE_GET_CERTIFIED" = "Accept online payments";
+"EDIT_PROFILE_COMPANY_INFORMATION" = "This information is not compulsory yet and will enable you to obtain the certification badge visible to clients.";
+"EDIT_PROFILE_SIRET" = "Your country's business registration number*";
+"EDIT_PROFILE_TVA" = "TVA N°";
+"EDIT_PROFILE_RCP" = "RCP";
+"EDIT_PROFILE_FAQ" = "FAQ";
+"EDIT_PROFILE_BUTTON_TITLE" = "Validate";
+"EDIT_PROFILE_GENERAL_CONDITIONS" = "General conditions";
+"EDIT_PROFILE_GENERAL_CONDITIONS_PLACEHOLDER" = "Fill in your conditions. This message will be displayed to your clients on the order summary page";
+"EDIT_PROFILE_BIO" = "Your biography";
+
+/* MY SUBSCRIPTIONS */
+"MY_SUBSCRIPTIONS_SUBSCRIPTION_BUTTON" = "Following";
+"MY_SUBSCRIPTIONS_SUBSCRIBERS_BUTTON" = "Followers";
+"SUBSCRIPTION_TITLE" = "Community";
+
+/* ADD NEW BANK ACCOUNT */
+"ADD_NEW_BANK_ACCOUNT_TITLE_VIEW" = "Add a bank account";
+"ADD_NEW_BANK_ACCOUNT_OWNER_IDENTITY" = "Account owner";
+"ADD_NEW_BANK_ACCOUNT_BIRTHDATE" = "Birthdate";
+"ADD_NEW_BANK_ACCOUNT_IBAN" = "(IBAN)";
+"ADD_NEW_BANK_ACCOUNT_ACCOUNT_NUMBER" = "Account number";
+"ADD_NEW_BANK_ACCOUNT_ROUTING" = "Routing number";
+"ADD_NEW_BANK_ACCOUNT_INVOICE_ADDRESS" = "Invoice address";
+"ADD_NEW_BANK_ACCOUNT_LASTNAME" = "Lastname";
+"ADD_NEW_BANK_ACCOUNT_FIRSTNAME" = "Firstname";
+"ADD_NEW_BANK_ACCOUNT_ADDRESS" = "Street name and number";
+"ADD_NEW_BANK_ACCOUNT_CITY" = "City";
+"ADD_NEW_BANK_ACCOUNT_ZIP_CODE" = "Zip code";
+"ADD_NEW_BANK_ACCOUNT_COUNTRY" = "Country";
+"ADD_NEW_BANK_ACCOUNT_ACCOUNT_TYPE" = "Account type";
+"ADD_NEW_BANK_ACCOUNT_CURRENCY_TYPE" = "Currency";
+"ADD_NEW_BANK_ACCOUNT_SUCCESS" = "Your bank account has been successfully added.";
+"ADD_NEW_BANK_ACCOUNT_ERROR" = "Error while adding your bank account, check information before retrying.";
+"BANK_ACCOUNT_OWNER_TYPE_INDIVIDUAL" = "Individual";
+"BANK_ACCOUNT_OWNER_TYPE_COMPANY" = "Company";
+
+/* AUTHENTICATE STRIPE ACCOUNT */
+"AUTHENTICATE_STRIPE_ACCOUNT_SUBTITLE" = "Authenticate your account to transfer money.";
+"AUTHENTICATE_STRIPE_ACCOUNT_ID_SUBTITLE" = "Your ID is stored on Stripe's secured servers.";
+"AUTHENTICATE_STRIPE_ACCOUNT_VALIDATE_BUTTON" = "Submit";
+"AUTHENTICATE_STRIPE_ACCOUNT_WARNING_PENDING" = "Your account is being verified";
+"AUTHENTICATE_STRIPE_ACCOUNT_WARNING_ERROR" = "It looks like at least one of your documents may have been denied.";
+
+/* CREATE CARE CONTROLLER*/
+"MY_CARE_CONTROLLER_TITLE" = "My beauty";
+"MY_CARE_CONTROLLER_TITLE_PRO_ONBOARDING" = "Add beauty services\nyou propose.";
+"MY_CARE_CONTROLLER_SUBTITLE" = "Add beauty services to your profile.";
+"MY_CARE_CONTROLLER_CREATE_PACK" = "Create a pack";
+"MY_CARE_CONTROLLER_ADD_NEW_CARE_TITLE" = "New beauty service";
+"MY_CARE_CONTROLLER_PRICE_LIST_SAVED" = "Your price list has been modified";
+"MY_CARE_CONTROLLER_PRICE_LIST_SAVED_ERROR" = "Impossible to save your price list. Please try again later!";
+"PROFIL_MY_CARE_TITLE" = "All beauty services";
+"EMPTY_VIEW_CARE" = "No beauty services yet";
+"EMPTY_VIEW_PACK" = "No pack yet";
+"MY_CARE_NO_AVAILABLE" = "No more beauty treatments available in this category";
+"MY_CARE_CARE_DISABLED" = "This service has been correctly disabled.";
+"MY_CARE_CARE_REACTIVATED" = "This service has been correctly reactivated.";
+"MY_CARE_CARE_TOGGLE_ERROR" = "An error occured when trying to update this service.";
+
+"CREATE_CARE_HANDSFREE_TITLE" = "Hands-free services";
+"CREATE_CARE_HANDSFREE_DESCRIPTION" = "Hands-free services";
+"CREATE_CARE_HANDSFREE_EXAMPLE" = "Example: UV, teeth whitening ...";
+"CREATE_CARE_HANDSFREE_FREESLOT" = "The time slot will remain free. Multiple clients will be able to book a service in the same time slot, depending on the number of available machines you have indicated.";
+
+"CARE_OPTIONS_SHEET_TITLE" = "Available options";
+"CARE_OPTIONS_SHEET_DESC" = "Select the options you want.";
+"CARE_OPTIONS_SHEET_DECLINE" = "No thanks!";
+
+/* EDIT CARE CONTROLLER*/
+//TODO: translate all
+"EDIT_CARE_CONTROLLER_PRICE" = "Price";
+"EDIT_CARE_CONTROLLER_OPTION_PRICE" = "Additional price";
+"EDIT_CARE_CONTROLLER_OPTION_NAME" = "Example : Nail art, brushing...";
+"EDIT_CARE_CONTROLLER_ADVICE" = "💡 Tips: Add the same treatment several times and modify details according to the area and the technique used.";
+"EDIT_CARE_CONTROLLER_INFO" = "The image and the title can be edited.";
+"EDIT_CARE_CONTROLLER_PRICE_FROM" = "starting";
+"EDIT_CARE_CONTROLLER_TIME" = "Duration (hour:minute)";
+"EDIT_CARE_CONTROLLER_OPTION_TIME" = "Additional duration (hour:m)";
+"EDIT_CARE_CONTROLLER_TIME_NEEDED_TO_CARE" = "The time you need between each client must be included in the duration of your service";
+"EDIT_CARE_CONTROLLER_MANUAL_DESCRIPTION" = "Personalize the description";
+"EDIT_CARE_CONTROLLER_MANUAL_DESCRIPTION_PLACE_HOLDER" = "Add a description";
+"EDIT_CARE_CONTROLLER_HANDS_FREE" = "Hands-free";
+"EDIT_CARE_CONTROLLER_OPTIONS" = "Additional options";
+"EDIT_CARE_CONTROLLER_TITLE" = "Add a care";
+"EDIT_CARE_CONTROLLER_TITLE_EDIT" = "Edit this service";
+"EDIT_CARE_CONTROLLER_TITLE_BUTTON" = "Validate";
+"EDIT_CARE_CONTROLLER_SAVE_SUCCESS" = "Service saved successfully.";
+"EDIT_CARE_CONTROLLER_SAVE_ERROR" = "Error while saving your service.";
+"EDIT_CARE_CONTROLLER_AVAILABLE_MACHINE" = "Available machine(s)";
+"EDIT_CARE_ERROR_OPTIONS" = "Care options must all have a title";
+"EDIT_CARE_ERROR_MINIMUM_DURATION" = "The service's duration can't be less than 5 min.";
+"EDIT_CARE_ERROR_MAXIMUM_DURATION" = "The service's duration can't be more than 12 hours.";
+"EDIT_CARE_ERROR_MINIMUM_PRICE" = "Your service's price can't be less than one euro.";
+"EDIT_CARE_CONTROLLER_FIXED_DEPOSIT_INFO" = "The deposit is defined in %. You can modify this data in your payment methods.";
+
+"EDIT_CARE_CUSTOM_DEPOSIT" = "Custom deposit";
+"EDIT_CARE_DEPOSIT_EXCEEDS_PRICE_ERROR" = "The deposit amount cannot exceed the care price";
+
+/* MY PACK CONTROLLER */
+"MY_PACK_SELECTE_CARE_TITLE" = "New Pack";
+"MY_PACK_SELECTE_CARE_SUBTITLE" = "Select one or more cares";
+"MY_PACK_SELECTE_CARE_BUTTON" = "Validate";
+"MY_PACK_NBR_SELECTED_CARES" = "Selected cares";
+"MY_PACK_NBR_SELECTED_CARE" = "Selected care";
+"MY_PACK_TOTAL_PRICE" = "Price without discount: ";
+"MY_PACK_BUTTON_TITLE" = "Create pack";
+
+/* CREATE ALBUM CONTROLLER */
+"CREATE_ALBUM_DEFAULT_TITLE" = "New album";
+"EDIT_ALBUM_DEFAULT_TITLE" = "Edit album";
+"CREATE_ALBUM_IMPORT_BUTTON_TITLE" = "Import picture";
+"CREATE_ALBUM_DELETE_ALERT_TITLE" = "Delete album?";
+"CREATE_ALBUM_ERROR_NOTIFICATION" = "Error while creating album.";
+"CREATE_ALBUM_CELL_COVER_TITLE" = "Cover";
+"CREATE_ALBUM_BUTTON_TITLE" = "Validate";
+"CREATE_ALBUM_PLACEHOLDER_NAME" = "Album's name";
+
+
+/* SETTINGS CONTROLLER */
+"SETTINGS_VIEW_CONTROLLER_TITLE" = "Settings";
+"SETTINGS_VIEW_CONTROLLER_SIGN_OUT" = "Sign out";
+"SETTING_TYPE_TITLE_NOTIFICATION" = "Notifications";
+"SETTING_TYPE_TITLE_HELP" = "Help & support 💜";
+"SETTING_TYPE_TITLE_RATE" = "Rate the app ✨";
+"SETTING_TYPE_TITLE_TERMS" = "Terms & conditions";
+"SETTING_TYPE_TITLE_FOLLOW_INSTAGRAM" = "Follow us on Instagram";
+"SETTING_TYPE_TITLE_FOLLOW_FACEBOOK" = "Follow us on Facebook";
+"SETTING_TYPE_TITLE_SWITCH_ACCOUNT" = "Switch account";
+
+/* BLOCKED */
+"BLOCKED_ACCOUNT_TITLE" = "Blocked users";
+"BLOCKED_ACCOUNT_BUTTON_TITLE" = "Unblock";
+
+/* SETTINGS CONTROLLER */
+"PICTURES_CONTROLLER_SELECT_TITLE" = "Select posts";
+
+/* CUSTOMER BOOKING */
+"CUSTOMER_BOOKING_FORMAT_DATE" = "EEE, MMM dd yyyy - HH:mm";
+"CUSTOMER_BOOKING_TITLE" = "My bookings";
+"CUSTOMER_BOOKING_SUBTITLE_NEXT_BOOKING" = "Upcoming";
+"CUSTOMER_BOOKING_SUBTITLE_DOING_BOOKING" = "Doing";
+"CUSTOMER_BOOKING_SUBTITLE_TO_REVIEW" = "To review";
+"CUSTOMER_BOOKING_SUBTITLE_PAST_BOOKING" = "Completed";
+"CUSTOMER_BOOKING_EMPTY_VIEW_TITLE" = "No upcoming appointments";
+"CUSTOMER_BOOKING_FIRST_BOOKING" = "When you want to make your first booking, we will be there to help you.";
+"CUSTOMER_BOOKING_CONNEXION_BUTTON" = "Login";
+"CUSTOMER_BOOKING_BUTTON_BOOK" = "Book";
+"CUSTOMER_BOOKING_EMPTY_NEW_TITLE" = "No upcoming appointments";
+"CUSTOMER_BOOKING_EMPTY_NEW_SUBTITLE" = "Once booked, your reservations will appear here.";
+"CUSTOMER_BOOKING_EMPTY_NEW_BUTTON" = "Book a treatment";
+"CUSTOMER_BOOKING_BUTTON_MANAGE" = "Manage";
+"CUSTOMER_BOOKING_BUTTON_RATE" = "Rate";
+"CUSTOMER_BOOKING_BUTTON_DOING" = "Doing";
+"CUSTOMER_BOOKING_BUTTON_CANCELED" = "Canceled";
+"CUSTOMER_BOOKING_BUTTON_INCIDENT" = "Incident";
+"CUSTOMER_BOOKING_BUTTON_REFUNDED" = "Refunded";
+"CUSTOMER_BOOKING_NO_BOOKING" = "No treatment planned for the moment!";
+"CUSTOMER_BOOKING_FORMAT_DATE_PAST_RDV" = "EEEE, MMMM dd yyyy - HH:mm";
+"CUSTOMER_BOOKING_BUYER_PROTECTION_TITLE" = "Buyer protection";
+"CUSTOMER_BOOKING_BUYER_PROTECTION_INTRO" = "Our goal is to ensure that you have a safe experience and that you trust the professionals available on iara when booking.";
+"CUSTOMER_BOOKING_SECURISED_PAYMENT" = "Secure payments";
+"CUSTOMER_BOOKING_SECURISED_PAYMENT_DETAILS" = "Internal payment in iara allows you to prove to the professional that you really made a payment. Your banking information will never be shared with the professionals on the app.";
+"CUSTOMER_BOOKING_REFOUND_POLICY" = "A refund policy";
+"CUSTOMER_BOOKING_REFOUND_POLICY_DETAILS" = "We can issue a refund if the result of a service is far from the one expected/sold on the professional's account, or when they make a mistake. If this is this case, you are given 24 hours to file a dispute.";
+"CUSTOMER_BOOKING_DISPUTE_RESOLUTION" = "Support in the resolution of your dispute";
+"CUSTOMER_BOOKING_DISPUTE_RESOLUTION_DETAILS" = "If you have a problem with a professional and one of the services you have booked, our team is here to help you.";
+"CUSTOMER_BOOKING_BUYER_PROTECTION_BUTTON_TITLE" = "I understand";
+"CUSTOMER_BOOKING_DEPOSIT_INFO" = "Contact support";
+"CUSTOMER_BOOKING_DEPOSIT_CONTENT" = "It is common that the professionals ask for a fraction of the total payment in advance in order to compensate the loss which would entail last minute cancellations or no-shows. This is the reason why the professionals set up deposits which are obligatory at the time of the payment of your service. \Of course, you should know that this payment is not definitive and that it is enough for you to cancel your service more than %.0f hours before to recover the amount that you have advanced.\nNote: The transaction fees which are caused at the time of the payment of the deposit are not refundable.";
+"CUSTOMER_BOOKING_ADD_EVENT" = "Add to Agenda";
+"CUSTOMER_BOOKING_ADD_EVENT_SHORT" = "+ Agenda";
+"CUSTOMER_BOOKING_DETAILS" = "Detail";
+
+"ANONYMOUS_BOOKINGS_TITLE" = "My Appointments";
+"ANONYMOUS_BOOKINGS_CTA_TITLE" = "No appointments yet";
+"ANONYMOUS_BOOKINGS_CTA_SUBTITLE" = "Once connected, your bookings will appear here.";
+"ANONYMOUS_BOOKINGS_CREATE_ACCOUNT_BUTTON" = "Create my account";
+"ANONYMOUS_SAMPLE_DATE_1" = "Tuesday 18 March 2025 - 17:00";
+"ANONYMOUS_SAMPLE_DATE_2" = "Friday 21 March 2025 - 14:30";
+"ANONYMOUS_SAMPLE_DATE_3" = "Monday 10 March 2025 - 16:00";
+"ANONYMOUS_SAMPLE_DATE_4" = "Wednesday 5 March 2025 - 10:00";
+"ANONYMOUS_SAMPLE_SERVICE_1" = "French";
+"ANONYMOUS_SAMPLE_SERVICE_2" = "Massage";
+"ANONYMOUS_SAMPLE_SERVICE_3" = "Haircut";
+"ANONYMOUS_SAMPLE_SERVICE_4" = "Manicure";
+"ANONYMOUS_SAMPLE_STATUS_UPCOMING" = "Upcoming";
+"ANONYMOUS_SAMPLE_STATUS_COMPLETED" = "Completed";
+
+/* CUSTOMER RECAP ORDER */
+"RECAP_ORDER_FIRSTNAME" = "First name";
+"RECAP_ORDER_LASTNAME" = "Last name";
+"RECAP_ORDER_PHONE" = "Phone";
+"RECAP_ORDER_EMAIL" = "E-mail";
+"RECAP_ORDER_PHONE_COPIED" = "The phone has been copied";
+"CUSTOMER_RECAP_ORDER_WITH" = "Your appointment with";
+"RECAP_ORDER_FORMAT_DATE_RDV" = "EEEE MMMM dd, HH:mm";
+"RECAP_ORDER_CANCELED_ORDER" = "Canceled";
+"RECAP_ORDER_CANCELED_ERROR" = "Unable to cancel this booking. Contact iara support";
+"RECAP_ORDER_INCIDENT_ORDER" = "Order incident";
+"RECAP_ORDER_INCIDENT_PAYMENT" = "Payment incident";
+"RECAP_ORDER_ENDED_ORDER" = "Ended";
+"RECAP_ORDER_DOING_ORDER" = "Pending";
+"RECAP_ORDER_SUBTITLE_RECAP_ORDER" = "Order summary";
+"RECAP_ORDER_INCIDENT_TEXT_INCIDENT_ORDER_PRO" = "There was an incident when making the appointment, the client has not been charged and the slot has not been blocked.";
+"RECAP_ORDER_INCIDENT_TEXT_INCIDENT_ORDER_CUSTOMER" = "There was an incident during the appointment booking, so you have not been charged and the slot is not blocked.";
+"RECAP_ORDER_INCIDENT_TEXT_INCIDENT_PAYMENT_PRO" = "Attention, the debit could not be made. You can therefore check directly with him/her how to proceed with full payment of the service on the spot.";
+"RECAP_ORDER_INCIDENT_TEXT_INCIDENT_PAYMENT_CUSTOMER" = "Attention, the direct debit could not be made. You can therefore check directly with the professional how to proceed with full payment for the service on site.";
+"RECAP_ORDER_NOSHOW" = "My client hasn't showed up";
+"RECAP_ORDER_TOTAL_DU" = "Total";
+"RECAP_ORDER_SUB_TOTAL" = "Sub total";
+"RECAP_ORDER_HEADER_BUTTON_EDIT" = "Edit";
+"RECAP_ORDER_HEADER_BUTTON_CONTACT" = "Contact";
+"RECAP_ORDER_HEADER_MANUALCUSTOMER_MESSAGE_ALERT" = "This client has been manually added, you cannot contact him from iara directly.";
+"RECAP_ORDER_PROTECT_CUSTOMER" = "Buyer protection";
+"RECAP_ORDER_BUYER_PROTECTION" = "Buyer protection";
+"RECAP_ORDER_IARA_WALLET" = "iara wallet";
+"RECAP_ORDER_DEPOSIT" = "deposit of";
+"RECAP_ORDER_DEPOSIT_V2" = "Including a deposit of";
+"RECAP_ORDER_EXTERNAL_DEPOSIT" = "Amount paid (outside iara)";
+"RECAP_ORDER_DURATION" = "Duration";
+"RECAP_ORDER_TOTAL" = "Total to pay";
+"RECAP_ORDER_TOTAL_TODAY" = "To pay today";
+"RECAP_ORDER_TOTAL_TO_PAY_NOW" = "To pay now";
+"RECAP_ORDER_TOTAL_TO_PAY_ON_SITE" = "To be paid on site";
+"RECAP_ORDER_TOTAL_TO_PAY_ON_SITE_V2" = "To be paid on site";
+"RECAP_ORDER_TOTAL_ALREADY_PAID" = "Amount already paid";
+"RECAP_ORDER_TOTAL_REMAINING_UNPAID" = "Remains to be paid on site (excluding supplement)";
+"RECAP_ORDER_STATE" = "State";
+"RECAP_ORDER_UPDATE_STATE_SUCCESS" = "Order update correctly saved";
+"RECAP_ORDER_PAY_CASH_IMPOSSIBLE" = "Impossible to pay this booking with that payment method. Try another one.";
+"RECAP_ORDER_UPDATE_DEPOSIT_SUCCESS" = "Order deposit correctly saved";
+"RECAP_ORDER_GENERAL_CONDITION" = "General conditions";
+"RECAP_ORDER_SPONSOR" = "Sponsored booking";
+"RECAP_ORDER_PAYEMENT_METHOD" = "Payment method";
+"RECAP_ORDER_ON_SITE_PAYMENT_METHOD" = "Payment method on site";
+"RECAP_ORDER_SPONSOR_DESC" = "You got this appointment thanks to this user. The amount of the commission will be automatically deducted from the full amount of the service.";
+"RECAP_ORDER_SPONSOR_DESC_CANCELED" = "You obtained this booking thanks to this user. As the appointment did not take place, no commission will be paid out.";
+"RECAP_ORDER_DEPOSIT_PAYMENT_METHOD" = "Deposit payment method";
+"RECAP_ORDER_DEPOSIT_PAYMENT_METHOD_DESCRIPTION" = "In order to confirm the booking, we will only debit the amount of the deposit. The rest of the reservation must be paid on-site.";
+"RECAP_ORDER_APPOINTMENT_PLACE" = "Appointment location";
+"RECAP_ORDER_BUTTON_TITLE_EDIT" = "Edit";
+"RECAP_ORDER_BUTTON_TITLE_RESCHEDULE" = "Reschedule";
+"RECAP_ORDER_BUTTON_TITLE_REVIEW" = "Review";
+"RECAP_ORDER_MY_REVIEW" = "My review";
+"RECAP_ORDER_BUTTON_TITLE_BOOK" = "Book";
+"RECAP_ORDER_MY_REVIEW_WORK_QUALITY" = "Quality of work";
+"RECAP_ORDER_MY_REVIEW_CLEANLINESS" = "Cleanliness";
+"RECAP_ORDER_MY_REVIEW_PONCTUALITY" = "Soft skills and punctuality";
+"RECAP_ORDER_CANCEL" = "Cancel";
+"RECAP_ORDER_REFUND_NO_REFUND_PRO" = "The client has cancelled his booking within the cancellation period specified in your booking policy.";
+"RECAP_ORDER_REFUND_NO_REFUND_PRO_BYPRO" = "You canceled the appointment.";
+"RECAP_ORDER_REFUND_DID_NOT_COME_PRO" = "This appointment did not take place because the customer did not show up. Their deposit or payment will be refunded to you if there was any.";
+"RECAP_ORDER_REFUND_DID_NOT_COME_CUSTOMER" = "This appointment did not take place because you did not show up. Your deposit or payment will be refunded to the professional if there was any.";
+"RECAP_ORDER_REFUND_NO_REFUND_CUSTOMER" = "You have cancelled your appointment within the cancellation deadline set by the professional.";
+"RECAP_ORDER_REFUND_NO_REFUND_CUSTOMER_BYPRO" = "The professional has cancelled the appointment.";
+"RECAP_ORDER_REFUND_PARTIAL_REFUND_PRO" = "The client has cancelled his booking outside the time limit set out in your booking policy. His deposit will be returned to you.";
+"RECAP_ORDER_REFUND_PARTIAL_REFUND_CUSTOMER" = "You have cancelled your booking outside the cancellation period set by the professional. Your deposit is unfortunately lost";
+"RECAP_ORDER_REFUND_FULL_REFUND_PRO" = "The customer has cancelled his booking on time, and will receive a full refund. This has no impact on your wallet, as the payment has not yet been transferred to you";
+"RECAP_ORDER_REFUND_FULL_REFUND_PRO_BYPRO" = "You have cancelled the appointment, your client will receive a full refund. This has no impact on your wallet as the payment has not yet been transferred to you";
+"RECAP_ORDER_REFUND_FULL_REFUND_CUSTOMER" = "You have cancelled your appointment within the cancellation period set by the professional. You will receive a full refund";
+"RECAP_ORDER_REFUND_FULL_REFUND_CUSTOMER_BYPRO" = "The professional has cancelled the appointment. You will receive a full refund";
+"RECAP_ORDER_DEPOSIT_AMOUNT" = "Deposit amount";
+"RECAP_ORDER_GENERAL_CONDITIONS" = "General conditions";
+"RECAP_ORDER_GENERAL_CONDITIONS_EMPTY" = "No specific general conditions.";
+"RECAP_ORDER_CUSTOMER_SELECTED_PAYMENT_METHOD" = "Your client selected payment method ";
+"RECAP_ORDER_CUSTOMER_SELECTED_PAYMENT_METHOD_CARD" = " Your wallet will be credited once the appointment has been completed";
+"RECAP_ORDER_CUSTOMER_SELECTED_PAYMENT_METHOD_CASH" = " The full amount of the service will be paid on the day of the appointment";
+"RECAP_ORDER_CUSTOMER_SELECTED_PAYMENT_METHOD_CASH_DEPOSIT" = " The remaining amount of the service is to be paid on the day of the appointment";
+"RECAP_ORDER_MANUAL_CUSTOMER_PAYMENT_NOTICE" = "This is an appointment you added manually, the client will have to pay the full amount on site";
+"RECAP_ORDER_ADDRESS_NOTICE" = "The exact address will be sent by email 24 hours before the appointment.";
+"RECAP_ORDER_ADD_TO_CALENDAR" = "Add to my calendar";
+"RECAP_ORDER_STATUS_TITLE" = "Order status";
+"RECAP_ORDER_STATUS_LABEL" = "Status";
+"RECAP_ORDER_REVIEW_TITLE" = "Service evaluation";
+"RECAP_ORDER_GENERAL_CONDITIONS_TITLE" = "General terms and conditions of ";
+"RECAP_ORDER_GENERAL_CONDITIONS_IARA" = "iara";
+"RECAP_ORDER_EMAIL_CONFIRMATION_TITLE" = "Confirmation email";
+"RECAP_ORDER_EMAIL_CONFIRMATION_DESCRIPTION" = "You will receive an email shortly with a summary of your appointment. You can modify or cancel the appointment from this email or from your appointments page.";
+"RECAP_ORDER_SERVICE_LOCATION_TITLE" = "Service location";
+"RECAP_ORDER_SERVICE_LOCATION_DESCRIPTION" = "For security reasons, the exact address of the professional is only disclosed 24 hours before the appointment.";
+"RECAP_ORDER_DEPOSIT_INFO_TITLE" = "In case of deposit";
+"RECAP_ORDER_DEPOSIT_INFO_DESCRIPTION" = "If you want to modify or cancel your appointment, make sure to do so within the allowed timeframe, at the risk of losing your deposit.";
+"RECAP_ORDER_CHANGE_DEPOSIT_PAYMENT_METHOD" = "Change deposit payment method";
+"RECAP_ORDER_SELECT_DEPOSIT_PAYMENT_METHOD" = "Select a deposit payment method";
+"RECAP_ORDER_CONDITIONS_TITLE" = "Terms and conditions of ";
+"RECAP_ORDER_PRO_COMMISSION" = "You got this appointment through %d€. ✨ %d€ will be automatically paid to him/her. On your next appointment with %@, you will not have to pay any commission.";
+"RECAP_ORDER_WALLET_FULFILLED_AFTER_ORDER" = "Your wallet will be credited at booking end.";
+"RECAP_ORDER_REMAINING_AMOUNT_TO_PAY" = "The remaining amount of the service will be to paid on the day of the appointment.";
+"AMOUNT_NOT_AVAILABLE" = "Amount in your wallet is not available anymore.";
+"RECAP_ORDER_CANCEL_ORDER_TITLE" = "Cancel booking?";
+"RECAP_ORDER_CANCEL_ORDER_NOSHOW_TITLE" = "Your client is not coming?";
+"RECAP_ORDER_CANCEL_ORDER_PRO_DESCRIPTION" = "This action can not be undone.";
+"RECAP_ORDER_CANCEL_ORDER_PRO_DESCRIPTION_NOSHOW" = "Confirm the cancellation only if your client has not showed up for the appointment.";
+"RECAP_ORDER_CANCEL_ORDER_USER_DESCRIPTION" = "You can lose your deposit if you have reached the time limit before cancellation.";
+"RECAP_ORDER_CANCEL_ORDER_LOOSE_DEPOSIT_USER_DESCRIPTION" = "You will loose your deposit.";
+"RECAP_ORDER_CANCEL_ORDER_CONFIRM_BUTTON_CUSTOMER" = "Cancel my booking";
+"RECAP_ORDER_CANCEL_ORDER_CONFIRM_BUTTON_PRO" = "Cancel the booking";
+"RECAP_ORDER_CANCEL_ORDER_KEEP_BUTTON" = "No, I keep the booking";
+"RECAP_ORDER_CANCEL_ORDER_CANCEL_BUTTON" = "Cancel";
+"RECAP_ORDER_REFUND_DEPOSIT_TITLE" = "Do you want to refund the deposit of %@?";
+"RECAP_ORDER_REFUND_DEPOSIT_DESCRIPTION" = "In case of full payment, the remaining amount will be automatically refunded to your client. \nThis action can not be undone.";
+"RECAP_ORDER_REFUND_DEPOSIT_KEEP_DEPOSIT" = "Keep the deposit";
+"RECAP_ORDER_REFUND_DEPOSIT_REFUND_DEPOSIT" = "Refund the deposit";
+"RECAP_ORDER_PAYMENT_METHOD_AT_STORE" = "At store";
+"RECAP_ORDER_SUCCESS" = "Booking confirmed";
+"RECAP_ORDER_ERROR" = "Booking not confirmed";
+"RECAP_ORDER_ERROR_DEPOSIT_PAYMENT_METHOD" = "Deposit payment method is not provided";
+"RECAP_ORDER_ERROR_MISSING_PAYMENT_METHOD" = "No payment method provided";
+"RECAP_ORDER_CANCELED" = "Booking successfully canceled";
+"RECAP_ORDER_ERROR_DETAILS" = "Impossible to confirm the payment. Please try again or contact the iara support";
+"RECAP_ORDER_LOYALTY_REWARD_PRO"= "This is the %dth appointment of %@!\nDo not forget the reward : \"%@\"";
+"RECAP_ORDER_LOYALTY_REWARD_CUSTOMER"= "This is your %dth appointment with %@!\nYou get : \"%@\"";
+"RECAP_ORDER_ADD_TO_CALENDAR" = "Add to calendar";
+"RECAP_ORDER_ADD_TO_CALENDAR_EVENT_TITLE" = "Booking with %@";
+"RECAP_ORDER_ADD_TO_CALENDAR_EVENT_DETAILS" = "Details of the appointment:";
+"RECAP_ORDER_ADD_TO_CALENDAR_EVENT_CONDITIONS" = "General conditions:";
+"RECAP_ORDER_ADD_TO_CALENDAR_EVENT_FOOTER" = "To modify or cancel your appointment, you can visit the app or website.";
+"RECAP_ORDER_EDIT_BUTTON_SUBTITLE" = "Your client can move their appointment, depending on the conditions of your ";
+"RECAP_ORDER_EDIT_BUTTON_SUBTITLE_UNDERLINE" = "booking policy";
+"RECAP_ORDER_CREATED_PRO" = "has added this appointment";
+"RECAP_ORDER_CREATED_CUSTOMER" = "booked an appointment on";
+"RECAP_ORDER_MODIFIED" = "has modified the appointment";
+"RECAP_ORDER_CANCELED" = "has canceled the appointment";
+"RECAP_ORDER_STATUS_CHANGED" = "The appointment status has changed to";
+"RECAP_WORD_MODIFIED" = "modified";
+"RECAP_WORD_CANCELED" = "canceled";
+"RECAP_ORDER_ACTIVITY_TITLE" = "Appointment Activity";
+"RECAP_ORDER_STATUS_PAID" = "Paid";
+"RECAP_ORDER_STATUS_UNPAID" = "Unpaid";
+"RECAP_ORDER_STATUS_INCIDENT" = "Incident";
+"RECAP_ORDER_STATUS_CANCELED" = "Canceled";
+"RECAP_ORDER_STATUS_FINISHED" = "Finished";
+"RECAP_ORDER_STATUS_REFUNDED" = "Refunded";
+"RECAP_ORDER_STATUS_UNKNOWN" = "Unknown";
+"RECAP_PRICE_MODIFIED" = "has modified the appointment price. Initial price: %@ New price: %@";
+"RECAP_DURATION_MODIFIED" = "has modified the appointment duration. New duration: %@";
+"RECAP_ORDER_MODIFIED" = "has modified this appointment";
+"BOOKING_CUSTOMER_NOTES_TITLE" = "Details about your appointment";
+"BOOKING_CUSTOMER_NOTES_PLACEHOLDER" = "Any additional information? Special requests? (optional)";
+"RECAP_ORDER_CUSTOMER_NOTES_TITLE_PRO_VIEW" = "Details provided by the customer";
+"RECAP_ORDER_PRO_NOTES_TITLE" = "My personal notes";
+"RECAP_ORDER_PRO_NOTES_PLACEHOLDER" = "You can take notes here.";
+"RECAP_ORDER_PRO_NOTES_EMPTY" = "No notes yet";
+"RECAP_ORDER_PRO_NOTES_SAVED" = "Notes saved";
+"RECAP_ORDER_PRO_SYNC_TO_CAL" = "Sync to my calendar";
+"RECAP_ORDER_CUSTOMER_LOYALTY_CARD_TITLE" = "Loyalty Program";
+"RECAP_ORDER_SEE_FOLLOW_UP" = "See follow-up";
+"RECAP_ORDER_BUTTON_RATE" = "Leave a review";
+
+/* NEW BOOKING SUMMARY */
+
+"NEW_BOOKING_TIP_TITLE" = "Important";
+"NEW_BOOKING_TIP_DESCRIPTION" = "The final price may be subject to an increase once you are on-site. If you selected the online payment option, make sure to always bring a means of payment on the day of your appointment.";
+"NEW_BOOKING_PAY_ON_SITE" = "Pay on-site";
+"NEW_BOOKING_PAY_NOW" = "Pay now";
+"NEW_BOOKING_SEND_MODEL_TITLE" = "Send a template";
+"NEW_BOOKING_SEND_MODEL_DESCRIPTION" = "You will be able to send a photo of a template to your professional once your appointment is confirmed.";
+"NEW_BOOKING_GENERAL_CONDITIONS" = "Terms and Conditions";
+"NEW_BOOKING_GENERAL_CONDITIONS_OF" = "Terms and Conditions of %@";
+"NEW_BOOKING_GENERAL_CONDITIONS_EMAIL_TITLE" = "Confirmation Email";
+"NEW_BOOKING_GENERAL_CONDITIONS_EMAIL_DESCRIPTION" = "You will receive an email in a few moments with a summary of your appointment. You can modify or cancel the appointment from this email or through your appointment page.";
+"NEW_BOOKING_GENERAL_CONDITIONS_LOCATION_TITLE" = "Service Location";
+"NEW_BOOKING_GENERAL_CONDITIONS_LOCATION_DESCRIPTION" = "For security reasons, the professional's exact address will only be disclosed 24 hours before the appointment.";
+"NEW_BOOKING_GENERAL_CONDITIONS_DEPOSIT_TITLE" = "In Case of Deposit";
+"NEW_BOOKING_GENERAL_CONDITIONS_DEPOSIT_DESCRIPTION" = "If you want to modify or cancel your appointment, make sure to do so within the allowed timeframe to avoid losing your deposit.";
+
+
+"BOOKING_POLICY_ACCEPTANCE_SHEET_TITLE" = "Terms and conditions of ";
+"BOOKING_POLICY_ACCEPTANCE_SHEET_CANCELLATION_PREFIX" = "You can cancel free of charge ";
+"BOOKING_POLICY_ACCEPTANCE_SHEET_CANCELLATION_DATE" = "until %@";
+"BOOKING_POLICY_ACCEPTANCE_SHEET_CANCELLATION_SUFFIX" = " the appointment. You will no longer be able to reschedule after this deadline.";
+"BOOKING_POLICY_ACCEPTANCE_SHEET_ACCEPT" = "I accept";
+"BOOKING_POLICY_ACCEPTANCE_SHEET_CANCELLATION_WARNING" = "Once booked, you will not be able to reschedule your appointment and you will lose your deposit in case of cancellation.";
+
+"BOOKING_POLICY_ACCEPTANCE_SHEET_CANCELLATION_PREFIX_PRO" = "The client can cancel free of charge ";
+"BOOKING_POLICY_ACCEPTANCE_SHEET_CANCELLATION_SUFFIX_PRO" = " the appointment. After this deadline, they will no longer be able to reschedule.";
+"BOOKING_POLICY_ACCEPTANCE_SHEET_CANCELLATION_WARNING_PRO" = "Once booked, the client will not be able to reschedule their appointment and will lose their deposit in case of cancellation.";
+
+/* ORDER CONFIRMED */
+"ORDER_CONFIRMED_TITLE" = "Booking confirmed";
+"ORDER_CONFIRMED_EMAIL_TITLE" = "Email confirmation";
+"ORDER_CONFIRMED_EMAIL_DESCRIPTION" = "You will receive an email momentarily with a summary of your appointment. You can change or cancel the appointment from the email or from your past appointments.";
+"ORDER_CONFIRMED_ADDRESS_TITLE" = "Professionnal address";
+"ORDER_CONFIRMED_ADDRESS_DESCRIPTION" = "The address of your professional will only be disclosed to you 24 hours before your appointment.";
+"ORDER_CONFIRMED_DEPOSIT_TITLE" = "In case of deposit";
+"ORDER_CONFIRMED_DEPOSIT_DESCRIPTION" = "If you want to cancel or change your appointment, be sure to do so within the time frame allowed by your professional or risk losing your deposit.";
+
+/* DISPUTES CONTROLER */
+"DISPUTE_FORMAT_DATE" = "EEEE MMMM d YYYY";
+"DISPUTE_CLOSED" = "Kept Amount";
+"DISPUTE_REIMBURSED" = "Amount refunded";
+"DISPUTE_AWAITING_INVOLVED_USER" = "Waiting other user's version";
+"DISPUTE_AWAITING_YOURSELF_AS_INVOLVED_USER" = "Waiting your version";
+"DISPUTE_AWAITING_DECISION" = "Awaiting decision";
+"DISPUTE_PENDING" = "Pending dispute";
+
+/* FOLLOW UP SHEET CONTROLLER */
+"FOLLOW_UP_SHEET_TITLE" = "Our history";
+"FOLLOW_UP_SHEET_MANUAL_CUSTOMER_DESC" = "Warning, this file corresponds to a customer that you have entered manually. It is therefore not linked to any iara account";
+"FOLLOW_UP_SHEET_TOTAL" = "Total spent";
+"FOLLOW_UP_SHEET_LOYAL_CUSTOMER" = "Loyal client 💜";
+"FOLLOW_UP_SHEET_MEDIUM_BASKET" = "Average basket";
+"FOLLOW_UP_SHEET_APPOINTMENT_NUMBER" = "Bookings";
+"FOLLOW_UP_SHEET_NOTES_TITLE_PRO" = "Notes shared";
+"FOLLOW_UP_SHEET_NOTES_PRIVATE_TITLE" = "Private notes";
+"FOLLOW_UP_SHEET_NOTES_TITLE_CUSTOMER" = "Notes written by %@";
+"FOLLOW_UP_SHEET_NOTES_DESCRIPTION" = "You can write notes here. The client can see theses notes but can not edit them.";
+"FOLLOW_UP_SHEET_PRIVATE_NOTES_DESCRIPTION" = "You can write notes here. Only you can see them";
+"FOLLOW_UP_SHEET_NOTES_DESCRIPTION_CUSTOMER" = "These notes are editable only by the professional.";
+"FOLLOW_UP_SHEET_HISTORY" = "History";
+"FOLLOW_UP_SHEET_HISTORY_NOTEXIST_TITLE" = "No bookings yet.";
+"FOLLOW_UP_SHEET_HISTORY_NOTEXIST_DESC" = "The follow-up sheet is empty because you did'nt have a booking together yet.";
+"FOLLOW_UP_SHEET_HISTORY_EMPTY" = "%@ never booked an appointment with you";
+"FOLLOW_UP_SHEET_HISTORY_EMPTY_CUSTOMER" = "You never take booking with %@";
+"FOLLOW_UP_SHEET_SAVE_FAIL" = "Impossible to save changes";
+"FOLLOW_UP_SHEET_SAVE_SUCCESS" = "Changes has been correctly saved";
+"FOLLOW_UP_SHEET_SAVE_SUCCESS_NEW" = "Follow up sheet created and saved";
+"FOLLOW_UP_SHEET_BIRTHDATE_FORMAT" = "dd MMMM YYYY";
+"FOLLOW_UP_SHEET_BIRTHDATE_DESC" = "Think about offering her a small discount before her birthday so she can get ready with you.";
+"FOLLOW_UP_SHEET_LOYALTY_CARD_COMPLETED" = "Card completed:";
+"FOLLOW_UP_SHEET_LOYALTY_CARD_REWARD" = "At your %dth appointment, you will be reward with:";
+"FOLLOW_UP_SHEET_LOYALTY_CARD_DISABLED_TEXT" = "Loyalty program is not activated";
+"FOLLOW_UP_SHEET_LOYALTY_CARD_DISABLED_BUTTON" = "Activate";
+"FOLLOW_UP_SHEET_LOYALTY_CARD_ADD_STAMP_ALERT_TITLE" = "Are you sure you want to add a stamp to the card?";
+"FOLLOW_UP_SHEET_LOYALTY_CARD_ADD_STAMP_ALERT_MESSAGE" = "This action is irreversible";
+"FOLLOW_UP_SHEET_LOYALTY_CARD_ADD_STAMP_ALERT_CANCEL" = "Cancel";
+"FOLLOW_UP_SHEET_LOYALTY_CARD_ADD_STAMP_ALERT_CONFIRM" = "Confirm";
+"FOLLOW_UP_SHEET_LOYALTY_CARD_DESCRIPTION" = "A stamp is added automatically to the card after each completed appointment.";
+"FOLLOW_UP_SHEET_ERROR_NO_FIRSTNAME" = "No firstname provided";
+"FOLLOW_UP_SHEET_ERROR_INVALID_PHONE" = "The phone number is invalid";
+"FOLLOW_UP_SHEET_ERROR_INVALID_EMAIL" = "Email is invalid";
+"FOLLOW_UP_SHEET_HISTORY" = "Your appointments";
+"FOLLOW_UP_SHEET_UPCOMING_ORDERS" = "Upcoming";
+"FOLLOW_UP_SHEET_PAST_ORDERS" = "Past";
+"FOLLOW_UP_CUSTOMER_PHOTOS_TITLE" = "Vos photos";
+"FOLLOW_UP_CUSTOMER_PHOTOS_SEE_ALL" = "See all";
+"FOLLOW_UP_CUSTOMER_PHOTOS_EMPTY_TITLE" = "No photos yet";
+"FOLLOW_UP_CUSTOMER_PHOTOS_EMPTY_DESC" = "%@ hasn't been tagged in any photos yet";
+"FOLLOW_UP_CUSTOMER_PHOTOS_NAVIGATION_TITLE" = "%@'s photos";
+"FOLLOW_UP_CUSTOMER_PHOTOS_UNKNOWN_NAME" = "Customer";
+"FOLLOW_UP_VIEW_PROFILE" = "View profile";
+
+/* UBER VIEW CONTROLLER */
+"UBER_VIEW_PRO_YOUR_RDV_WITH"= "Your appointment with";
+"UBER_VIEW_PRO_ABSENT_CUSTOMER" = "My client did not come";
+"UBER_VIEW_PRO_OPEN_DISPUTE" = "Open a dispute";
+"UBER_VIEW_PRO_POST_ON_PROFILE" = "Post on my profile";
+"UBER_VIEW_PRO_LATTER" = "Later";
+"UBER_VIEW_PRO_BUTTON_APPOINTMENT_MADE" = "Appointment made";
+
+/* OPEN DISPUTE CONTROLLER */
+"OPEN_DISPUTE_TITLE" = "Open a dispute";
+"ANSWER_DISPUTE_TITLE" = "Answer a dispute";
+"OPEN_DISPUTE_SELECT_CARES" = "Select the concerned care";
+"OPEN_DISPUTE_SITUATION_DESCRIPTION" = "Describe the situation";
+"OPEN_DISPUTE_ADD_PICTURES_OF_CARE" = "Insert service's picture";
+"OPEN_DISPUTE_CERTIFY_ON_HONNOR" = "I certify on my honor that I have accurately stated the facts in dispute.";
+"OPEN_DISPUTE_BUTTON_TITLE" = "Send";
+"OPEN_DISPUTE_MIN_CHAR" = "(missing %d characters minimum)";
+
+
+/* BOOKING CONTROLLER */
+"BOOKING_VIEW_CONTROLLER_TITLE" = "Booking";
+"BOOKING_PREVIOUS_VIEW_CONTROLLER_TITLE" = "Previous";
+"BOOKING_UPCOMING_VIEW_CONTROLLER_TITLE" = "Upcoming";
+"BOOKING_NO_BOOKING_TITLE" = "You don't have any booking at this time";
+"BOOKING_NO_BOOKING_BUTTON_TEXT" = "Share my link";
+"BOOKING_NO_AVAILABILITY_TITLE" = "No availability remaining for that day.";
+"BOOKING_NO_AVAILABILITY_BUTTON_TEXT" = "Manage my planning";
+
+/* NEW BOOKING CONTROLLER*/
+"SELECT_CARE_TITLE" = "Choice of services";
+"SELECT_CARE_PRICE_FROM" = "starting from ";
+"SELECT_CARE_SELECT_YOUR_CARE" = "Select one or more services.";
+"SELECT_CARE_CARES" = "Services";
+"SELECT_CARE_PACKS" = "Packs";
+"NEW_BOOKING_BUTTON_TITLE" = "Confirm";
+"NEW_BOOKING_UTC_INFO" = "All appointment times shown are in the professional's timezone (%@), not your local time.";
+"NEW_BOOKING_THIS_MONTH" = "This month";
+"EMPTY_DATE_NO_AVAILABILITIES" = "No availabilities";
+"TITLE_ROW_FORMAT_DATE" = "EEEE MMMM dd";
+"CELL_FORMAT_HOUR" = "HH:mm";
+"ACTUAL_MONTH" = "This month";
+"BOOKING_UPDATED_SUCCESSFULLY" = "Appointment correctly updated";
+
+
+/* SELECT BOOKING CONTROLLER */
+"SELECT_BOOKING_VIEW_CONTROLLER_TITLE" = "Availabilities";
+"SELECT_BOOKING_SELECT_START_AT_BOOKING" = "Please select an hour for your appointment.";
+"SELECT_BOOKING_NO_AVAILABILITY" = "No availability on this day for this service.";
+"SELECT_BOOKING_NEXT_BUTTON_TITLE" = "Book now";
+"EMPTY_VIEW_NO_AVAILABILITY_IN_MONTH_TITLE" = "No availability";
+"EMPTY_VIEW_NO_AVAILABILITY_IN_MONTH_CONTENT" = "No availability for this month.";
+
+/* SELECT PAYMENT CONTROLLER */
+"SELECT_PAYMENT_ADD_PAYMENT_BUTTON_TITLE" = "Add credit/debit card";
+"SELECT_PAYMENT_VIEW_CONTROLLER_TITLE" = "PAYMENT";
+"SELECT_PAYMENT_BY_CASH" = "By cash";
+"SELECT_PAYMENT_IARA_WALLET" = "With iara wallet";
+
+
+/* CREATE REVIEW CONTROLLER */
+"ADD_PRO_REVIEW_CONTROLLER_TITLE" = "Add review";
+"ADD_PRO_REVIEW_QUALITY_TITLE" = "Quality";
+"ADD_PRO_REVIEW_QUALITY_DESCRIPTION" = "Does the service meet your expectations?";
+"ADD_PRO_REVIEW_CLEANLINESS_TITLE" = "Business cleanliness and hygiene";
+"ADD_PRO_REVIEW_CLEANLINESS_DESCRIPTION" = "Does everything follow strict hygiene rules?";
+"ADD_PRO_REVIEW_PUNCTUALITY_TITLE" = "Soft skills and punctuality";
+"ADD_PRO_REVIEW_PUNCTUALITY_DESCRIPTION" = "Does the pro communicate well? Is she/he smiling?";
+"ADD_PRO_REVIEW_COMMENT_TITLE" = "Comment";
+"ADD_PRO_REVIEW_INSERT_PHOTO_TITLE" = "Insert service's photos";
+"ADD_PRO_REVIEW_INSERT_PHOTO_DESCRIPTION" = "These pictures will not appear on your profile but are just necessary in case of litigation.";
+"ADD_PRO_REVIEW_ADD_ALERT_TITLE" = "Have you finished reviewing this service?";
+"ADD_PRO_REVIEW_ADD_BUTTON_TITLE" = "Add";
+"LATE_REVIEWS_TITLE" = "You have a booking to note 🌟";
+"LATE_REVIEWS_SUCCESS_TITLE" = "Thank you for your rating 🫶";
+"LATE_REVIEWS_NOTE_LATER" = "Note later";
+"LATE_REVIEWS_SUCCESS_DESC" = "Thanks to you professionals will be able to improve their services to offer the best.";
+"LATE_REVIEWS_TITLE_PLURAL" = "You have bookings to note 🌟";
+"LATE_REVIEWS_DESC" = "Review before continuing to use the application, it will let the professional know how you felt about this appointment.";
+"LATE_VIEW_BUTTON_CONTINUE" = "Continue on iara";
+
+// TODO: Translate
+/* MARK CONTROLER */
+"MARK_CONTROLLER_TITLE" = "Rate your appointment with %@";
+"MARK_CONTROLLER_WORK_QUALITY_TITLE" = "Quality of work";
+"MARK_CONTROLLER_WORK_QUALITY_DETAILS" = "Course and outcome of the treatment";
+"MARK_CONTROLLER_CLEAN_QUALITY_TITLE" = "Cleanliness";
+"MARK_CONTROLLER_CLEAN_QUALITY_DETAILS" = "Cleanliness of the location and hygiene";
+"MARK_CONTROLLER_RECEPTION_QUALITY_TITLE" = "Reception and punctuality";
+"MARK_CONTROLLER_RECEPTION_QUALITY_DETAILS" = "Welcome and professionalism";
+"MARK_CONTROLLER_OPEN_DIPUTE" = "Open a dispute";
+"MARK_CONTROLLER_SKIP" = "Skip";
+"MARK_CONTROLLER_LATER" = "Note later";
+"MARK_CONTROLLER_FORMAT_DATE" = "d MMMM yyyy - HH:mm";
+"MARK_CONTROLLER_NEXT" = "Next";
+
+/* REVIEW CONTROLER */
+"REVIEW_CONTROLLER_TITLE" = "Leave a review";
+"REVIEW_CONTROLLER_DETAILS" = "Your review will be visible to other users";
+"REVIEW_CONTROLLER_SKIP_REVIEW" = "Do not leave a review";
+"REVIEW_CONTROLLER_SEND_REVIEW_BUTTON" = "Send";
+"REVIEW_CONTROLLER_REVIEW_SUCCESSFULLY_ADDED" = "Your review has been successfully edited, thank you!";
+
+/* SCHEDULE CONTROLLER */
+"SCHEDULE_VIEW_CONTROLLER_TITLE" = "Schedule";
+"SCHEDULE_NO_ORDER_TITLE" = "No appointments";
+"SCHEDULE_NO_ORDER_DESCRIPTION" = "You don't have any appointment on selected period.";
+"SCHEDULE_NO_ORDER_BUTTON_TITLE" = "";
+
+/* RECAP ORDER CONTROLLER */
+"RECAP_ORDER_VIEW_CONTROLLER_TITLE" = "Summary";
+"RECAP_ORDER_ADD_A_CARD_TITLE" = "Add a card";
+"RECAP_ORDER_SUCCESSFULLY_CREATED_ORDER" = "Appointment booked.";
+
+/* ADD AVAILABILITY CONTROLLER */
+"ADD_AVAILABILITY_VIEW_CONTROLLER_TITLE" = "Add availability";
+"ADD_AVAILABILITY_ERROR_START_GREATER_THAN_END" = "Start hour greater than end hour";
+"ADD_AVAILABILITY_START_BUTTON_TITLE" = "From";
+"ADD_AVAILABILITY_END_BUTTON_TITLE" = "To";
+"ADD_AVAILABILITY_ADD_BUTTON_TITLE" = "Add";
+
+
+/* EDIT CONDITIONS CONTROLLER */
+"EDIT_CONDITIONS_VIEW_CONTROLLER_TITLE" = "Your terms";
+
+
+/* CONTACT CONTROLLER */
+"CONTACT_VIEW_CONTROLLER_TITLE" = "Contact";
+
+/* CATALOG CONTROLLER */
+"CATALOG_VIEW_CONTROLLER_TITLE" = "Care Catalog";
+"CATALOGUE_TRENDING_CARE_TITLE" = "Trending services";
+"CATALOGUE_CATEGORY_TITLE" = "Browse by category";
+
+"CATALOG_MAP_HEADER_TITLE" = "Search for a care";
+"CATALOG_MAP_HEADER_TITLE2" = "All cares";
+"CATALOG_MAP_HEADER_SUBTITLE" = "Or a user";
+"CATALOG_MAP_HEADER_PRO_ALERT" = "Zoom the map to be able to change category and search again";
+
+"CATALOG_MAP_HEADER_PROS_LIST_TITLE" = "👩🏽 View the list";
+"CATALOG_MAP_HEADER_PROS_LIST_SHOW_MAP_TITLE" = "🗺️ Show the map";
+
+"CATALOG_MAP_CARD_AVAILABILITY" = "Available on";
+"CATALOG_MAP_CARD_NO_AVAILABILITY" = "Availability to be confirmed";
+
+"CATALOG_MAP_SEARCH_BUTTON_TITLE" = "Search here";
+"CATALOG_MAP_SEARCH_BUTTON_TITLE_ZOOM" = "Zoom to search";
+
+
+"CATALOG_MAP_CARES" = "Cares";
+"CATALOG_MAP_AROUND_ME" = "Around me";
+"CATALOG_MAP_SEARCH_HEADER_TITLE_PROFILES" = "Profiles";
+"CATALOG_MAP_SEARCH_CARES_TAP" = "Start typing";
+"CATALOG_MAP_SEARCH_CARES_NO_SELECTED" = "No selected";
+
+"CATALOG_MAP_SEARCH_PLACE_TITLE" = "Place";
+"CATALOG_MAP_SEARCH_PLACE_TEXTFIELD_TITLE" = "Find an address";
+
+"CATALOG_MAP_SEARCH_DATE_TITLE" = "Date";
+"CATALOG_MAP_SEARCH_DATE_DESC" = "At every moment";
+
+"CATALOG_MAP_SEARCH_FOOTER_CLEAR" = "Clear";
+"CATALOG_MAP_SEARCH_FOOTER_SEARCH" = "Search";
+
+"CATALOG_BANNER_TITLE_LINE_1" = "Care";
+"CATALOG_BANNER_TITLE_LINE_2" = "Catalog";
+"CATALOG_BANNER_BUTTON" = "Discover";
+
+
+/* Care Search View */
+"CATALOG_MAP_CARE_SEARCH_TITLE" = "Search Care";
+"CATALOG_MAP_CARE_SEARCH_PLACEHOLDER" = "Start typing to search...";
+"CATALOG_MAP_CARE_SEARCH_EMPTY_STATE" = "Start typing to search for cares";
+"CATALOG_MAP_CARE_SEARCH_NO_RESULTS_TITLE" = "No cares found";
+"CATALOG_MAP_CARE_SEARCH_NO_RESULTS_SUBTITLE" = "Try adjusting your search terms";
+
+/* Catalog Map View */
+"CATALOG_MAP_OPEN_LIST_BUTTON" = "Open list";
+"CATALOG_MAP_OPEN_MAP_BUTTON" = "Open map";
+"CATALOG_MAP_SEARCHING_TITLE" = "Searching...";
+"CATALOG_MAP_NO_PROFESSIONALS_TITLE" = "No professionals found";
+"CATALOG_MAP_NO_PROFESSIONALS_SUBTITLE" = "Try adjusting your search criteria or location";
+"CATALOG_MAP_CANCEL_BUTTON" = "Cancel";
+"CATALOG_MAP_AVAILABLE_STATUS" = "Available";
+"CATALOG_MAP_AVAILABLE_ON_PREFIX" = "Available on ";
+"CATALOG_MAP_PROFESSIONAL_NAME_PLACEHOLDER" = "Professional Name";
+"CATALOG_MAP_CITY_DISTANCE_PLACEHOLDER" = "City Name, Distance";
+"CATALOG_MAP_AVAILABLE_DATE_PLACEHOLDER" = "Available on Date";
+"CATALOG_MAP_NO_NEARBY_PROFESSIONALS" = "No professionals nearby";
+
+/* CARE DETAILS */
+"CARE_DETAILS_TITLE_BUTTON" = "Around me";
+"CARE_DETAILS_BOOK_BUTTON" = "Book";
+"CARE_DETAILS_TITLE_LIST_SEEN_AROUND_ME" = "As seen on";
+"CARE_DETAILS_DETAILS" = "Details";
+
+/* CARE ACCOUNT CREATION SHEET */
+"CARE_ACCOUNT_CREATION_SHEET_TITLE" = "Switch to client account to book";
+"CARE_ACCOUNT_CREATION_SHEET_INSTRUCTIONS" = "Create your account or simply log in by long-pressing your profile picture at the bottom right of your screen.";
+"CARE_ACCOUNT_CREATION_SHEET_BUTTON" = "Switch to client mode";
+
+/* FEED CONTROLLER */
+"FEED_VIEW_CONTROLLER_TITLE" = "Discover";
+"FEED_SUBTITLE_DISCOVER" = "For you";
+"FEED_SUBTITLE_FOLLOWING" = "Following";
+"FEED_EMPTY_TITLE" = "You're not following anyone yet 👀";
+"FEED_EMPTY_DESC" = "Start following users and their photos will appear directly on this section of the feed";
+"FEED_SEE_MORE" = "Load more posts";
+"FEED_NO_POST_BUTTON_TITLE" = "Retry";
+"FEED_CONTROLLER_PUBLISH_POST_ALERT_TITLE" = "Publish post";
+"FEED_CONTROLLER_PUBLISH_POST_ALERT_CAMERA_ACTION_TITLE" = "From camera";
+"FEED_CONTROLLER_PUBLISH_POST_ALERT_ALBUM_ACTION_TITLE" = "From album";
+"FEED_CONTROLLER_PUBLISH_POST_ALERT_CANCEL_ACTION_TITLE" = "Cancel";
+"FEED_SEARCH_BAR_SEARCH_USER" = "Search user";
+"FEED_SUGGEST_UPDATE_TITLE" = "New version";
+"FEED_SUGGEST_UPDATE_DESCRIPTION" = "Update your application now to have access to last features";
+"FEED_SUGGEST_UPDATE_BUTTON_TEXT" = "Launch the update";
+"FEED_NEW_POST_PUBLISHING" = "Your post is being published...";
+"FEED_FIELDS_TITLE" = "Find inspiration";
+"FEED_INFLUENCERS_TITLE" = "Best profiles";
+"FEED_MORE_IDEAS" = "More ideas";
+
+"FEED_POST_CARE" = "service";
+"FEED_POST_CARES" = "services";
+"FEED_POST_INCITATION_POPUP_PRO_TITLE" = "*Share* photos of *your work* and attract *new clients.*";
+"FEED_POST_INCITATION_POPUP_PRO_DESC" = "The photos you publish will appear not only in the feed but also in the catalogue";
+"FEED_POST_INCITATION_POPUP_CUSTOMER_TITLE" = "*Share* a photo of your *new care* with *your friends*";
+"FEED_POST_INCITATION_POPUP_CUSTOMER_DESC" = "Tag the care and the professional and let your friends discover them on your profile";
+"FEED_POST_INCITATION_POPUP_DONT_ASK_ANYMORE" = "Don't ask anymore";
+"FEED_POST_INCITATION_POPUP_LATER" = "Later";
+"FEED_POST_INCITATION_POPUP_POST" = "Post";
+"FEED_NEARBY_PROS_TITLE" = "Pros nearby";
+"FEED_BOOK_AGAIN_TITLE" = "Book again";
+"FEED_FIELD_ALL" = "All";
+"FEED_NO_RESULT" = "No result";
+
+/* SEARCH VIEW */
+"SEARCH_VIEW_RECENT_SEARCH" = "Recent research";
+"SEARCH_VIEW_MAP_BUTTON_TITLE" = "Discover professionals around me";
+"SEARCH_VIEW_NO_RESULTS" = "No results found";
+
+/* COMMENT CONTROLLER */
+"COMMENTS_TITLE" = "Comments";
+"COMMENTS_SEE_ANSWERS" = "See %d answer";
+"COMMENTS_REPLY" = "Reply";
+"COMMENT_EMPTY_VIEW_TITLE" = "Log in";
+"COMMENT_EMPTY_VIEW_CONTENT" = "You will be able to follow your friends and favorite influencers, access your favorite beauty treatments, book in a few clicks and earn money by sharing your services.";
+"COMMENTS_IN_RESPONSE_TO" = "In response to ";
+
+/* CREATE POST CONTROLLER */
+"CREATE_POST_VIEW_CONTROLLER_TITLE" = "Create a post";
+"CREATE_POST_CONTINUE_BUTTON_TITLE" = "Continue";
+"CREATE_POST_RECENTS" = "Recents";
+"CREATE_POST_PUBLISH_BUTTON_TITLE" = "Publish";
+"CREATE_POST_TITLE_PLACEHOLDER" = "Add title";
+"CREATE_POST_DESCRIPTION_PLACEHOLDER" = "Add content";
+"CREATE_POST_IDENTIFIED_CARE" = "identified treatment";
+"CREATE_POST_IDENTIFIED_CARE_MULTIPLE" = "identified treatments";
+"CREATE_POST_SEARCH_PLACE_TITLE" = "Place";
+"CREATE_POST_SEARCH_LEGEND_TITLE" = "caption";
+"CREATE_POST_SHOW_IN_CATALOG" = "Appear in the catalog";
+"CREATE_POST_SHOW_IN_CATALOG_INFO" = "Your image will appear in the catalog of definitions of care identified on the image. These pictures are public.";
+"CREATE_POST_PERMISSIONS_LIBRARY_TITLE" = "Photos access denied";
+"CREATE_POST_PERMISSIONS_LIBRARY_DESCRIPTION" = "Please enable photo library access from Iara in your privacy settings.";
+"CREATE_POST_PERMISSIONS_SETTINGS" = "Settings";
+
+/* ADD TAG */
+"ADD_TAG_TITLE" = "Add tag";
+"ADD_TAG_PRO_TITLE" = "Search pro";
+"ADD_TAG_PRO_SEARCH" = "Search pro";
+"ADD_TAG_PRO_IDENTIFY_MYSELF" = "Identify myself";
+"ADD_TAG_PRO_MY_FAVORITE_PROS" = "My favorite professionals";
+"ADD_TAG_PRO_CONTINUE_BUTTON" = "Continue";
+"ADD_TAG_PRO_SKIP_BUTTON" = "Skip";
+"ADD_TAG_DESCRIPTION" = "Click to identify your beauty treatment";
+"ADD_TAG_CARE_TITLE" = "Search treatment";
+"ADD_TAG_CARE_SEARCH" = "Identify treatment";
+"ADD_TAG_CARE_CARE_SEARCH_RESULTS" = "Search results";
+"ADD_TAG_CARE_CARE_NO_SEARCH_RESULTS" = "No results for this search";
+"ADD_TAG_CARE_CARE_FROM_PRO" = "Treatment proposed by @";
+"ADD_TAG_CARE_TRENDING_CARES" = "Trending services";
+"ADD_TAG_CARE_RECENT_CARE" = "Recent services";
+"ADD_TAG_POST_TITLE" = "Post";
+"ADD_TAG_NEW_TAG_PLACEHOLDER" = "Title";
+
+/* EMPTY VIEWS */
+"EMPTY_VIEW_CLIENT_TITLE" = "You don't have a client yet.";
+"EMPTY_VIEW_CLIENT_CONTENT" = "When you make your first appointments, your client follow-up sheet will appear here.";
+"EMPTY_VIEW_FAVORITE_TITLE" = "No favorites";
+"EMPTY_VIEW_FAVORITE_CONTENT" = "You don't have any favorites yet.";
+"EMPTY_VIEW_FAVORITE_BUTTON" = "Open feed";
+"EMPTY_VIEW_DISPUTE_TITLE" = "No disputes";
+"EMPTY_VIEW_DISPUTE_CONTENT" = "You have no disputes.";
+"EMPTY_VIEW_CARE_TITLE" = "No treatment";
+"EMPTY_VIEW_CARE_CONTENT" = "You don't have a treatment yet.";
+"EMPTY_VIEW_PACK_TITLE" = "No pack.";
+"EMPTY_VIEW_PACK_CONTENT" = "You don't have a pack yet.";
+"EMPTY_VIEW_COMMENT_TITLE" = "No comments";
+"EMPTY_VIEW_COMMENT_CONTENT" = "Be the first to respond to this post";
+"EMPTY_VIEW_REQUEST_FOLLOW_TITLE" = "No subscription request";
+"EMPTY_VIEW_REQUEST_FOLLOW_CONTENT" = "You do not have a subscription request at this time";
+"EMPTY_VIEW_BLOCKED_ACCOUNT_TITLE" = "No blocked accounts";
+"EMPTY_VIEW_BLOCKED_ACCOUNT_DESC" = "When you block someone, the person will appear here, and you will be able to unblock them.";
+"EMPTY_VIEW_BLOCKED_ACCOUNT_CONTENT" = "You do not have any blocked account at this time";
+
+
+/* MAP CONTROLLER */
+"MAP_VIEW_CONTROLLER_TITLE" = "Explore";
+"MAP_SEE_LIST" = "View the list 🧖‍♀️";
+"MAP_DISTANCE_CLASSIFICATION" = "Classification by geographical distance";
+"MAP_SEARCH_PLACEHOLDER" = "Search for pro...";
+"MAP_SEARCH_HERE_BUTTON_TITLE" = "Search here";
+"MAP_SEARCH_HERE_BUTTON_TITLE_DISABLED" = "Zoom to start a search.";
+"MAP_LOCATION_NOT_ALLOWED_TITLE" = "Geolocation not authorized";
+"MAP_LOCATION_NOT_ALLOWED_DESCRIPTION" = "You must authorize geolocation to search for pro around you.";
+"MAP_LOCATION_NOT_ALLOWED_BUTTON_TITLE" = "Authorize";
+"MAP_NO_PRO_USERS_AROUND_YOU" = "Sorry, nobody offers this service around you.";
+
+"MAP_SEARCH_ADDRESS_PLACEHOLDER" = "Enter your address here";
+"MAP_SEARCH_CITY_PLACEHOLDER" = "City";
+
+/* CONVERSATIONS CONTROLLER */
+"CONVERSATIONS_VIEW_CONTROLLER_TITLE" = "Messages";
+"CONVERSATIONS_VIEW_CONTROLLER_UNREAD" = "Unread";
+"CONVERSATIONS_VIEW_CONTROLLER_ALL" = "All";
+"CONVERSATIONS_NO_CONVERSATION_TITLE" = "No message yet";
+"CONVERSATIONS_NO_CONVERSATION_DESCRIPTION_CUSTOMER" = "Here you can send messages with beauty professionals and your friends ✨";
+"CONVERSATIONS_NO_CONVERSATION_DESCRIPTION_PRO" = "Here you can contact your clients to give them information about your business ✨";
+"CONVERSATIONS_NO_CONVERSATION_BUTTON_TITLE" = "Start to discuss with...";
+"CONVERSATIONS_ANONYMOUS_TITLE" = "Connect to view your messages";
+"CONVERSATIONS_ANONYMOUS_DESCRIPTION" = "Once logged in, messages with other users will appear here.";
+"CONVERSATIONS_ANONYMOUS_BUTTON" = "Login";
+
+/* CONVERSATION CELL */
+"CONVERSATION_CELL_YOU" = "You: ";
+"CONVERSATION_CELL_YEAR_AGO" = "%d year ago";
+"CONVERSATION_CELL_YEARS_AGO" = "%d years ago";
+"CONVERSATION_CELL_MONTH_AGO" = "%d month ago";
+"CONVERSATION_CELL_MONTHS_AGO" = "%d months ago";
+"CONVERSATION_CELL_DAY_AGO" = "%d day ago";
+"CONVERSATION_CELL_DAYS_AGO" = "%d days ago";
+"CONVERSATION_CELL_HOUR_AGO" = "%d hour ago";
+"CONVERSATION_CELL_HOURS_AGO" = "%d hours ago";
+"CONVERSATION_CELL_MINUTE_AGO" = "%d minute ago";
+"CONVERSATION_CELL_MINUTES_AGO" = "%d minutes ago";
+"CONVERSATION_CELL_MOMENT_AGO" = "a moment ago";
+"CONVERSATION_CELL_YESTERDAY" = "yesterday";
+"CONVERSATION_CELL_DATE_FORMAT" = "MM/dd/yyyy";
+"CONVERSATION_CELL_HOUR_FORMAT" = "hh:mm";
+
+/* START CONVERSATION CONTROLLER */
+"NEW_CHAT_VIEW_CONTROLLER_TITLE" = "New message";
+"NEW_CHAT_VIEW_CONTROLLER_TO" = "To:";
+"NEW_CHAT_SEARCH_PLACEHOLDER" = "Find user...";
+"NEW_CHAT_NO_USER_FOUND_TITLE" = "No user found";
+"NEW_CHAT_NO_USER_FOUND_DESCRIPTION" = "No username match your query.";
+"NEW_CHAT_NO_USER_FOUND_BUTTON_TITLE" = "Search for someone else";
+
+/* CHAT CONTROLLER */
+"CONVERSATION_INPUT_PLACEHOLDER" = "Write your message...";
+"CONVERSATION_SEND_BUTTON_TITLE" = "Send";
+"CONVERSATION_MESSAGE_SEEN" = "Read";
+"CONVERSATION_MESSAGE_DELIVERED" = "Delivered";
+"CONVERSATION_ERROR_SENDING_NEW_MESSAGE" = "Error sending new message.";
+"CONVERSATION_ALL_MEDIAS_TITLE" = "View medias";
+"CONVERSATION_ALL_REPORT_USER" = "Report user";
+"CONVERSATION_MEMBER_SINCE" = "member since";
+"CONVERSATION_RULES_VIEW_TITLE" = "Community Rules";
+"CONVERSATION_RULES_FIRST_RULE_TITLE" = "No Nudity";
+"CONVERSATION_RULES_FIRST_RULE_DESCRIPTION" = "Do not send nude photos or pornographic content";
+"CONVERSATION_RULES_SECOND_RULE_TITLE" = "Be Nice";
+"CONVERSATION_RULES_SECOND_RULE_DESCRIPTION" = "Offensive behavior, harassment and intimidation are prohibited";
+"CONVERSATION_RULES_THIRD_RULE_TITLE" = "Users who violate these rules will be blocked";
+
+/* ACTIVITY */
+"ACTIVITY_TITLE" = "Activity";
+"ACTIVITY_NOTIFICATIONS_TITLE" = "Notifications";
+"ACTIVITY_NOTIFICATIONS_BOOKINGS_TITLE" = "My Appointments";
+"ACTIVITY_NOTIFICATIONS_FRIENDS_TITLE" = "My Friends";
+"ACTIVITY_NOTIFICATIONS_EMPTY_MESSAGE" = "Your notifications will appear here.";
+"ACTIVITY_CHATS_TITLE" = "Chats";
+"ACTIVITY_CHATS_NO_MESSAGE" = "No new message";
+
+
+"ANONYMOUS_CONVERSATIONS_TITLE" = "Activity";
+"ANONYMOUS_CONVERSATIONS_NOTIFICATIONS_TITLE" = "Notifications";
+"ANONYMOUS_CONVERSATIONS_BOOKINGS_NOTIF_TITLE" = "My appointments";
+"ANONYMOUS_CONVERSATIONS_BOOKINGS_NOTIF_MESSAGE" = "You have an appointment tomorrow with @freakynails. Appointment details are available";
+"ANONYMOUS_CONVERSATIONS_FRIENDS_NOTIF_TITLE" = "My friends";
+"ANONYMOUS_CONVERSATIONS_FRIENDS_NOTIF_MESSAGE" = "@NoahNoah liked one of your photos";
+"ANONYMOUS_CONVERSATIONS_CHATS_TITLE" = "Chats";
+"ANONYMOUS_CONVERSATIONS_SAMPLE_CHAT_1_NAME" = "Marie L.";
+"ANONYMOUS_CONVERSATIONS_SAMPLE_CHAT_1_MESSAGE" = "Perfect! See you tomorrow 😊";
+"ANONYMOUS_CONVERSATIONS_SAMPLE_TIME_1" = "14:32";
+"ANONYMOUS_CONVERSATIONS_SAMPLE_CHAT_2_NAME" = "Sophie B.";
+"ANONYMOUS_CONVERSATIONS_SAMPLE_CHAT_2_MESSAGE" = "Thank you for the amazing service!";
+"ANONYMOUS_CONVERSATIONS_SAMPLE_TIME_2" = "12:15";
+"ANONYMOUS_CONVERSATIONS_SAMPLE_CHAT_3_NAME" = "Clara M.";
+"ANONYMOUS_CONVERSATIONS_SAMPLE_CHAT_3_MESSAGE" = "Can we reschedule for next week?";
+"ANONYMOUS_CONVERSATIONS_SAMPLE_TIME_3" = "Yesterday";
+"ANONYMOUS_CONVERSATIONS_SAMPLE_CHAT_4_NAME" = "Emma D.";
+"ANONYMOUS_CONVERSATIONS_SAMPLE_CHAT_4_MESSAGE" = "Your work is incredible! 💅";
+"ANONYMOUS_CONVERSATIONS_SAMPLE_TIME_4" = "2 days ago";
+
+// Call to action
+"ANONYMOUS_CONVERSATIONS_CTA_TITLE" = "Start chatting";
+"ANONYMOUS_CONVERSATIONS_CTA_SUBTITLE" = "Once connected, your messages will appear here.";
+"ANONYMOUS_CONVERSATIONS_CREATE_ACCOUNT_BUTTON" = "Create my account";
+
+/* ALL MEDIAS CONTROLLER */
+"ALLMEDIAS_CONTROLLER_TITLE" = "Photos sent";
+"ALLMEDIAS_NOMEDIA_TITLE" = "No photo";
+"ALLMEDIAS_NOMEDIA_DESCRIPTION" = "There are currently no media in this conversation.";
+
+/* NOTIFICATIONS CONTROLLER */
+"NOTIFICATIONS_VIEW_CONTROLLER_TITLE" = "Notifications";
+"NOTIFICATIONS_UPDATE_VIEW_CONTROLLER_TITLE" = "Updates";
+"NOTIFICATIONS_UPDATE_EMPTY" = "No updates";
+"NOTIFICATIONS_NO_NOTIFICATION_TITLE" = "No notifications";
+"NOTIFICATIONS_NO_NOTIFICATION_DESCRIPTION" = "New activity updates will show up here.";
+"NOTIFICATIONS_NO_NOTIFICATION_BUTTON_TITLE" = "";
+"NOTIFICATION_NEW_COMMENT" = "@%@ commented on your post \"%@\".";
+"NOTIFICATION_NEW_FOLLOW" = " has started following you.";
+"NOTIFICATION_NEW_COMMISSION" = " has made you earn %@.";
+"NOTIFICATION_NEW_PRO_AROUND_YOU" = " is near your work location";
+"NOTIFICATION_NEW_TAG" = " identified you on a photo";
+"NOTIFICATION_NEW_BOOKING" = "You have a new appointment with ";
+"NOTIFICATION_CANCELED_BOOKING" = "One of your appointments with @%@ has just been cancelled";
+"NOTIFICATION_UPDATED_BOOKING_START" = "One of your appointments with ";
+"NOTIFICATION_UPDATED_BOOKING_END" = " changes.";
+"NOTIFICATION_REVIEW" = " just reviewed your last appointment!";
+"NOTIFICATION_BOOKING_TOMORROW_START" = "You have got a booking tomorrow with ";
+"NOTIFICATION_BOOKING_TOMORROW_END" = ". Booking details are available.";
+"NOTIFICATION_REQUEST_FOLLOW" = " has requested to follow you";
+"NOTIFICATION_ACCEPT_FOLLOW" = "Accept";
+"NOTIFICATION_DECLINE_FOLLOW" = "Decline";
+"NOTIFICATION_FOLLOW_BACK" = "Follow back";
+"NOTIFICATION_ALREADY_FOLLOWING" = "Following";
+"NOTIFICATION_CARE" = "Service: ";
+"NOTIFICATION_SCHEDULED_ON" = "Scheduled on: ";
+"NOTIFICATION_FORMATED_DATE" = "EEEE MMM dd, HH:mm";
+"NOTIFICATION_ASK_FOR_FOLLOW" = "Follow request";
+"NOTIFICATION_SECTION_TITLE_NOW" = "Now";
+"NOTIFICATION_SECTION_TITLE_TODAY" = "Today";
+"NOTIFICATION_SECTION_TITLE_YESTERDAY" = "Yesterday";
+"NOTIFICATION_SECTION_TITLE_THIS_WEEK" = "This week";
+"NOTIFICATION_SECTION_TITLE_THIS_MONTH" = "This month";
+"NOTIFICATION_SECTION_TITLE_EARLIER" = "Earlier";
+"NOTIFICATION_UPDATE_CREATED_TITLE" = "New booking";
+"NOTIFICATION_UPDATE_UPDATED_TITLE" = "Booking modified";
+"NOTIFICATION_UPDATE_CANCELED_TITLE" = "Canceled booking";
+"NOTIFICATION_REVIEW_ANSWERED" = " replied to your review!";
+
+/* SERVICES KIND TITLE */
+"SERVICE_KIND_GLANCE_BEAUTY_TITLE" = "Glance beauty";
+"SERVICE_KIND_SEMI_PERMANENT_MAKEUP_TITLE" = "Semi permanent makeup";
+"SERVICE_KIND_HAIR_TITLE" = "Hair";
+"SERVICE_KIND_TEETH_TITLE" = "Teeth";
+"SERVICE_KIND_NAILS_BEAUTY_TITLE" = "Nails beauty";
+"SERVICE_KIND_SKIN_CARE_TITLE" = "Skin care";
+"SERVICE_KIND_BODY_CARE_TITLE" = "Body care";
+"SERVICE_KIND_COSMETIC_MEDICINE_TITLE" = "Cosmetic medicine";
+
+/* SERVICE CONTROLLER */
+"SERVICE_SECTION_TITLE_DESCRIPTION" = "Description";
+"SERVICE_SECTION_TITLE_PICTURE" = "Before / After";
+
+/* ALL SERVICES CONTROLLER */
+"ALL_SERVICES_VIEW_CONTROLLER_TITLE" = "Create services from...";
+
+/* PRO USER SERVICES CONTROLLER */
+"PRO_USER_SERVICES_VIEW_CONTROLLER_TITLE" = "Services";
+
+/* ADD SERVICE CONTROLLER */
+"ADD_SERVICE_VIEW_CONTROLLER_TITLE" = "Add a service";
+"ADD_SERVICE_PICTURE_BUTTON_TITLE" = "Add a picture";
+"ADD_SERVICE_ADD_BUTTON_TITLE" = "Add";
+"ADD_SERVICE_PRICE_BUTTON_TITLE" = "Price";
+"ADD_SERVICE_DURATION_BUTTON_TITLE" = "Duration";
+"ADD_SERVICE_TYPE_BUTTON_TITLE" = "Type";
+"ADD_SERVICE_MANUAL_DESCRIPTION" = "Personalise description";
+"ADD_SERVICE_DELETE_ALERT_TITLE" = "Are you sure you want to delete this service?";
+"ADD_SERVICE_ADD_PICTURE_ALERT_TITLE" = "Add custom picture to this service";
+"ADD_SERVICE_NOTIFICATION_SUCCESS" = "Service successfuly edited.";
+"ADD_SERVICE_NOTIFICATION_ERROR" = "Error while saving service change.";
+
+/* SERVEUR ERROR */
+"ERROR_SENDING_SMS" = "Failed to send message";
+"VERIFY_PHONE_NUMBER_WRONG_CONFIRMATION_CODE" = "Wrong confirmation code";
+"ONBOARDING_STEP_REFER_CODE_NOT_FOUND" = "Invalid code";
+"ONBOARDING_STEP_REFER_CODE_SUCCESS" = " is your sponsor! 🥳";
+"ERROR_LOADING_FEED" = "Failed to load the feed";
+"ERROR_LOADING_INFLUENCERS" = "Failed to load influencers";
+"ERROR_GET_POSTS_FOR_CARE" = "Failed to load posts";
+"ERROR_GET_TRENDING_CARES" = "Failed to load trending services";
+"IS_CURRENT_USER_FOLLOWING_ERROR" = "Failed to load common followers";
+"ERROR_GET_FOLLOWERS" = "Failed to load followers";
+"ERROR_GET_FOLLOWING" = "Failed to load followings";
+
+/* MISC */
+"MISC_ERROR" = "Error, check your wifi and try again.";
+"MISC_UNIT_DAY" = "day";
+"MISC_UNIT_DAYS" = "days";
+"MISC_UNIT_HOURS" = "hours";
+"MISC_UNIT_WEEK" = "week";
+"MISC_UNIT_WEEKS" = "weeks";
+"MISC_UNIT_MONTHS" = "months";
+"MISC_UNIT_MONTH" = "month";
+"MISC_UNIT_YEAR" = "year";
+"MISC_UNIT_YEARS" = "years";
+"MISC_UNIT_MINUTES" = "minutes";
+"MISC_WORD_SERVICE" = "service";
+"MISC_WORD_SERVICES" = "services";
+"MISC_WORD_FOR" = "for";
+"MISC_WORD_MORE" = "more";
+"MISC_WORD_YES" = "yes";
+"MISC_WORD_NO" = "no";
+"MISC_WORD_EDIT" = "edit";
+"MISC_WORD_DURATION" = "duration";
+"MISC_WORD_TYPE" = "type";
+"MISC_WORD_CANCEL" = "cancel";
+"MISC_WORD_OK" = "ok";
+"MISC_WORD_PERCENTAGE" = "percentage";
+"MISC_WORD_FROM" = "from";
+"MISC_WORD_TO" = "to";
+"MISC_WORD_DAILY" = "daily";
+"MISC_WORD_WEEKLY" = "weekly";
+"MISC_WORD_MONTHLY" = "monthly";
+"MISC_WORD_BY" = "by";
+"MISC_WORD_FOLLOWER" = "Follower";
+"MISC_WORD_FOLLOWERS" = "Followers";
+"MISC_WORD_NEW" = "New";
+"MISC_WORD_FOLLOWING" = "Following";
+"MISC_WORD_FOLLOWINGS" = "Followings";
+"MISC_WORD_PAY" = "pay";
+"MISC_WORD_PER_MONTH" = "/month";
+"MISC_WORD_PER_YEAR" = "/year";
+"MISC_WORD_GENDER" = "gender";
+"MISC_WORD_NEXT" = "next";
+"MISC_WORD_PASSWORD" = "password";
+"MISC_WORD_COUNTRY" = "Country";
+"MISC_WORD_OWNER_TYPE" = "Account type";
+"MISC_WORD_CURRENCY" = "Currency";
+"MISC_WORD_FOLLOW" = "Follow";
+"MISC_WORD_PENDING_FOLLOW" = "Pending";
+"MISC_WORD_UNFOLLOW" = "Unfollow";
+"MISC_WORD_AWAITING" = "Awaiting";
+"MISC_WORD_REIMBURSED" = "Reimbursed";
+"MISC_WORD_CLOSED" = "Closed";
+"MISC_WORD_EDIT" = "Edit";
+"MISC_WORD_DELETE" = "Delete";
+"MISC_WORD_RETRY" = "Retry";
+"MISC_WORD_CONFIRM" = "Confirm";
+"MISC_WORD_ADD" = "Add";
+"MISC_WORD_VALIDATE" = "Validate";
+"MISC_WORD_DONE" = "Done";
+"MISC_WORD_CONTINUE" = "Continue";
+"MISC_WORD_CLOSE" = "Close";
+"MISC_WORD_UNDERSTOOD" = "I understood";
+"MISC_WORD_LATER" = "Later";
+"MISC_SEE_MORE" = "See more";
+"MISC_SAVE" = "Save";
+"MISC_FIRSTNAME" = "First name";
+"MISC_LASTNAME" = "Last name";
+"MISC_ALL_CUSTOMERS" =  "All clients";
+"MISC_LOYAL_CUSTOMERS" =  "Loyal clients";
+"MISC_OPTIONAL" = "Optional";
+"MISC_TRIAL" = "trial free";
+"MISC_IGNORE" = "Ignore";
+"MISC_ALL" = "All";
+"MISC_ADDITIONAL_INFORMATION" = "Additional information";
+"MISC_LYDIA" = "Lydia";
+"MISC_PAYPAL" = "Paypal";
+"MISC_PAYLIB" = "Paylib";
+"MISC_CASH" = "Cash";
+"MISC_BANK_CHECK" = "Check";
+"MISC_BANK_CARD" = "Bank card";
+"MISC_DATE_OF_BIRTH" = "Date of Birth";
+"MISC_THEN" = "then";
+"MISC_REPLY" = "Reply";
+
+"FOLLOWERS_COUNT_UNIT_BILLION" = "M";
+"FOLLOWERS_COUNT_UNIT_MILLION" = "m";
+"FOLLOWERS_COUNT_UNIT_THOUSAND" = "k";
+
+/* PERMISSIONS */
+"PERMISSION_TITLE" = "NEED PERMISSION";
+"PERMISSION_HEADER" = "PERMISSION REQUEST";
+"PERMISSION_FOOTER" = "Permissions are necessary for the app to work correctly.";
+"PERMISSION_CAMERA_TITLE" = "CAMERA";
+"PERMISSION_CAMERA_DESCRIPTION" = "Upload photos taken from your camera.";
+"PERMISSION_PHOTO_LIBRARY_TITLE" = "PHOTO LIBRARY";
+"PERMISSION_PHOTO_LIBRARY_DESCRIPTION" = "Upload photos from your albums.";
+"PERMISSION_LOCATION_WHEN_IN_USE_TITLE" = "LOCATION";
+"PERMISSION_LOCATION_WHEN_IN_USE_DESCRIPTION" = "To know where beauty professionals are around you.";
+"PERMISSION_PROFILE_LOCATION_WHEN_IN_USE_DESCRIPTION" = "Grant access to know where this pro works.";
+"PERMISSION_NOTIFICATION_TITLE" = "NOTIFICATION";
+"PERMISSION_NOTIFICATION_DESCRIPTION" = "Receive notifications when receiving message or to remind you about an appointment.";
+"PERMISSION_ALLOW" = "Allow";
+"PERMISSION_ALLOWED" = "Allowed";
+
+/* NOTIFICATION ALERT */
+"NOTIFICATION_ALERT_SUCCESS_SAVE_PROFILE_PICTURE" = "Photo successfully saved.";
+"NOTIFICATION_ALERT_SUCCESS_SAVE_REVIEW_PICTURE" = "Photo successfully saved.";
+"NOTIFICATION_ALERT_SUCCESS_SAVE_SERVICE_PICTURE" = "Photo successfully saved.";
+
+/* SWITCH ACCOUNT */
+"SWITCH_ACCOUNT_TITLE" = "Switch to another account";
+"SWITCH_ACCOUNT_ADD_ACCOUNT" = "Add another account";
+"SWITCH_ACCOUNT_NO_OTHERS_TITLE" = "No other account added";
+"SWITCH_ACCOUNT_NO_OTHERS_DESCRIPTION" = "Create or login to another account.";
+
+/* IN-APP MY SUBSCRIPTION */
+"IN_APP_MY_SUBSCRIPTION_DESCRIPTION" = "No commitment. Unsubscribe at any time.";
+
+/* CALENDAR */
+"CALENDAR_TITLE" = "Planning";
+"CALENDAR_AVAILABILITY_CELL_FORMAT_MINUTES" = "mm";
+"CALENDAR_AVAILABILITY_CELL_MINUTES" = "%d minutes";
+"CALENDAR_AVAILABILITIES_FORMAT_DAY" = "EEEE dd";
+"CALENDAR_TITLE_FORMAT_DATE" = "MMMM yyyy";
+"CALENDAR_HEADER_FORMAT_DATE" = "EEEE MMMM dd";
+"CALENDAR_LOADING" = "Your planning is loading...";
+
+/* TAGGER VIEW */
+"TAGGER_VIEW_TITLE" = "New post";
+"TAGGER_VIEW_INSTRUCTIONS" = "Tap to identify your beauty routine.";
+
+/* MY AVAILABILITIES */
+"AVAILABILITIES_CONTROLLER_TITLE" = "My schedule";
+"AVAILABILITIES_DESCRIPTION_PRO_ONBOARDING" = "You will be able to complete your availabilities from your profile";
+"AVAILABILITIES_DESCRIPTION" = "Add hours of operation to your schedule so clients can book.";
+"AVAILABILITIES_MAIN_DESCRIPTION" = "Add your working hours.";
+
+/* ADD AVAILABILITY */
+"ADDAVAILABILITY_CURRENTDAY_IMPOSSIBLE_ALERT" = "You can't remove this day because it's the initial selected day";
+"ADDAVAILABILITY_WORKING_HOURS" = "Opening hours";
+"ADDAVAILABILITY_PREVIEW" = "Preview";
+"ADDAVAILABILITY_START_HOUR" = "Start";
+"ADDAVAILABILITY_END_HOUR" = "End";
+"ADDAVAILABILITY_FORMAT_DATE" = "EEEE MMMM d YYYY";
+"ADDAVAILABILITY_FREQUENCY_TITLE" = "Would you like to apply these times to other days of the days of the week?";
+"ADDAVAILABILITY_FREQUENCY_DESC" = "Once added, the days can be modified
+one at a time";
+"ADDAVAILABILITY_DURING" = "During";
+"ADDAVAILABILITY_FREQ_NONE" = "No, add only on this day";
+"ADDAVAILABILITY_FREQ_WEEKLY" = "Yes, apply every :";
+"ADDAVAILABILITY_FREQ_MONTHLY" = "Every month";
+"ADDAVAILABILITY_FREQ_YEARLY" = "Every year";
+"ADDAVAILABILITY_REMOVEDAY_TITLE" = "Delete this day";
+"ADDAVAILABILITY_REMOVEDAY_DESCRIPTION" = "Do you really want to delete this day ?";
+"ADDAVAILABILITY_OVERLAP_ERROR" = "Some slots overlap or are inverted. Correct them and try again";
+"ADDAVAILABILITY_REMOVEDAY_ADDSLOT" = "+ Add a time slot";
+"ADDAVAILABILITY_REMOVEDAY_MAINACTION" = "Delete this day";
+"ADDAVAILABILITY_REMOVEDAY_SECONDACTION" = "Delete all";
+"ADDAVAILABILITY_FORMAT_ERROR" = "The start time must begin before the end time.";
+"ADDAVAILABILITY_SUCCESSFULLY_DELETED" = "This slot has been correctly deleted.";
+"ADDAVAILABILITY_SUCCESSFULLY_ADDED" = "This slot has been correctly added.";
+"ADDAVAILABILITY_ERROR_OVERLAP" = "A slot already exists on those hours.";
+"ADDAVAILABILITY_ERROR_OVERLAP_REPLACE" = "Replace with a new slot";
+"ADDAVAILABILITY_ERROR_OVERLAP_SKIP" = "Keep the original slot";
+"ADDAVAILABILITY_SUCCESSFULLY_EDITED" = "This slot has been correctly edited.";
+"ADDAVAILABILITY_TIPS" = "In order to add a break to your schedule, break your day into two slots :)";
+"ADDAVAILABILITY_TIPS_TITLE" = "Add a break";
+"ADDAVAILABILITY_TIPS_END" = "The end time is the time you are not accepting clients anymore, not the time of the last appointment.";
+"ADDAVAILABILITY_WARNING_CARE_DURATION_SINGLE" = "Attention, your treatment %@ is longer than the indicated time slot. It cannot be booked in this slot.";
+"ADDAVAILABILITY_WARNING_CARE_DURATION_MANY" = "Attention, your treatments %@ and %ld other(s) are longer than the indicated time slot. They cannot be booked in this slot.";
+
+
+"ADDAVAILABILITY_DAY_MONDAY" = "mon";
+"ADDAVAILABILITY_DAY_TUESDAY" = "tue";
+"ADDAVAILABILITY_DAY_WEDNESDAY" = "wed";
+"ADDAVAILABILITY_DAY_THURSDAY" = "thu";
+"ADDAVAILABILITY_DAY_FRIDAY" = "fri";
+"ADDAVAILABILITY_DAY_SATURDAY" = "sat";
+"ADDAVAILABILITY_DAY_SUNDAY" = "sun";
+
+"AVAILABILITY_DELETE_CONFIRMATION_TITLE" = "Delete this %@?";
+"AVAILABILITY_DELETE_CONFIRMATION_MESSAGE" = "This action is irreversible.";
+"AVAILABILITY_DELETE_THIS_DAY_ONLY" = "Delete only this %@";
+"AVAILABILITY_DELETE_ALL_FUTURE_WEEKDAYS" = "Delete all";
+
+"AVAILABILITY_UPDATE_CONFIRMATION_TITLE" = "Do you want to apply these schedules to all %@s?";
+"AVAILABILITY_UPDATE_CONFIRMATION_MESSAGE" = "Choose how to apply your changes.";
+"AVAILABILITY_UPDATE_THIS_DAY_ONLY" = "Apply only to this %@";
+"AVAILABILITY_UPDATE_ALL_FUTURE_WEEKDAYS" = "Apply to all";
+
+"ADDAVAILABILITY_ERROR_UPDATE" = "Error updating availability";
+"ADDAVAILABILITY_SUCCESSFULLY_UPDATED" = "Availability successfully updated";
+
+/* DAY_AVAILABILITIES_LIST_ITEM */
+"DAY_AVAILABILITIES_LIST_ITEM_WEEKLY" = "Every %@";
+"DAY_AVAILABILITIES_LIST_ITEM_MONTHLY" = "Every %@ each month";
+"DAY_AVAILABILITIES_LIST_ITEM_YEARLY" = "Once a year";
+"DAY_AVAILABILITIES_LIST_ITEM_TIME_SLOT" = "Time slot";
+"DAY_AVAILABILITIES_LIST_SLOTS_TITLE" = "My slots";
+"DAY_AVAILABILITIES_LIST_SLOTS_DESC" = "Below are the slots that clients will see when booking. If the slots are not displayed as you wish, ";
+"DAY_AVAILABILITIES_LIST_SLOTS_DESC_LINK" = "change your booking policy.";
+
+/* WALLET */
+"WALLET_CONTROLLER_TITLE" = "Wallet";
+"WALLET_CONTROLLER_PENDING" = "Pending gains";
+"WALLET_CONTROLLER_AVAILABLE" = "are available";
+"WALLET_CONTROLLER_HISTORY" = "History";
+"WALLET_CONTROLLER_CHARGE" = "Received payment";
+"WALLET_CONTROLLER_REFUND" = "Refund";
+"WALLET_CONTROLLER_PAYOUT" = "Bank account transfer";
+"WALLET_CONTROLLER_TRANSFER" = "Payment for a user";
+"WALLET_CONTROLLER_MAKE_TRANSFER" = "Transfer";
+"WALLET_CONTROLLER_FORMAT_DATE" = "MMMM yyyy";
+"WALLET_CONTROLLER__TRANSACTION_CELL_FORMAT_DATE" = "MMM d, yyyy";
+"WALLET_CONTROLLER_NO_TRANSACTION_TITLE" = "No transactions";
+"WALLET_CONTROLLER_NO_TRANSACTION_DESCRIPTION" = "You have no transactions for the selected month.";
+"WALLET_CONTROLLER_STRIPE_STATUS_PENDING" = "Identity being verified";
+"WALLET_CONTROLLER_STRIPE_STATUS_FAILURE" = "Unable to verify your identity";
+"WALLET_CONTROLLER_STRIPE_STATUS_BANNED" = "Your account has been banned. Contact support";
+"WALLET_CONTROLLER_STRIPE_STATUS_MISSING_INFORMATION" = "Add the missing documents or correct them in order to retrieve your funds.";
+"WALLET_CONTROLLER_STRIPE_STATUS_VALIDATED" = "Documents accepted. Your wallet is ready.";
+
+"WALLET_TRANSACTION_KIND_PAYMENT" = "Payment";
+"WALLET_TRANSACTION_KIND_PRO_TRANSFER" = "Pro transfer";
+"WALLET_TRANSACTION_KIND_PAYOUT" = "Transfer to bank account";
+"WALLET_TRANSACTION_KIND_NEWUSER" = "New user";
+"WALLET_TRANSACTION_KIND_WALLET_TRANSFER" = "Paiement";
+"WALLET_TRANSACTION_KIND_DEPOSIT_TRANSFER" = "Deposit";
+"WALLET_TRANSACTION_KIND_COMMISSION_TRANSFER_RECOMMANDATION" = "Recommandation";
+"WALLET_TRANSACTION_KIND_COMMISSION_TRANSFER_SPONSOR" = "Sponsor";
+"WALLET_TRANSACTION_KIND_REFUND_WALLET_TRANSFER" = "Wallet refund";
+"WALLET_TRANSACTION_KIND_SPONSOR_TRANSFER" = "Sponsor reward";
+"WALLET_TRANSACTION_KIND_REFUND_PAYMENT" = "Refund";
+
+"WALLET_TRANSACTION_STATUS_FAILED" = "Failed";
+"WALLET_TRANSACTION_STATUS_SUCCEEDED" = "Completed";
+"WALLET_TRANSACTION_STATUS_RECEIVED" = "Received";
+"WALLET_TRANSACTION_STATUS_PENDING" = "Pending";
+"WALLET_TRANSACTION_STATUS_CANCELED" = "Refunded";
+
+/* StepsCheck (Onboarding) */
+"STEPS_CHECK_ONBOARDING_TITLE" = "Before starting,\ncomplete your profile.";
+"STEPS_CHECK_ONBOARDING_DESCRIPTION" = "Your profile is not visible to other users, clients will not be able to book yet. To activate your profile, follow the steps:";
+"STEPS_CHECK_ONBOARDING_FIRST_STEP" = "Add a profile picture";
+"STEPS_CHECK_ONBOARDING_THIRD_STEP" = "Add your beauty services";
+"STEPS_CHECK_ONBOARDING_FOURTH_STEP" = "Set up your working hours";
+"STEPS_CHECK_ONBOARDING_FIFTH_STEP" = "Add your workplace";
+"STEPS_CHECK_ONBOARDING_SIXTH_STEP" = "Choose your subscription";
+"STEPS_CHECK_ONBOARDING_SECOND_STEP" = "Choose your currency";
+"STEPS_CHECK_ONBOARDING_EIGHTH_STEP" = "Enable your wallet";
+"STEPS_CHECK_ONBOARDING_FOOTER_TITLE" = "Information";
+"STEPS_CHECK_ONBOARDING_FOOTER_DESCRIPTION" = "It is mandatory to log in to iara at least once a week to keep your profile active. Otherwise, your profile will be flagged and your clients will no longer be able to book.";
+
+/* StepsCheck (Stripe) */
+"STEPS_CHECK_STRIPE_TITLE" = "Verify your identity";
+"STEPS_CHECK_STRIPE_DESCRIPTION" = "Your identity must be verified in order to transfer your gains to your bank account.";
+"STEPS_CHECK_STRIPE_DESCRIPTION_WALLET" = "Your identity must be verified in order to make payments with your wallet.";
+"STEPS_CHECK_STRIPE_HEADER_TITLE" = "Scan your documents";
+"STEPS_CHECK_STRIPE_HEADER_TITLE_WALLET" = "Add your information";
+"STEPS_CHECK_STRIPE_FIRST_STEP" = "ID";
+"STEPS_CHECK_STRIPE_SECOND_STEP" = "Proof of address";
+"STEPS_CHECK_STRIPE_STEP_BILLING_ADDRESS" = "Billing adress";
+"STEPS_CHECK_STRIPE_THIRD_STEP" = "Add banking information";
+"STEPS_CHECK_STRIPE_LEGAL_NAME_STEP" = "Legal name";
+"STEPS_CHECK_STRIPE_LEGAL_NAME_STEP_VIEW_TITLE" = "Check your name";
+"STEPS_CHECK_STRIPE_LEGAL_NAME_STEP_VIEW_DESC" = "Your first and last name must be the same as on your ID";
+"STEPS_CHECK_STRIPE_ADDRESS_STEP" = "Home address";
+"STEPS_CHECK_STRIPE_ADDRESS_STEP_VIEW_TITLE" = "Check your address";
+"STEPS_CHECK_STRIPE_ADDRESS_STEP_VIEW_DESC" = "Your address must be the same as on your proof adress";
+"STEPS_CHECK_STRIPE_FOOTER_TITLE" = "Information";
+"STEPS_CHECK_STRIPE_FOOTER_DESCRIPTION" = "By clicking on the button below, you accept us to check documents provided.\n\nThis may take up to 24 hours.\n\nYou can find out more about the processing of your personal data in our Privacy Policy.\n\nIf there is a problem with the verification process, contact support.";
+"STEPS_CHECK_STRIPE_STATUS_PENDING" = "Your documents have been received and will be reviewed by our team. This may take up to 48 hours.";
+"STEPS_CHECK_STRIPE_STATUS_FAILURE" = "We can't verify your account. Please resend the missing documents.";
+
+/* StripeStep (ID) */
+"STRIPE_STEP_ID_TITLE" = "Scan your ID";
+"STRIPE_STEP_ID_DESCRIPTION" = "Don't worry, we are not allowed to keep your document. It will be deleted once your profile is verified.";
+"STRIPE_STEP_ID_FIRST_ROW" = "Driver's license";
+"STRIPE_STEP_ID_SECOND_ROW" = "National Identity Card";
+"STRIPE_STEP_ID_THIRD_ROW" = "Passport";
+"STRIPE_STEP_ID_BUTTON_TITLE" = "Take photo";
+
+/* StripeStep (Address proof) */
+"STRIPE_STEP_AP_TITLE" = "Scan your proof of address";
+"STRIPE_STEP_AP_DESCRIPTION" = "We need a document proving your address.\n\nThis can be:";
+"STRIPE_STEP_AP_FIRST_ROW" = "Water, electricity or telephone bill";
+"STRIPE_STEP_AP_SECOND_ROW" = "Tax notice";
+"STRIPE_STEP_AP_THIRD_ROW" = "Proof of residence taxes";
+"STRIPE_STEP_AP_FOURTH_ROW" = "Home insurance";
+"STRIPE_STEP_AP_BUTTON_TITLE" = "Take photo";
+
+/* StripeCamera */
+"STRIPE_CAMERA_BUTTON_TITLE" = "Take photo";
+"STRIPE_CAMERA_TAKEPHOTO_ERROR_TITLE" = "Error occurred";
+"STRIPE_CAMERA_TAKEPHOTO_ERROR_DESCRIPTION" = "Unable to save the photo, please go back and try again.";
+
+/* StripeCamera (ID) */
+"STRIPE_CAMERA_ID_TITLE" = "Scan your ID";
+"STRIPE_CAMERA_ID_FIRST_STEP" = "Photograph the front";
+"STRIPE_CAMERA_ID_SECOND_STEP" = "Photograph the back";
+
+/* StripeCamera (Address) */
+"STRIPE_CAMERA_ADDRESS_TITLE" = "Scan your proof of address";
+"STRIPE_CAMERA_ADDRESS_FIRST_STEP" = "Photograph the front";
+
+/* FIRST LAUNCH */
+"FIRST_LAUNCH_FIRST_PAGE_TITLE" = "Beauty booking made social.";
+"FIRST_LAUNCH_FIRST_PAGE_DESCRIPTION" = "Book beauty services with pros' around you and earn money sharing them with your friends.";
+"FIRST_LAUNCH_SECOND_PAGE_TITLE" = "Client,";
+"FIRST_LAUNCH_SECOND_PAGE_DESCRIPTION" = "Discover professionals around you and book the same services as your friends and favorite celebrities.";
+"FIRST_LAUNCH_THIRD_PAGE_TITLE" = "Professional,";
+"FIRST_LAUNCH_THIRD_PAGE_DESCRIPTION" = "Manage your schedule easily and and acquire new clients thanks to clients' recommandation.";
+"FIRST_LAUNCH_CONTINUE_BUTTON" = "Continue";
+"FIRST_LAUNCH_START_BUTTON" = "Start";
+
+/* ACTIVATE WALLET */
+"ACTIVATE_WALLET_FIRST_PAGE_TITLE" = "Activate your wallet.";
+"ACTIVATE_WALLET_SECOND_PAGE_TITLE" = "Receive money.";
+"ACTIVATE_WALLET_THIRD_PAGE_TITLE_CUSTOMER" = "Pay with your wallet.";
+"ACTIVATE_WALLET_THIRD_PAGE_TITLE_PRO" = "Pay with your wallet.";
+"ACTIVATE_WALLET_DESCRIPTION1_PRO" = "The wallet is an *online payment tool* managed by Stripe. It's a secure wallet that you can use to receive all the income from your business. You can transfer this money to your bank account at any time.";
+"ACTIVATE_WALLET_DESCRIPTION1_CUSTOMER" = "The wallet is an *online payment tool* managed by Stripe. It is a secure wallet that allows you to recover the money you have earned on iara";
+"ACTIVATE_WALLET_DESCRIPTION2" = "Each time you acquire **a new client following a recommendation** from one of your clients, a small commission is deducted from your wallet. This commission is like a *thank you for getting a new client* and is only valid during the first appointment";
+"ACTIVATE_WALLET_DESCRIPTION3_TITLE" = "Check your information. 🚨";
+"ACTIVATE_WALLET_DESCRIPTION3_DESC" = "Your first and last name must be real for your wallet to be activated";
+"ACTIVATE_WALLET_DESCRIPTION4_TITLE" = "Activate it to start your activity";
+"ACTIVATE_WALLET_SECOND_PAGE_DESCRIPTION_CUSTOMER" = "Each user can post beauty care picture on her profile. If a user book the same care as you and/or at the same professional, you will earn money on the booking.\n\nYou can sponsor new members in order to increase your gains.";
+"ACTIVATE_WALLET_THIRD_PAGE_DESCRIPTION_CUSTOMER" = "Money earned because of your posts is available in your wallet and can be used directly to book a new care.\n\nYou can transfer this money to your bank account as well.";
+"ACTIVATE_WALLET_SECOND_PAGE_DESCRIPTION_PRO" = "Each user can post beauty care picture on her profile. If a user book the same care as you and/or at the same pro workplace, you will earn money on the booking.\n\nYou can sponsor new member in order to increase your gains.";
+"ACTIVATE_WALLET_THIRD_PAGE_DESCRIPTION_PRO" = "Money earned because of your post is available in your wallet and can be used directly to book a new care.\n\nYou can transfer this money to your bank account as well.";
+"ACTIVATE_WALLET_ACCEPT_CONDITIONS" = "I accept general conditions and terms of use";
+
+/* ADD CUSTOM ORDER */
+"ADD_CUSTOMER_ORDER_TITLE" = "New booking";
+"ADD_CUSTOMER_ORDER_EDIT_TITLE" = "Edit booking";
+"ADD_CUSTOMER_ORDER_SUBTITLE" = "By adding this booking, this slot will be blocked. The booking will be automatically added to your client's calendar.";
+"ADD_CUSTOMER_ORDER_EDIT_SUBTITLE" = "Rescheduling the appointment will not affect the amount paid online. If there is a price difference, the adjustment will need to be made on-site with the client.";
+"ADD_CUSTOMER_ORDER_SKIP_SHEET_TITLE" = "A booking already exists";
+"ADD_CUSTOMER_ORDER_SKIP_SHEET_ONE" = "A booking already exists from %@ to %@ with %@";
+"ADD_CUSTOMER_ORDER_SKIP_SHEET_MULTIPLE" = "Several bookings already exist for this time";
+"ADD_CUSTOMER_ORDER_SKIP_SHEET_CONFIRM" = "Add the booking anyway";
+"ADD_CUSTOMER_ORDER_NOTIF_SUCCESS" = "The booking has been added to your schedule";
+"ADD_CUSTOMER_ORDER_NOTIF_EDIT_SUCCESS" = "The booking has been modified";
+"ADD_CUSTOMER_ORDER_NOTIF_NO_ONBOARDING" = "Finish your onboarding before adding a first booking";
+"ADD_CUSTOMER_ORDER_CUSTOMER" = "Client";
+"ADD_CUSTOMER_ORDER_ADD_CUSTOMER" = "Add client";
+"ADD_CUSTOMER_ORDER_ADD_CUSTOMER_VIEW_TITLE" = "Add client";
+"ADD_CUSTOMER_ORDER_ADD_CUSTOMER_MY_CUSTOMERS" = "My customers";
+"ADD_CUSTOMER_ORDER_ADD_CUSTOMER_MY_CUSTOMERS_SEARCH_EMPTY_TITLE" = "No results found";
+"ADD_CUSTOMER_ORDER_ADD_CUSTOMER_MY_CUSTOMERS_SEARCH_EMPTY_DESC" = "No one has this first name/pseudo among your customers";
+"ADD_CUSTOMER_ORDER_ADD_CUSTOMER_ALL_CUSTOMERS" = "All customers";
+"ADD_CUSTOMER_ORDER_ADD_CUSTOMER_ALL_CUSTOMERS_SEARCH_PLACEHOLDER_TITLE" = "Search for a customer";
+"ADD_CUSTOMER_ORDER_ADD_CUSTOMER_ALL_CUSTOMERS_SEARCH_PLACEHOLDER_DESC" = "Here you can search for a person among all those registered on iara";
+"ADD_CUSTOMER_ORDER_ADD_CUSTOMER_ALL_CUSTOMERS_SEARCH_EMPTY_TITLE" = "No results found";
+"ADD_CUSTOMER_ORDER_ADD_CUSTOMER_ALL_CUSTOMERS_SEARCH_EMPTY_DESC" = "No one has this first name/username on iara";
+"ADD_CUSTOMER_ORDER_DELETE_CUSTOMER" = "Delete";
+"ADD_CUSTOMER_ORDER_CUSTOMER_NOT_IN_IARA" = "My client is not on iara";
+"ADD_CUSTOMER_ORDER_EXPLANATIONS" = "Enter your client's e-mail address to receive appointment confirmations and reminders!";
+"ADD_CUSTOMER_ORDER_CARES" = "Beauty services";
+"ADD_CUSTOMER_ORDER_ADD_CARES" = "Add one or multiple services";
+"ADD_CUSTOMER_ORDER_ADD_CARES_VIEW_TITLE" = "Add services";
+"ADD_CUSTOMER_ORDER_PRICE" = "Price";
+"ADD_CUSTOMER_ORDER_FIRSTNAME" = "First name*";
+"ADD_CUSTOMER_ORDER_MANDATORY" = "Mandatory";
+"ADD_CUSTOMER_ORDER_OPTIONAL" = "Optional";
+"ADD_CUSTOMER_ORDER_EMAIL" = "E-mail address";
+"ADD_CUSTOMER_ORDER_LASTNAME" = "Last name";
+"ADD_CUSTOMER_ORDER_PHONE_NUMBER" = "Phone number";
+"ADD_CUSTOMER_ORDER_DATE" = "Date";
+"ADD_CUSTOMER_ORDER_START_AT" = "Start at";
+"ADD_CUSTOMER_ORDER_END_AT" = "End at";
+"ADD_CUSTOMER_ORDER_PAYMENT_METHODS" = "Payment methods";
+"ADD_CUSTOMER_ORDER_STATUS" = "Status";
+"ADD_CUSTOMER_ORDER_SELECT" = "Select";
+"ADD_CUSTOMER_ORDER_SAVE" = "Finish";
+"ADD_CUSTOMER_ORDER_EDIT" = "Save";
+"ADD_CUSTOMER_ORDER_ADDED_MANUALLY_ON" = "Added manually on";
+"ADD_CUSTOMER_ORDER_IARA_ACCOUNT" = "iara account";
+"ADD_CUSTOMER_ORDER_EDIT_CONFIRMATION_TITLE" = "Are you sure you want to change this booking?";
+"ADD_CUSTOMER_ORDER_EDIT_CONFIRMATION_MESSAGE" = "The **change in benefits** will affect the duration and total price of your appointment but will not affect the amount paid.\n\nThe **price change** will not affect the amount already paid online.\n\nThe **change in duration** will not affect the price.";
+"ADD_CUSTOMER_ORDER_MODIFY" = "Modify";
+"ADD_CUSTOMER_ORDER_SEARCH_TITLE" = "Search a customer";
+"ADD_CUSTOMER_ORDER_MANUAL_CUSTOMERS_HINT" = "Manually added customers can be found in 'My customers'.";
+"ADD_CUSTOMER_ORDER_CUSTOMER_NO_ACCOUNT_PREFIX" = "My customer doesn't have ";
+"ADD_CUSTOMER_ORDER_CUSTOMER_NO_ACCOUNT_COLORED" = "an iara account.";
+"ADD_CUSTOMER_ORDER_FORMAT_TELEPHONE_INVALIDE_SMS_NON_ENVOYE" = "Invalid phone number format.";
+
+"ADD_CUSTOMER_ORDER_VALIDATION_PRICE_REQUIRED" = "Please enter a price";
+"ADD_CUSTOMER_ORDER_VALIDATION_CARE_REQUIRED" = "Please select at least one care service";
+"ADD_CUSTOMER_ORDER_VALIDATION_CUSTOMER_REQUIRED" = "Please enter customer's first name";
+"ADD_CUSTOMER_ORDER_VALIDATION_CUSTOMER_SELECTION_REQUIRED" = "Please select a customer";
+
+"ORDER_STATUS_PAID_TITLE" = "Paid";
+"ORDER_STATUS_PREPAID_TITLE" = "Deposit paid";
+"ORDER_STATUS_UNPAID_TITLE" = "Unpaid";
+
+"POST_DELETE_POST" = "Delete a post";
+"POST_DELETE_THIS_POST" = "Delete this post";
+"POST_SIMILAR_POSTS" = "Similar posts";
+"POST_POST_SAVED" = "Post saved!";
+"POST_PEOPLE_FOLLOWED" = "followed!";
+"POST_DELETE_DELETED" = "The post has successfully been deleted";
+
+/* ERRORS */
+"UNEXPECTED_ERROR" = "An unexpected error has occured. Try again later";
+
+/* SUCCESS */
+"SAVED_SUCCESSFULLY" = "Successfully saved!";
+
+/* STRIPE ERRORS */
+"STRIPE_ERROR_DECODING_UIIMAGE" = "Impossible to send the file";
+
+"CURRENCY_POUND_STERLING" = "Pound Sterling";
+"CURRENCY_SWISS_FRANC" = "Swiss Franc";
+"CURRENCY_CANADIAN_DOLLAR" = "Canadian Dollar";
+"CURRENCY_AUSTRALIAN_DOLLAR" = "Australian Dollar";
+"CURRENCY_EMIRATHES_DIRHAM" = "Emirates dirham";
+
+"PAYWALL_PROMO_TITLE" = "3 months free, until the new year.";
+"PAYWALL_PROMO_DESC" = "It's now, or never.";
+"PAYWALL_PROMO_PRE_ADVANTAGES" = "All the benefits of the free plan +";
+"PAYWALL_TITLE" = "A magical experience,";
+"PAYWALL_SUBTITLE" = "all year round.";
+"PAYWALL_FEATURE_TITLE" = "This feature is available in the LITE subscription";
+"PAYWALL_PROMO_BENEFITS1_TITLE" = "Deposits";
+"PAYWALL_PROMO_BENEFITS1_SUBTITLE" = "and online payments";
+"PAYWALL_PROMO_BENEFITS2_TITLE" = "Loyal clients";
+"PAYWALL_PROMO_BENEFITS2_SUBTITLE" = "Reservation Policy";
+"PAYWALL_PROMO_BENEFITS3_TITLE" = "Customer support 7d/7";
+"PAYWALL_PROMO_BENEFITS3_SUBTITLE" = "WhatsApp and Instagram";
+"PAYWALL_PROMO_BENEFITS4_TITLE" = "Additional options";
+"PAYWALL_PROMO_BENEFITS4_SUBTITLE" = "for your treatments";
+"PAYWALL_PROMO_BENEFITS5_TITLE" = "Exclusive benefits";
+"PAYWALL_PROMO_BENEFITS5_SUBTITLE" = "for your loyal clients";
+"PAYWALL_PROMO_BENEFITS6_TITLE" = "Automatic slot creation";
+"PAYWALL_PROMO_BENEFITS6_SUBTITLE" = "to fill in your gaps";
+"PAYWALL_PROMO_BENEFITS7_TITLE" = "Loyalty card";
+"PAYWALL_PROMO_BENEFITS7_SUBTITLE" = "for each of your clients";
+"PAYWALL_PROMO_BENEFITS8_TITLE" = "Payments & deposits";
+"PAYWALL_PROMO_BENEFITS8_SUBTITLE" = "Secure your appointments and limit last-minute cancellations.";
+"PAYWALL_PROMO_BENEFITS9_TITLE" = "Loyalty program & card";
+"PAYWALL_PROMO_BENEFITS9_SUBTITLE" = "Build client loyalty easily by offering rewards.";
+"PAYWALL_PROMO_BENEFITS10_TITLE" = "Personalized promotions";
+"PAYWALL_PROMO_BENEFITS10_SUBTITLE" = "Create promos on your treatments or during off-peak hours.";
+"PAYWALL_PROMO_BENEFITS11_TITLE" = "Additional options";
+"PAYWALL_PROMO_BENEFITS11_SUBTITLE" = "Add paid options to your services and boost your revenue.";
+"PAYWALL_PROMO_BENEFITS12_TITLE" = "Booking advantages";
+"PAYWALL_PROMO_BENEFITS12_SUBTITLE" = "Offer priority booking access to your loyal clients.";
+"PAYWALL_PROMO_BENEFITS13_TITLE" = "Automatic slot creation";
+"PAYWALL_PROMO_BENEFITS13_SUBTITLE" = "Slots are created when a gap is detected.";
+"PAYWALL_PROMO_BENEFITS14_TITLE" = "Appointment editing";
+"PAYWALL_PROMO_BENEFITS14_SUBTITLE" = "Modify duration, price and treatments according to your clients.";
+"PAYWALL_PROMO_BENEFITS15_TITLE" = "Complete dashboard";
+"PAYWALL_PROMO_BENEFITS15_SUBTITLE" = "Track your performance over time.";
+"PAYWALL_PROMO_BENEFITS16_TITLE" = "Display your slots";
+"PAYWALL_PROMO_BENEFITS16_SUBTITLE" = "Customize the slots offered to your clients.";
+"PAYWALL_PROMO_BENEFITS17_TITLE" = "Hands-free services";
+"PAYWALL_PROMO_BENEFITS17_SUBTITLE" = "Welcome a second client if the first doesn't need you.";
+"PAYWALL_PROMO_BENEFITS18_TITLE" = "Contact merging";
+"PAYWALL_PROMO_BENEFITS18_SUBTITLE" = "Group duplicates and maintain a clean client base.";
+"PAYWALL_PROMO_BUTTON1_TEXT" = "Stay on free plan";
+"PAYWALL_PROMO_BUTTON2_TEXT" = "Try for free";
+"PAYWALL_PROMO_BUTTON2_TEXT_NOTRIAL" = "Try now";
+"PAYWALL_PROMO_BUTTON3_TEXT" = "Start free trial";
+"PAYWALL_PROMO_BUTTON3_TEXT_NOTRIAL" = "Start now";
+"PAYWALL_PROMO_ONE_MONTH_FREE_TRIAL" = "1 month trial free";
+"PAYWALL_PROMO_SPECIAL_OFFER" = "Special offer";
+"PAYWALL_PROMO_SUCCESS_CANCELLABLE" = "Can be cancelled at any time";
+"PAYWALL_PROMO_SUCCESS_NOTIFICATION" = "That's it, your plan has been activated! 💫";
+"PAYWALL_DISCOUNT_WORD_FOR" = "for";
+
+
+"PAYWALL_SMS_TITLE" = "Unlimited reminder SMS for %@.";
+"PAYWALL_SMS_COLORED_PART" = "reminder SMS";
+"PAYWALL_MINI_EXPERIENCE" = "A ";
+"PAYWALL_MINI_MAGICAL" = "magical experience,";
+"PAYWALL_MINI_FOR" = "for a ";
+"PAYWALL_MINI_TYPE" = "mini";
+"PAYWALL_FREE_PLAN_BENEFITS" = "All benefits from the free plan";
+"PAYWALL_PLAN_MINI_TITLE" = "Mini Plan";
+"PAYWALL_PLAN_LITE_PLUS_TITLE" = "Lite+ Plan";
+"PAYWALL_BUTTON_START_TRIAL" = "Start free trial";
+"PAYWALL_BUTTON_START_NOW" = "Start now";
+"PAYWALL_TRIAL_CANCEL" = "Cancel anytime.";
+"PAYWALL_TOOLS_PREFIX" = "All tools";
+"PAYWALL_TOOLS_FOR" = " for\na ";
+"PAYWALL_TOOLS_EXPERIENCE" = "magical\n";
+"PAYWALL_TOOLS_MAGICAL" = "experience";
+"PAYWALL_PLAN_BENEFITS" = "All benefits from";
+"PAYWALL_MINI_PLAN" = " your mini plan ";
+"PAYWALL_LITE_PLUS_PLAN" = " your LITE plan ";
+"PAYWALL_SMS_TOGGLE_ACTION" = "Enable SMS";
+"PAYWALL_SMS_TOGGLE_TYPE" = " reminders";
+"PAYWALL_BUTTON_COMPLETE_PLAN" = "Complete my plan";
+"PAYWALL_MINI_FEATURE_SMS_BOLD" = "Reminder SMS";
+"PAYWALL_MINI_FEATURE_SMS_REGULAR" = " for appointments";
+"PAYWALL_MINI_FEATURE_COLOR_BOLD" = "Customize";
+"PAYWALL_MINI_FEATURE_COLOR_REGULAR" = " your profile color";
+"PAYWALL_MINI_FEATURE_MODIFICATIONS_BOLD" = "Unlimited";
+"PAYWALL_MINI_FEATURE_MODIFICATIONS_REGULAR" = " appointment modifications";
+"PAYWALL_MINI_FEATURE_SYNC_AGENDA_BOLD" = "Schedule Synchronization";
+"PAYWALL_MINI_FEATURE_SYNC_AGENDA_REGULAR" = " of appointments";
+"PAYWALL_LITEPLUS_FEATURE_DEPOSIT_BOLD" = "Deposits";
+"PAYWALL_LITEPLUS_FEATURE_DEPOSIT_REGULAR" = " online";
+"PAYWALL_LITEPLUS_FEATURE_OPTIONS_BOLD" = "Options";
+"PAYWALL_LITEPLUS_FEATURE_OPTIONS_REGULAR" = " for all services";
+"PAYWALL_LITEPLUS_FEATURE_SLOTS_BOLD" = "Automatic";
+"PAYWALL_LITEPLUS_FEATURE_SLOTS_REGULAR" = " slot creation";
+"PAYWALL_LITEPLUS_FEATURE_LOYALTY_BOLD" = "Loyalty card";
+"PAYWALL_LITEPLUS_FEATURE_LOYALTY_REGULAR" = "";
+"PAYWALL_LITEPLUS_FEATURE_ADVANTAGES_BOLD" = "Benefits";
+"PAYWALL_LITEPLUS_FEATURE_ADVANTAGES_REGULAR" = " for loyal customers";
+"PAYWALL_BUTTON_ADD_OPTION" = "+ Add option";
+"PAYWALL_BENEFIT_SMS_TITLE" = "Reminder SMS";
+"PAYWALL_BENEFIT_SMS_SUBTITLE" = "for appointments";
+"PAYWALL_BENEFIT_COLOR_TITLE" = "Customize";
+"PAYWALL_BENEFIT_COLOR_SUBTITLE" = "your profile color";
+"PAYWALL_BENEFIT_EDIT_TITLE" = "Edit appointments";
+"PAYWALL_BENEFIT_EDIT_SUBTITLE" = "(including past ones)";
+"PAYWALL_BENEFIT_SYNC_AGENDA_TITLE" = "Schedule Synchronization";
+"PAYWALL_BENEFIT_SYNC_AGENDA_SUBTITLE" = "of appointments";
+
+"CUSTOME_DATE_PICKER_START_DATE_ALERT" = "The end date must be greater than the start date";
+"CUSTOME_DATE_PICKER_END_DATE_ALERT" = "The start date must be less than the end date";
+
+"DATE_FORMAT_DAY_MONTH" = "dd MMMM";
+"DATE_FORMAT_DAY_MONTH_SHORT" = "dd/MM";
+"DATE_FORMAT_DAY_MONTH_YEAR" = "dd MMMM YYYY";
+"DATE_FORMAT_MONTH_YEAR" = "MMMM YYYY";
+"DATE_FORMAT_DAY_MONTH_HOUR" = "d MMMM HH'h'";
+"DATE_FORMAT_HOUR" = "HH'h'";
+
+"LOYALTY_PROGRAM_TOGGLE" = "Loyalty program";
+"LOYALTY_PROGRAM_REWARD_TITLE" = "Reward";
+"LOYALTY_PROGRAM_REWARD_PLACEHOLDER" = "Describe the reward obtained once the number of appointments has been completed!";
+"LOYALTY_PROGRAM_EXP_DATE_TITLE" = "Expiry date of the card";
+"LOYALTY_PROGRAM_EXP_DATE_TEXT" = "The card will expire after it";
+"LOYALTY_PROGRAM_MIN_AMOUNT_TITLE" = "Minimum amount";
+"LOYALTY_PROGRAM_MIN_AMOUNT_TEXT" = "Minimum amount to validate your customer’s passage on his loyalty card.";
+"LOYALTY_PROGRAM_ERROR_EMPTY_REWARD" = "The reward field cannot be empty";
+
+"PRO_CALENDAR_ADD_APPOINTMENT" = "Add an appointment";
+"PRO_CALENDAR_TREATMENT" = "treatment";
+"PRO_CALENDAR_TREATMENTS" = "treatments";
+"PRO_CALENDAR_NO_OPTION" = "No option";
+
+
+/* MERGE CONTACTS */
+"MERGE_CONTACTS_MERGE" = "Merge";
+"MERGE_CONTACTS_USE_EXISTING" = "Use the existing contact";
+"MERGE_CONTACTS_CONTACT_ALREADY_EXISTS" = "Contact already exists";
+"MERGE_CONTACTS_SIMILAR_CONTACT" = "Similar contact";
+"MERGE_CONTACTS_SOME_CONTACTS_ARE_DUPLICATES" = "Some of your contacts seem to be duplicates. Merge them by clicking here.";
+"MERGE_CONTACTS_TITLE" = "Merge Clients";
+"MERGE_CONTACTS_SOME_CONTACTS_ARE_DUPLICATES" = "We found someone in your contacts with the same information. Do you want to use the existing contact?";
+
+
+/* SMS */
+"SMS_NOTIFICATION_TOGGLE" = "Booking Reminder SMS";
+"SMS_NOTIFICATION_TITLE" = "SMS";
+"SMS_NOTIFICATION_DEFAULT_TEXT_TITLE" = "Default text";
+"SMS_NOTIFICATION_DEFAULT_TEXT_CONTENT" = "Reminder of appointment with @%@ on [date and time]. To reschedule or cancel the appointment, visit iarabeauty.com.";
+"SMS_NOTIFICATION_TIMING_DESCRIPTION" = "SMS reminders are sent 24 hours before each appointment.";
+
+/* SYNC_AGENDA */
+"SYNC_AGENDA_TITLE" = "Synchronize my schedule";
+"SYNC_AGENDA_COPY" = "Copy";
+"SYNC_AGENDA_HOW_IT_WORKS" = "How does it work?";
+"SYNC_AGENDA_SYNC_DESCRIPTION_1" = "This allows you to synchronize your iara schedule with your personal calendar in one click.";
+"SYNC_AGENDA_SYNC_DESCRIPTION_2" = "This feature simplifies your time management by centralizing all your appointments in one place.";
+"SYNC_AGENDA_SYNC_DESCRIPTION_3" = "Synchronization is automatic, which means that in case of addition, modification and/or cancellation of appointments, your calendar will be updated.";
+"SYNC_AGENDA_HOW_TO_ADD" = "How to add the link?";
+"SYNC_AGENDA_OPEN_CALENDAR" = "Go to your calendar";
+"SYNC_AGENDA_CALENDARS_STEPS" = "> Click on \"Calendars\" at the bottom of the page > \"Add Calendar\" > \"Add Subscription Calendar\" >";
+"SYNC_AGENDA_INSERT_LINK" = "Insert your iara link";
+"SYNC_AGENDA_TIPS" = "Tips";
+"SYNC_AGENDA_WIDGET_TIP" = "You can now add ical as a widget on your phone.";
+"SYNC_AGENDA_SAVE" = "Save";
+"SYNC_AGENDA_SAVE_SUCCESS" = "Calendar synchronization saved successfully";
+"SYNC_AGENDA_SAVE_ERROR" = "Error while saving calendar synchronization";
+"SYNC_AGENDA_COPIED_TO_CLIPBOARD" = "Copied to clipboard!";
+"SYNC_AGENDA_OPEN_APP" = "Synchronize my planning";
+"SYNC_AGENDA_HOW_TO_ADD_ICAL" = "Add on iCal";
+"SYNC_AGENDA_GOOGLE_CALENDAR" = "Add on Google Calendar";
+"SYNC_AGENDA_GO_TO" = "Go to";
+"SYNC_AGENDA_GOOGLE_STEPS_1" = "from a computer > Click on the small + next to";
+"SYNC_AGENDA_GOOGLE_STEPS_2" = "\"Other calendars\" > From the URL > ";
+"SYNC_AGENDA_INSERT_URL" = "Insert your iara link";
+
+"THEME_SELECTION_TITLE" = "Customization of your profile";
+
+/* LOGIN */
+"LOGIN_BACK_BUTTON" = "Back";
+"LOGIN_TITLE" = "Login";
+"LOGIN_SUBTITLE" = "Log in to access your account";
+"LOGIN_EMAIL_PLACEHOLDER" = "Email or username";
+"LOGIN_PASSWORD_PLACEHOLDER" = "Password";
+"LOGIN_FORGOT_PASSWORD" = "Forgot password?";
+"LOGIN_BUTTON" = "Log in";
+"LOGIN_NO_ACCOUNT" = "Don't have an account?";
+"LOGIN_SIGNUP" = "Sign up.";
+
+
+/* PROMOTION */
+"PROMOTION_VALIDITY_NOT_DEFINED" = "Validity not defined";
+"PROMOTION_DATES_NOT_DEFINED" = "Dates not defined";
+"PROMOTION_TIMES_NOT_DEFINED" = "Times not defined";
+"PROMOTION_DATE_RANGE_FORMAT" = "From %@ to %@";
+"PROMOTION_TIME_RANGE_FORMAT" = "From %@h to %@h";
+
+"PROMOTION_ACTIVE" = "Active";
+"PROMOTION_UPCOMING" = "Upcoming";
+"PROMOTION_INACTIVE" = "Inactive";
+"PROMOTION_MY_PROMOTIONS" = "My promotions";
+"PROMOTION_NO_PROMOTIONS_YET" = "You don't have any promotions yet";
+"PROMOTION_ADD_PROMOTION_INSTRUCTIONS" = "To add a new promotion code, click the + at the top right of your screen.";
+"PROMOTION_ACTIVE_STATUS" = "Active";
+"PROMOTION_INACTIVE_STATUS" = "Inactive";
+
+"PROMOTION_MAKE_CODE_PRIVATE" = "Make code private";
+"PROMOTION_VALIDITY_DATE" = "Validity date";
+"PROMOTION_DATE" = "Date";
+"PROMOTION_TIME" = "Time";
+"PROMOTION_DISCOUNT_TYPE" = "Discount type";
+"PROMOTION_APPLY_BOOKING_DISCOUNT" = "Apply to the booking a discount of";
+"PROMOTION_CUSTOMIZE_MY_DISCOUNT" = "Customize my discount";
+"PROMOTION_GENERATE_PROMO_CODE" = "Generate my promo code";
+"PROMOTION_PROMO_CODE_NAME" = "Promo code name";
+"PROMOTION_CODE_EXPLANATION" = "This is a unique code to be entered at checkout to receive the discount.";
+"PROMOTION_NEW_PROMOTION" = "New Promotion";
+"PROMOTION_CONFIRM" = "Confirm";
+"PROMOTION_START_DATE" = "Start date";
+"PROMOTION_END_DATE" = "End date";
+"PROMOTION_START_TIME" = "Start time";
+"PROMOTION_END_TIME" = "End time";
+"PROMOTION_DATE_RANGE_FORMAT" = "From %@ to %@";
+"PROMOTION_TIME_RANGE_FORMAT_24H_NO_MINUTES" = "From %@h to %@h";
+"PROMOTION_TIME_RANGE_FORMAT_24H" = "From %@h%@ to %@h%@";
+"PROMOTION_TIME_RANGE_FORMAT_12H_NO_MINUTES" = "From %@:00 %@ to %@:00 %@";
+"PROMOTION_TIME_RANGE_FORMAT_12H" = "From %@:%@ %@ to %@:%@ %@";
+
+"PROMOTION_ELIGIBLE_SERVICES" = "Eligible services";
+"PROMOTION_VALIDATE_SELECTION" = "Validate selection";
+
+"PROMOTION_MINIMUM_PURCHASE_AMOUNT" = "Minimum purchase amount to apply the promotion";
+"PROMOTION_DISCOUNT_AMOUNT" = "Discount amount";
+"PROMOTION_ELIGIBILITY_EXPLANATION" = "The promotion will be applied when at least one of the eligible services is selected during booking.";
+"PROMOTION_SELECT_ALL_SERVICES" = "Select all services";
+
+"PROMOTION_DISCOUNT_PERCENTAGE" = "Discount percentage";
+
+"PROMOTION_PRIVATE_CODE_TITLE" = "Make code private";
+"PROMOTION_PRIVATE_CODE_EXPLANATION" = "By making this promo code private, your profile won't appear in the \"promotions\" section on the feed and the promotion won't be shown on your profile.";
+"PROMOTION_CLIENTS_MUST_ENTER_CODE" = "Clients will have to enter the code manually";
+"PROMOTION_DURING_BOOKING" = " during booking.";
+"PROMOTION_UNDERSTOOD" = "Understood";
+"PROMOTION_TIME_PROMO_TITLE" = "Promotions on specific hours";
+"PROMOTION_YOUR_TIMEZONE" = "Your timezone: %@";
+"PROMOTION_TIME_PROMO_EXPLANATION_PART1" = "By choosing to apply a promotion on certain hours, it will be applied automatically and ";
+"PROMOTION_TIME_PROMO_EXPLANATION_PART2" = "recurrently on all working days";
+"PROMOTION_TIME_PROMO_EXPLANATION_PART3" = ", on all slots between the selected hours.";
+
+"PROMOTION_PROMO_CODE" = "Promo code";
+"PROMOTION_VERIFY" = "Verify";
+"PROMOTION_CODE_VALID" = "Valid promo code!";
+"PROMOTION_VERIFICATION_ERROR" = "Error verifying promo code";
+
+"PROMOTION_DETAILS" = "Promotion Details";
+"PROMOTION_PROMO_CODE" = "Promotion Code";
+"PROMOTION_PUBLIC" = "Public";
+"PROMOTION_PRIVATE" = "Private";
+"PROMOTION_VALIDITY" = "Validity";
+"PROMOTION_DATE_RANGE" = "Date Range";
+"PROMOTION_TIME_RANGE" = "Time Range";
+"PROMOTION_VALIDITY_NOT_DEFINED" = "Validity not defined";
+"PROMOTION_DISCOUNT" = "Discount";
+"PROMOTION_PERCENTAGE_DISCOUNT" = "Percentage Discount";
+"PROMOTION_FIXED_DISCOUNT" = "Fixed Amount Discount";
+"PROMOTION_CUSTOM_DISCOUNT" = "Custom Pricing";
+"PROMOTION_DISCOUNT_NOT_DEFINED" = "Discount not defined";
+"PROMOTION_MINIMUM_PURCHASE" = "Minimum purchase: %@%@";
+"PROMOTION_DELETE" = "Delete";
+"PROMOTION_ACTIVATE" = "Activate";
+"PROMOTION_DEACTIVATE" = "Deactivate";
+"PROMOTION_DELETE_CONFIRMATION_TITLE" = "Delete Promotion";
+"PROMOTION_DELETE_CONFIRMATION_MESSAGE" = "Are you sure you want to delete this promotion? This action cannot be undone.";
+"PROMOTION_ERROR_TITLE" = "Error";
+"PROMOTION_ERROR_FETCHING_SERVICES" = "Could not load eligible services";
+"PROMOTION_TOGGLE_FAILED" = "Failed to update promotion status";
+"PROMOTION_CUSTOM_PRICING_COUNT" = "Custom pricing for %d services";
+
+"PROMOTION_CODE_MIN_LENGTH" = "The promotion code must be at least 3 characters long.";
+"PROMOTION_CODE_INVALID_CHARACTERS" = "Only letters and numbers allowed (no spaces or special characters)";
+"ATTENTION" = "Warning";
+"PROMOTION_WILL_BE_LOST" = "Warning, by changing this appointment to the selected date/time, the promotion will no longer be applied.";
+"PROMOTION_EDIT_WARNING" = "Warning: by modifying this appointment to the selected date/time, the promotion will no longer be applied and the original price will be restored. If you wish to keep it, you can manually adjust the price of this appointment.";
+
+
+"ON_SITE_PAYMENT_METHODS_TITLE" = "Accepted On-Site Payment Methods";
+"ONLINE_PAYMENT_METHODS_TITLE" = "Online Payment Methods";
+"ON_SITE_PAYMENT_METHODS_NAV_ITEM" = "💰 Accepted On-Site Payments";
+"DEPOSIT_SETTINGS_NAV_ITEM" = "💳 Deposit";
+"ONLINE_PAYMENT_METHODS_NAV_ITEM" = "📱 Online Payments";
+"SUBSCRIBE_TO_LITE_PLAN" = "Subscribe to LITE plan";
+
+"ON_SITE_PAYMENT_METHODS_TITLE" = "On-site payments";
+"ON_SITE_PAYMENT_DESCRIPTION" = "Select the payment methods you accept on-site.";
+"PAYMENT_METHODS_ACCEPTED" = "Accepted payment methods";
+"ON_SITE_PAYMENT_METHOD_CARD" = "Card on-site";
+"ON_SITE_PAYMENT_METHOD_CASH" = "Cash";
+"ON_SITE_PAYMENT_METHOD_CHECK" = "Check";
+"ON_SITE_PAYMENT_METHOD_WALLET" = "Wallet iara";
+"ON_SITE_PAYMENT_METHOD_LYDIA" = "Lydia";
+"ON_SITE_PAYMENT_METHOD_PAYPAL" = "Paypal";
+"ON_SITE_PAYMENT_METHOD_PAYLIB" = "Paylib";
+"ON_SITE_PAYMENT_METHOD_TWINT" = "Twint";
+"ON_SITE_PAYMENT_METHOD_BANCONTACT" = "Bancontact";
+"ON_SITE_PAYMENT_METHOD_REVOLUT" = "Revolut";
+
+
+"PAYMENT_OPTION_FULL_PAYMENT" = "Full payment";
+"PAYMENT_OPTION_PARTIAL_PAYMENT" = "Only for the deposit";
+"PAYMENT_OPTION_FULL_DESCRIPTION" = "If you accept full payment, your clients will pay the entire service during booking. In case of cancellation outside the permitted timeframe in your booking policy, you will receive their deposit and they will only be refunded the difference.";
+"PAYMENT_OPTION_EFFECTS_DESCRIPTION" = "The payment method used by your clients will not impact the earnings in your wallet.";
+"ONLINE_PAYMENT_METHODS_LIST_TITLE" = "Payment methods on iara.";
+"PAYMENT_METHOD_WALLET" = "iara Wallet";
+"PAYMENT_METHOD_CARD" = "Credit card payment";
+"PAYMENT_METHOD_APPLE_PAY" = "Apple Pay";
+"PAYMENT_METHOD_BANCONTACT_WEB" = "BanContact (web only)";
+"PAYMENT_METHOD_TWINT_WEB" = "Twint (web only)";
+"PAYMENT_METHOD_KLARNA_WEB" = "Klarna (web only)";
+"BOOKING_POLICY_BUTTON_TITLE" = "Save";
+"ACCEPTED_PAYMENT_METHODS_SAVED" = "Payment methods saved successfully";
+"ACCEPTED_PAYMENT_METHODS_SAVED_ERROR" = "An error occurred while saving payment methods";
+"PAYMENT_OPTION_ALLOW_FULL_PAYMENT" = "Allow full payments";
+"PAYMENT_OPTION_FULL_DESCRIPTION_ENABLED" = "If you accept full payment, your clients will be able to pay the full amount of the service when booking. In case of cancellation outside the time limits allowed in your booking policy, you will receive their deposit and they will only be refunded the difference.";
+"PAYMENT_OPTION_FULL_DESCRIPTION_DISABLED" = "By choosing to refuse full payment, your clients will only pay the deposit when booking. The rest will be paid on-site.";
+
+"EMAIL_COMPLETION_TITLE" = "Oups... 😕";
+"EMAIL_COMPLETION_SUBTITLE" = "It seems we were unable to retrieve your email, which is necessary for proper management of your activity. Please provide it below.";
+"EMAIL_COMPLETION_VALIDATE_BUTTON" = "Validate";
+"EMAIL_COMPLETION_SAVING" = "Saving...";
+"EMAIL_COMPLETION_SAVE_ERROR" = "Failed to save email. Please try again.";
+
+"CUSTOMER_INFO_COMPLETION_TITLE" = "Oups... 😕";
+"CUSTOMER_INFO_COMPLETION_SUBTITLE" = "It seems we were unable to retrieve your personal information, necessary for receiving information about your appointments. Please provide them below.";
+"CUSTOMER_INFO_COMPLETION_VALIDATE_BUTTON" = "Validate";
+"CUSTOMER_INFO_COMPLETION_SAVE_ERROR" = "Failed to save information. Please try again.";
+
+"PROFILE_SHARE_ADD_PHOTO" = "Add a photo";
+"PROFILE_SHARE_MODIFY_IMAGE" = "Modify image";
+"PROFILE_SHARE_ADD_TITLE" = "Add a title";
+"PROFILE_SHARE_ADD_CLIENT_MESSAGE" = "Add a small message for your clients (optional)";
+"PROFILE_SHARE_VALIDATE" = "Validate";
+"PROFILE_SHARE_PREVIEW" = "Preview";
+"PROFILE_SHARE_INSTAGRAM" = "Insta";
+"PROFILE_SHARE_MESSAGE" = "Message";
+"PROFILE_SHARE_MAIL" = "Mail";
+"PROFILE_SHARE_SAVE" = "Save";
+"PROFILE_SHARE_MORE" = "More";
+"PROFILE_SHARE_RESERVE" = "Book";
+"PROFILE_SHARE_IMAGE_SAVED" = "Image saved to Photos";
+
+"SHARE_PROFILE_TITLE" = "Share your profile\nwith your clients";
+"HOW_IT_WORKS_BUTTON" = "How does it work ?";
+"SHARE_MY_PROFILE_BUTTON" = "Share my profile";
+"STEP1_TITLE" = "Allow your clients\nto book!";
+"STEP1_DESCRIPTION" = "Boost your bookings by sharing your\nprofile on your different channels.";
+"STEP2_TITLE" = "Sponsor other\nservice providers and earn 10€.";
+"STEP2_DESCRIPTION" = "Earn 10€ each time a pro\nsigns up to iara thanks to your link! Earnings\nwill be available once the sponsor\nsubscribes to a subscription.";
+"NEXT_BUTTON" = "Next";
+"GOT_IT_BUTTON" = "Got it!";
+
+
+"EXISTING_USER_LOGIN_TITLE" = "We found an account @%@, is this you?";
+"EXISTING_USER_LOGIN_TITLE_COLORED_PART" = "is this you?";
+"EXISTING_USER_LOGIN_PASSWORD_PLACEHOLDER" = "Password";
+"EXISTING_USER_LOGIN_FORGOT_PASSWORD" = "Forgot your password?";
+"EXISTING_USER_LOGIN_CONNECT_BUTTON" = "Log In";
+"EXISTING_USER_LOGIN_HELP_BUTTON" = "Need help? 💬";
+"EXISTING_USER_LOGIN_NOT_ME_BUTTON" = "This isn't me";
+"EXISTING_USER_LOGIN_WRONG_PASSWORD" = "Incorrect password. Please try again.";
+"EXISTING_USER_EMAIL_EXISTS_ERROR" = "An account already exists with this email address. Please use a different email address.";
+
+"NEED_HELP_BUTTON" = "Need help?";
+"ADD_TO_MY_CALENDAR" = "Add to my calendar";
+"PAY_AMOUNT_BUTTON" = "Pay %@";
+"NEW_BOOKING_ERROR" = "Oops, it seems the payment was not successful.";
