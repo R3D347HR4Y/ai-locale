@@ -250,6 +250,9 @@ The CLI supports powerful glob patterns for file discovery:
 # Files with specific naming convention
 "**/i18n/*.ts"
 "**/locales/*.strings"
+
+# Locale name insertion
+"locales/#locale/translation.ts
 ```
 
 ## Supported Languages
@@ -393,7 +396,7 @@ ai-locale translate "locales/*.ts" --source en --target fr,es
 #   └── es/
 #       └── Localizable.strings
 
-ai-locale translate "translations/*/Localizable.strings" --source en --target fr,es
+ai-locale translate "translations/#locale/Localizable.strings" --source en --target fr,es
 ```
 
 ### Example 3: Validation and Statistics
@@ -420,15 +423,6 @@ ai-locale purge "translations/**/*.strings" --dry-run --verbose
 
 # Purge with French as source
 ai-locale purge "locales/*.ts" --source fr
-```
-
-### Example 5: Docker Usage
-
-```bash
-# Run with Docker
-docker run -v $(pwd):/workspace -w /workspace \
-  -e OPENAI_API_KEY=your-key \
-  ai-locale translate "locales/*.ts" --source en --target fr,es
 ```
 
 ## Error Handling
