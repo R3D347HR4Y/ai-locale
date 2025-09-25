@@ -36,7 +36,7 @@ const program = new Command();
 program
   .name("ai-locale")
   .description("CLI tool for translating localization files using OpenAI")
-  .version("1.0.4");
+  .version("1.0.5");
 
 program
   .command("translate")
@@ -265,18 +265,8 @@ async function translateFiles(pattern, options) {
       stopOnComplete: true,
     });
 
-    // Start progress bar
-    const totalTasks = parsedFiles.reduce((acc, file) => {
-      const sourceFile = parsedFiles.find((f) => f.language === options.source);
-      if (!sourceFile) return acc;
-
-      return (
-        acc +
-        Object.keys(sourceFile.keys).filter((key) => {
-          return !file.keys[key] && file.language !== options.source;
-        }).length
-      );
-    }, 0);
+    // Start progress bar - use optimized count (unique keys, not key-language combinations)
+    const totalTasks = uniqueKeysCount;
 
     progressBar.start(totalTasks, 0, { status: "Starting translations..." });
 
