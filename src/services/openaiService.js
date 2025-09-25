@@ -86,7 +86,7 @@ Example format:
 }
 
 /**
- * Translate a single key to multiple languages
+ * Translate a single key to multiple languages in one request
  * @param {Object} params - Translation parameters
  * @returns {Promise<Object>} Translation results
  */

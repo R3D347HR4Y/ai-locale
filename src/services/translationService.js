@@ -170,20 +170,31 @@ async function processTranslations({
       };
     }
 
-    // Prepare translation tasks with maximum context
+    // Prepare translation tasks grouped by key (one key to all missing languages)
     const translationTasks = [];
+
+    // Group missing keys by key instead of by language
+    const keysGroupedByKey = {};
 
     Object.entries(keysToTranslate).forEach(([language, keyData]) => {
       keyData.forEach(({ key, existingTranslations, sourceValue }) => {
-        translationTasks.push({
-          key,
-          sourceValue,
-          sourceLanguage,
-          targetLanguages: [language], // Translate one language at a time for better context
-          existingTranslations, // All existing translations for maximum context
-          context: "Mobile app localization for beauty services platform",
-        });
+        if (!keysGroupedByKey[key]) {
+          keysGroupedByKey[key] = {
+            key,
+            sourceValue,
+            sourceLanguage,
+            targetLanguages: [],
+            existingTranslations,
+            context: "Mobile app localization for beauty services platform",
+          };
+        }
+        keysGroupedByKey[key].targetLanguages.push(language);
       });
+    });
+
+    // Create one task per key (translating to all missing languages)
+    Object.values(keysGroupedByKey).forEach((task) => {
+      translationTasks.push(task);
     });
 
     // Reduced logging for cleaner output
