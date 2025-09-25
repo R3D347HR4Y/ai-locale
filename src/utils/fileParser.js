@@ -41,6 +41,23 @@ function parseStringsFile(content) {
 }
 
 /**
+ * Parse JSON files
+ * @param {string} content - File content
+ * @returns {Object} Parsed keys and values
+ */
+function parseJSONFile(content) {
+  try {
+    // Parse JSON directly
+    const parsedObject = JSON.parse(content);
+
+    // Flatten nested objects into dot notation
+    return flattenObject(parsedObject);
+  } catch (error) {
+    throw new Error(`Failed to parse JSON file: ${error.message}`);
+  }
+}
+
+/**
  * Parse TypeScript/JavaScript export files
  * @param {string} content - File content
  * @returns {Object} Parsed keys and values
@@ -228,6 +245,10 @@ async function parseFile(file) {
       keys = parseStringsFile(content);
       type = "strings";
       break;
+    case ".json":
+      keys = parseJSONFile(content);
+      type = "json";
+      break;
     case ".ts":
     case ".js":
       keys = parseTSJSFile(content);
@@ -257,6 +278,8 @@ async function parseFile(file) {
 function generateFileContent(keys, type, originalContent = "") {
   if (type === "strings") {
     return generateStringsContent(keys);
+  } else if (type === "json") {
+    return generateJSONContent(keys);
   } else if (type === "tsjs") {
     return generateTSJSContent(keys, originalContent);
   }
@@ -289,6 +312,19 @@ function generateStringsContent(keys) {
   }
 
   return lines.join("\n");
+}
+
+/**
+ * Generate JSON file content
+ * @param {Object} keys - Flattened keys object
+ * @returns {string} Generated JSON content
+ */
+function generateJSONContent(keys) {
+  // Convert flattened keys back to nested structure
+  const nestedObject = unflattenObject(keys);
+
+  // Generate JSON with proper formatting
+  return JSON.stringify(nestedObject, null, 2);
 }
 
 /**
@@ -338,9 +374,11 @@ function unflattenObject(flattened) {
 module.exports = {
   parseFile,
   parseStringsFile,
+  parseJSONFile,
   parseTSJSFile,
   generateFileContent,
   generateStringsContent,
+  generateJSONContent,
   generateTSJSContent,
   detectLanguage,
   flattenObject,

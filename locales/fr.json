@@ -1,0 +1,21 @@
+{
+  "EMAIL_TEMPLATE_SUBSCRIPTION_CONFIRMED": {
+    "title": "Abonnement confirmé.",
+    "text_1": "Hello",
+    "text_2": "Tu as souscrit à l’abonnement",
+    "text_3": "Abonnement :",
+    "text_4": "Date d’achat :",
+    "text_5": "Ton abonnement se renouvellera automatiquement jusqu’à sa résiliation. Pour éviter le prochain prélèvement, tu devras résilier au moins un jour avant la date de renouvellement. Pour en savoir plus ou pour résilier, consultez les détails de votre abonnement.",
+    "footer_1": "Beauty booking made social ✨",
+    "footer_2": "© 2025 iara est le nom commercial utilisé et déposé. Made with 🤍 in Paris.",
+    "footer_3": "Cette boîte de réception n'étant pas lue merci de ne pas répondre à ce message. Cet e-mail vous a été généré par notre service client et vous a été envoyé indépendamment de vos préférences de communication."
+  },
+  "VERIFICATION_CODE_MESSAGE": "Bonjour @%s ! Voici votre code de confirmation : %s.",
+  "SMS_ORDER_REMINDER": "Rendez-vous avec @%s le %s à %s. L'adresse a été envoyée par e-mail. Pour le gérer : %s",
+  "REFERER_VALIDATION_SPONSOR_MESSAGE": "@%s est maintenant disponible pour réservation. Un petit cadeau vous attend dans votre portefeuille !",
+  "WELCOME_MESSAGE": "Bienvenue @%s ! :wave:\nPartagez votre lien maintenant et gagnez 10 € chaque fois qu'un professionnel de la beauté s'inscrit grâce à vous !",
+  "RATE_LIMIT_EXCEEDED": "Vous avez dépassé le nombre maximum de demandes. Veuillez réessayer plus tard.",
+  "DISPUTE_TITLE": "Litige",
+  "DISPUTE_CREATE_MESSAGE": "@%s a ouvert un litige vous concernant. Partagez votre version des faits.",
+  "DISPUTE_ANSWER_MESSAGE": "@%s a répondu au litige. Vérifiez leur réponse."
+}

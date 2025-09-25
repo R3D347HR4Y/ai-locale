@@ -1,0 +1,21 @@
+{
+  "VERIFICATION_CODE_MESSAGE": "Ciao @%s! Ecco il tuo codice di conferma: %s.",
+  "SMS_ORDER_REMINDER": "Appuntamento con @%s il %s alle %s. L'indirizzo è stato inviato via email. Per gestirlo: %s",
+  "REFERER_VALIDATION_SPONSOR_MESSAGE": "@%s è ora disponibile per la prenotazione. Un piccolo regalo ti aspetta nel tuo portafoglio!",
+  "WELCOME_MESSAGE": "Benvenuto @%s! :wave: Condividi il tuo link ora e guadagna 10 € ogni volta che un professionista della bellezza si iscrive grazie a te!",
+  "RATE_LIMIT_EXCEEDED": "Hai superato il numero massimo di richieste. Riprova più tardi.",
+  "DISPUTE_TITLE": "Controversia",
+  "DISPUTE_CREATE_MESSAGE": "@%s ha aperto una contestazione nei tuoi confronti. Condividi la tua versione dei fatti.",
+  "DISPUTE_ANSWER_MESSAGE": "@%s ha risposto alla controversia. Controlla la loro risposta.",
+  "EMAIL_TEMPLATE_SUBSCRIPTION_CONFIRMED": {
+    "title": "Abbonamento confermato.",
+    "text_1": "Ciao",
+    "text_2": "Hai sottoscritto l'abbonamento",
+    "text_3": "Abbonamento :",
+    "text_4": "Data di acquisto :",
+    "text_5": "Il tuo abbonamento si rinnoverà automaticamente fino alla sua cancellazione. Per evitare il prossimo addebito, dovrai cancellare almeno un giorno prima della data di rinnovo. Per saperne di più o per cancellare, consulta i dettagli del tuo abbonamento.",
+    "footer_1": "Prenotazione di bellezza social ✨",
+    "footer_2": "© 2025 iara è il nome commerciale utilizzato e registrato. Made with 🤍 a Parigi.",
+    "footer_3": "Questa casella di posta non è letta, ti preghiamo di non rispondere a questo messaggio. Questa e-mail è stata generata dal nostro servizio clienti ed è stata inviata indipendentemente dalle tue preferenze di comunicazione."
+  }
+}

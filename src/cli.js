@@ -52,8 +52,7 @@ program
   .option("-s, --source <lang>", "Source language code", "en")
   .option(
     "-t, --target <langs>",
-    "Comma-separated target languages",
-    "fr,es,de"
+    "Comma-separated target languages (auto-detected if not provided)"
   )
   .option(
     "-o, --output <dir>",
@@ -146,10 +145,21 @@ async function translateFiles(pattern, options) {
     // Parse files
     const parsedFiles = await parseFiles(files, options.verbose);
 
-    // Parse target languages
+    // Auto-detect target languages from available files (excluding source language)
+    const detectedLanguages = parsedFiles.map((file) => file.language);
     const targetLanguages = options.target
-      .split(",")
-      .map((lang) => lang.trim());
+      ? options.target.split(",").map((lang) => lang.trim())
+      : detectedLanguages.filter((lang) => lang !== options.source);
+
+    // Validate that we have target languages
+    if (targetLanguages.length === 0) {
+      throw new Error(
+        `No target languages found. Available languages: ${detectedLanguages.join(
+          ", "
+        )}. ` +
+          `Make sure you have translation files for languages other than the source language (${options.source}).`
+      );
+    }
 
     // Show what will be translated
     const keysToTranslate = translationService.findKeysToTranslate(
@@ -167,11 +177,10 @@ async function translateFiles(pattern, options) {
     console.log(
       chalk.blue(`   🌍 Source language: ${chalk.bold(options.source)}`)
     );
-    console.log(
-      chalk.blue(
-        `   🎯 Target languages: ${chalk.bold(targetLanguages.join(", "))}`
-      )
-    );
+    const targetLanguagesText = options.target
+      ? `${chalk.bold(targetLanguages.join(", "))} (specified)`
+      : `${chalk.bold(targetLanguages.join(", "))} (auto-detected)`;
+    console.log(chalk.blue(`   🎯 Target languages: ${targetLanguagesText}`));
     console.log(chalk.blue(`   📁 Files found: ${chalk.bold(files.length)}`));
     console.log(
       chalk.blue(`   🔍 Missing keys: ${chalk.bold(totalMissingKeys)}`)
@@ -650,7 +659,7 @@ async function discoverFiles(pattern) {
   }
 
   // Filter for supported file types
-  const supportedExtensions = [".strings", ".ts", ".js"];
+  const supportedExtensions = [".strings", ".json", ".ts", ".js"];
   return files.filter((file) => {
     const ext = path.extname(file).toLowerCase();
     return supportedExtensions.includes(ext);
