@@ -36,7 +36,7 @@ const program = new Command();
 program
   .name("ai-locale")
   .description("CLI tool for translating localization files using OpenAI")
-  .version("1.0.0");
+  .version("1.0.4");
 
 program
   .command("translate")
@@ -166,7 +166,13 @@ async function translateFiles(pattern, options) {
       parsedFiles,
       options.source
     );
+    // Count unique keys that need translation (not key-language combinations)
+    const uniqueKeysToTranslate = new Set();
+    Object.values(keysToTranslate).forEach((keyData) => {
+      keyData.forEach(({ key }) => uniqueKeysToTranslate.add(key));
+    });
     const totalMissingKeys = Object.values(keysToTranslate).flat().length;
+    const uniqueKeysCount = uniqueKeysToTranslate.size;
 
     if (totalMissingKeys === 0) {
       console.log(chalk.green("✅ All translation files are complete!"));
@@ -183,7 +189,12 @@ async function translateFiles(pattern, options) {
     console.log(chalk.blue(`   🎯 Target languages: ${targetLanguagesText}`));
     console.log(chalk.blue(`   📁 Files found: ${chalk.bold(files.length)}`));
     console.log(
-      chalk.blue(`   🔍 Missing keys: ${chalk.bold(totalMissingKeys)}`)
+      chalk.blue(`   🔍 Missing translations: ${chalk.bold(totalMissingKeys)}`)
+    );
+    console.log(
+      chalk.blue(
+        `   ⚡ Translation requests: ${chalk.bold(uniqueKeysCount)} (optimized)`
+      )
     );
 
     Object.entries(keysToTranslate).forEach(([lang, keyData]) => {
