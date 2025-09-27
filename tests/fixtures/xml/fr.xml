@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="app_name">Mon App</string>
+    <string name="welcome_message">Bienvenue dans notre app !</string>
+    <string name="hello_user">Bonjour %1$s !</string>
+    <string name="price_format">Prix : %1$s%2$s</string>
+    <string name="terms_text"><![CDATA[En utilisant cette app, vous acceptez nos <b>Conditions Générales</b>.]]></string>
+    <string name="special_chars">Prix : 25,50 € &amp; Taxe : 20%</string>
+    <string name="quoted_text">Elle a dit \"Bonjour le monde !\"</string>
+    <string name="multiline_text">Ligne 1\nLigne 2\nLigne 3</string>
+    <string name="emoji_title">💅 Services de Beauté ✨</string>
+</resources>

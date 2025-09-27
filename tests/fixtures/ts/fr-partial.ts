@@ -1,0 +1,5 @@
+export default {
+  app_name: "Mon App",
+  welcome_message: "Bienvenue dans notre app !",
+  hello_user: "Bonjour %1$s !",
+} as const;

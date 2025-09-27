@@ -1,11 +1,106 @@
 # ai-locale Translation CLI
 
-A command-line tool for validating and translating localization files using OpenAI's API. Supports iOS `.strings` files and TypeScript/JavaScript export objects with glob pattern matching.
+A command-line tool for validating and translating localization files using OpenAI's API. Supports multiple file formats with intelligent path matching using the `#locale` placeholder.
+
+## 🌍 Multilingual Documentation
+
+- 🇺🇸 [English](README.md) (Original)
+- 🇫🇷 [Français](README.fr.md)
+- 🇪🇸 [Español](README.es.md)
+- 🇨🇳 [中文](README.zh.md)
+
+## 🎯 Supported File Formats
+
+The CLI supports a wide range of localization file formats:
+
+### 📱 **iOS .strings Files**
+
+```strings
+/* Localizable.strings */
+"SAVE_BUTTON" = "Save";
+"CANCEL_BUTTON" = "Cancel";
+"ERROR_MESSAGE" = "An error occurred: {error}";
+```
+
+### 📄 **Android XML Strings**
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="save_button">Save</string>
+    <string name="cancel_button">Cancel</string>
+    <string name="error_message">An error occurred: %1$s</string>
+</resources>
+```
+
+### 📦 **JSON Files**
+
+```json
+{
+  "save_button": "Save",
+  "cancel_button": "Cancel",
+  "error_message": "An error occurred: {error}"
+}
+```
+
+### 🔧 **TypeScript/JavaScript Export Objects**
+
+```typescript
+export default {
+  save_button: "Save",
+  cancel_button: "Cancel",
+  error_message: "An error occurred: {error}",
+} as const;
+```
+
+## 🗂️ Path Matching with `#locale`
+
+The CLI uses the `#locale` placeholder for intelligent file discovery and language detection:
+
+### **How `#locale` Works**
+
+The `#locale` placeholder is automatically replaced with detected language codes from your file structure:
+
+```bash
+# Pattern: locales/#locale/messages.json
+# Matches: locales/en/messages.json, locales/fr/messages.json, locales/es/messages.json
+# Detected languages: en, fr, es
+
+ai-locale translate 'locales/#locale/messages.json'
+```
+
+### **Common `#locale` Patterns**
+
+```bash
+# iOS/Android structure
+'locales/#locale/Localizable.strings'
+'locales/#locale/strings.xml'
+
+# JSON structure
+'locales/#locale/messages.json'
+'i18n/#locale/translations.json'
+
+# TypeScript structure
+'src/locales/#locale/index.ts'
+'locales/#locale/translation.ts'
+
+# Mixed formats
+'locales/#locale/strings.xml'
+'locales/#locale/messages.json'
+```
+
+### **Language Detection**
+
+The CLI automatically detects languages from:
+
+- **Directory names**: `locales/en/`, `locales/fr/`
+- **File names**: `en.json`, `fr.json`, `en.ts`
+- **File paths**: `locales/en/messages.json`
 
 ## Features
 
-- ✅ **Multi-format Support**: Handles iOS `.strings` files and TypeScript/JavaScript export objects
-- ✅ **Glob Pattern Matching**: Use patterns like `locales/*/translation.ts` or `translations/**/*.strings`
+- ✅ **Multi-format Support**: Handles iOS `.strings`, Android XML, JSON, and TypeScript/JavaScript files
+- ✅ **Smart Path Matching**: Use `#locale` placeholder for intelligent file discovery
 - ✅ **Missing Key Detection**: Automatically identifies missing translations across language files
 - ✅ **AI-Powered Translation**: Uses OpenAI's GPT-4o-mini for high-quality translations
 - ✅ **Cost Optimized**: Processes translations in parallel batches with cost estimation
@@ -13,6 +108,7 @@ A command-line tool for validating and translating localization files using Open
 - ✅ **Interactive CLI**: Beautiful terminal interface with progress indicators
 - ✅ **Backup Support**: Automatically creates backup files before translation
 - ✅ **Dry Run Mode**: Preview translations without making changes
+- ✅ **Batch Control**: Configurable batch size and delay for rate limit management
 
 ## Installation
 
@@ -49,28 +145,37 @@ ai-locale translate "locales/*/translation.ts" --api-key sk-your-key
 ### 2. Translate Files
 
 ```bash
-# Translate missing keys in all translation files
-ai-locale translate "locales/*/translation.ts" --source en --target fr,es,de
+# Using #locale pattern (recommended)
+ai-locale translate "locales/#locale/messages.json" --source en
 
-# Use glob patterns for different file structures
+# Specify target languages explicitly
+ai-locale translate "locales/#locale/strings.xml" --source en --target fr,es,de
+
+# Use traditional glob patterns
 ai-locale translate "translations/**/*.strings" --source en --target fr,es
 
 # Dry run to see what would be translated
-ai-locale translate "locales/*/translation.ts" --dry-run
+ai-locale translate "locales/#locale/messages.json" --dry-run
 ```
 
 ### 3. Validate Files
 
 ```bash
-# Check for missing translations
-ai-locale validate "locales/*/translation.ts" --source en
+# Check for missing translations using #locale pattern
+ai-locale validate "locales/#locale/messages.json" --source en
+
+# Traditional glob pattern
+ai-locale validate "translations/**/*.strings" --source en
 ```
 
 ### 4. View Statistics
 
 ```bash
 # Show translation completeness statistics
-ai-locale stats "locales/*/translation.ts"
+ai-locale stats "locales/#locale/messages.json"
+
+# Traditional glob pattern
+ai-locale stats "translations/**/*.strings"
 ```
 
 ## CLI Commands
@@ -85,35 +190,41 @@ ai-locale translate <pattern> [options]
 
 **Arguments:**
 
-- `pattern` - File pattern (e.g., `locales/*/translation.ts`, `translations/**/*.strings`)
+- `pattern` - File pattern (e.g., `locales/#locale/messages.json`, `translations/**/*.strings`)
 
 **Options:**
 
 - `-k, --api-key <key>` - OpenAI API key (or set OPENAI_API_KEY env var)
 - `-s, --source <lang>` - Source language code (default: "en")
-- `-t, --target <langs>` - Comma-separated target languages (default: "fr,es,de")
+- `-t, --target <langs>` - Comma-separated target languages (auto-detected if not provided)
 - `-o, --output <dir>` - Output directory (default: overwrite original files)
 - `--dry-run` - Show what would be translated without making changes
 - `--verbose` - Show detailed output
 - `--no-backup` - Don't create backup files
+- `--yes` - Skip confirmation prompt
+- `--batch-size <size>` - Number of translations to process in parallel (default: 5)
+- `--batch-delay <ms>` - Delay between batches in milliseconds (default: 1000)
 
 **Examples:**
 
 ```bash
-# Basic translation
-ai-locale translate "locales/*/translation.ts"
+# Basic translation with #locale pattern
+ai-locale translate "locales/#locale/messages.json"
 
 # Specify source and target languages
-ai-locale translate "translations/**/*.strings" --source en --target fr,es,de,it
+ai-locale translate "locales/#locale/strings.xml" --source en --target fr,es,de,it
 
 # Dry run to preview
-ai-locale translate "locales/*/translation.ts" --dry-run --verbose
+ai-locale translate "locales/#locale/messages.json" --dry-run --verbose
 
 # Save to different directory
-ai-locale translate "locales/*/translation.ts" --output ./translated/
+ai-locale translate "locales/#locale/messages.json" --output ./translated/
 
 # Use specific API key
-ai-locale translate "locales/*/translation.ts" --api-key sk-your-key
+ai-locale translate "locales/#locale/messages.json" --api-key sk-your-key
+
+# Control batch processing
+ai-locale translate "locales/#locale/messages.json" --batch-size 3 --batch-delay 2000
 ```
 
 ### `validate` - Validate Translation Files
@@ -135,10 +246,13 @@ ai-locale validate <pattern> [options]
 **Examples:**
 
 ```bash
-# Validate all translation files
-ai-locale validate "locales/*/translation.ts"
+# Validate all translation files using #locale pattern
+ai-locale validate "locales/#locale/messages.json"
 
 # Validate with specific source language
+ai-locale validate "locales/#locale/strings.xml" --source en
+
+# Traditional glob pattern
 ai-locale validate "translations/**/*.strings" --source en
 ```
 
@@ -157,10 +271,13 @@ ai-locale stats <pattern>
 **Examples:**
 
 ```bash
-# Show statistics for all files
-ai-locale stats "locales/*/translation.ts"
+# Show statistics for all files using #locale pattern
+ai-locale stats "locales/#locale/messages.json"
 
 # Show statistics for specific pattern
+ai-locale stats "locales/#locale/strings.xml"
+
+# Traditional glob pattern
 ai-locale stats "translations/**/*.strings"
 ```
 
@@ -186,47 +303,17 @@ ai-locale purge <pattern> [options]
 **Examples:**
 
 ```bash
-# Remove keys not present in English
-ai-locale purge "locales/*/translation.ts" --source en
+# Remove keys not present in English using #locale pattern
+ai-locale purge "locales/#locale/messages.json" --source en
 
 # Dry run to preview what would be purged
-ai-locale purge "translations/**/*.strings" --dry-run --verbose
+ai-locale purge "locales/#locale/strings.xml" --dry-run --verbose
 
-# Purge with specific source language
-ai-locale purge "locales/*/translation.ts" --source fr
-```
+# Purge with French as source
+ai-locale purge "locales/#locale/messages.json" --source fr
 
-## Supported File Formats
-
-### iOS .strings Files
-
-```strings
-/*
-  Localizable.strings
-  ai-locale
-*/
-
-"SAVE_BUTTON" = "Save";
-"CANCEL_BUTTON" = "Cancel";
-"ERROR_MESSAGE" = "An error occurred: {error}";
-```
-
-### TypeScript/JavaScript Export Objects
-
-```typescript
-export default {
-  common: {
-    save: "Save",
-    cancel: "Cancel",
-    error: {
-      message: "An error occurred: {error}",
-    },
-  },
-  navigation: {
-    home: "Home",
-    profile: "Profile",
-  },
-} as const;
+# Traditional glob pattern
+ai-locale purge "translations/**/*.strings" --source en
 ```
 
 ## Glob Pattern Examples
@@ -235,7 +322,7 @@ The CLI supports powerful glob patterns for file discovery:
 
 ```bash
 # All translation files in locales directory
-"locales/*/translation.ts"
+"locales/#locale/messages.json"
 
 # All .strings files recursively
 "translations/**/*.strings"
@@ -245,14 +332,15 @@ The CLI supports powerful glob patterns for file discovery:
 "src/locales/fr.ts"
 
 # Multiple patterns
-"locales/*/translation.ts" "src/i18n/*.json"
+"locales/#locale/messages.json" "src/i18n/#locale/translations.json"
 
 # Files with specific naming convention
-"**/i18n/*.ts"
-"**/locales/*.strings"
+"**/i18n/#locale/*.ts"
+"**/locales/#locale/*.strings"
 
-# Locale name insertion
-"locales/#locale/translation.ts
+# Mixed formats with #locale
+"locales/#locale/strings.xml"
+"locales/#locale/messages.json"
 ```
 
 ## Supported Languages
@@ -309,10 +397,24 @@ AI receives: "Translate 'Save' to German and Italian, considering existing trans
 The CLI is optimized for cost and speed:
 
 - **Parallel Processing**: Translates multiple keys simultaneously using `Promise.all`
-- **Batch Processing**: Processes translations in batches of 5 to respect rate limits
+- **Configurable Batching**: Control batch size and delay with `--batch-size` and `--batch-delay` options
 - **Cost Estimation**: Shows estimated costs before processing
 - **Efficient Model**: Uses GPT-4o-mini for optimal cost/quality ratio
 - **Context Optimization**: Uses ALL existing translations as context for maximum accuracy
+- **Rate Limit Management**: Built-in delays and batch processing to respect API limits
+
+### Batch Control Examples
+
+```bash
+# Conservative approach (smaller batches, longer delays)
+ai-locale translate "locales/#locale/messages.json" --batch-size 2 --batch-delay 2000
+
+# Aggressive approach (larger batches, shorter delays)
+ai-locale translate "locales/#locale/messages.json" --batch-size 10 --batch-delay 500
+
+# Default settings (balanced)
+ai-locale translate "locales/#locale/messages.json" --batch-size 5 --batch-delay 1000
+```
 
 ### Cost Estimation Example
 
@@ -377,11 +479,14 @@ src/
 ```bash
 # Project structure:
 # locales/
-#   ├── en.ts
-#   ├── fr.ts (missing some keys)
-#   └── es.ts (missing some keys)
+#   ├── en/
+#   │   └── messages.json
+#   ├── fr/
+#   │   └── messages.json (missing some keys)
+#   └── es/
+#       └── messages.json (missing some keys)
 
-ai-locale translate "locales/*.ts" --source en --target fr,es
+ai-locale translate "locales/#locale/messages.json" --source en
 ```
 
 ### Example 2: iOS Strings Files
@@ -396,33 +501,48 @@ ai-locale translate "locales/*.ts" --source en --target fr,es
 #   └── es/
 #       └── Localizable.strings
 
-ai-locale translate "translations/#locale/Localizable.strings" --source en --target fr,es
+ai-locale translate "translations/#locale/Localizable.strings" --source en
 ```
 
-### Example 3: Validation and Statistics
+### Example 3: Android XML Files
+
+```bash
+# Project structure:
+# locales/
+#   ├── en/
+#   │   └── strings.xml
+#   ├── fr/
+#   │   └── strings.xml
+#   └── es/
+#       └── strings.xml
+
+ai-locale translate "locales/#locale/strings.xml" --source en
+```
+
+### Example 4: Validation and Statistics
 
 ```bash
 # Check what's missing
-ai-locale validate "locales/*.ts" --source en
+ai-locale validate "locales/#locale/messages.json" --source en
 
 # Show statistics
-ai-locale stats "locales/*.ts"
+ai-locale stats "locales/#locale/messages.json"
 
 # Preview translation (dry run)
-ai-locale translate "locales/*.ts" --dry-run --verbose
+ai-locale translate "locales/#locale/messages.json" --dry-run --verbose
 ```
 
-### Example 4: Purging Obsolete Keys
+### Example 5: Purging Obsolete Keys
 
 ```bash
 # Remove keys not present in English
-ai-locale purge "locales/*.ts" --source en
+ai-locale purge "locales/#locale/messages.json" --source en
 
 # Preview what would be purged
-ai-locale purge "translations/**/*.strings" --dry-run --verbose
+ai-locale purge "translations/#locale/Localizable.strings" --dry-run --verbose
 
 # Purge with French as source
-ai-locale purge "locales/*.ts" --source fr
+ai-locale purge "locales/#locale/messages.json" --source fr
 ```
 
 ## Error Handling

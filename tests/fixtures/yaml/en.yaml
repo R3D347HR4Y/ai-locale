@@ -1,0 +1,5 @@
+
+app_name: "My App"
+welcome_message: "Welcome to our app!"
+hello_user: "Hello %1$s!"
+price_format: "Price: %1$s%2$s"

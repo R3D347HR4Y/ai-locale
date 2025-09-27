@@ -176,7 +176,8 @@ async function translateKey({
  * @returns {Promise<Array>} Array of translation results
  */
 async function translateKeysInParallel(translationTasks, options = {}) {
-  const batchSize = 5; // Process 5 translations at a time to avoid rate limits
+  const batchSize = options.batchSize || 5; // Process translations at a time to avoid rate limits
+  const batchDelay = options.batchDelay || 1000; // Delay between batches in milliseconds
   const results = [];
 
   for (let i = 0; i < translationTasks.length; i += batchSize) {
@@ -232,9 +233,9 @@ async function translateKeysInParallel(translationTasks, options = {}) {
 
       results.push(...batchResults);
 
-      // Add a small delay between batches to respect rate limits
+      // Add a configurable delay between batches to respect rate limits
       if (i + batchSize < translationTasks.length) {
-        await new Promise((resolve) => setTimeout(resolve, 1000));
+        await new Promise((resolve) => setTimeout(resolve, batchDelay));
       }
     } catch (error) {
       logger.error("Batch translation failed", {
@@ -267,8 +268,8 @@ function getCostEstimate(translationTasks) {
   // Rough estimates based on OpenAI pricing (as of 2024)
   const inputTokensPerTask = 200; // Average prompt length
   const outputTokensPerTask = 50; // Average response length
-  const costPerInputToken = 0.00015 / 1000; // $0.15 per 1K tokens for gpt-4o-mini
-  const costPerOutputToken = 0.0006 / 1000; // $0.60 per 1K tokens for gpt-4o-mini
+  const costPerInputToken = 0.15 / 1000000; // $0.15 per 1M tokens for gpt-4o-mini
+  const costPerOutputToken = 0.6 / 1000000; // $0.60 per 1M tokens for gpt-4o-mini
 
   const totalInputTokens = translationTasks.length * inputTokensPerTask;
   const totalOutputTokens = translationTasks.length * outputTokensPerTask;

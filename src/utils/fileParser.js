@@ -41,6 +41,49 @@ function parseStringsFile(content) {
 }
 
 /**
+ * Parse Android XML strings files
+ * @param {string} content - File content
+ * @returns {Object} Parsed keys and values
+ */
+function parseXMLFile(content) {
+  const keys = {};
+
+  // Regular expression to match <string name="key">value</string> patterns
+  const stringRegex = /<string\s+name="([^"]+)"[^>]*>(.*?)<\/string>/gs;
+
+  let match;
+  while ((match = stringRegex.exec(content)) !== null) {
+    const [, key, value] = match;
+
+    // Clean up the value - remove leading/trailing whitespace and handle XML entities
+    let cleanValue = value.trim();
+
+    // Handle common XML entities
+    cleanValue = cleanValue
+      .replace(/&lt;/g, "<")
+      .replace(/&gt;/g, ">")
+      .replace(/&amp;/g, "&")
+      .replace(/&quot;/g, '"')
+      .replace(/&apos;/g, "'")
+      .replace(/&#x([0-9A-Fa-f]+);/g, (match, hex) =>
+        String.fromCharCode(parseInt(hex, 16))
+      )
+      .replace(/&#(\d+);/g, (match, dec) =>
+        String.fromCharCode(parseInt(dec, 10))
+      );
+
+    // Handle escaped Unicode sequences like \u00A0
+    cleanValue = cleanValue.replace(/\\u([0-9A-Fa-f]{4})/g, (match, hex) =>
+      String.fromCharCode(parseInt(hex, 16))
+    );
+
+    keys[key] = cleanValue;
+  }
+
+  return keys;
+}
+
+/**
  * Parse JSON files
  * @param {string} content - File content
  * @returns {Object} Parsed keys and values
@@ -245,6 +288,10 @@ async function parseFile(file) {
       keys = parseStringsFile(content);
       type = "strings";
       break;
+    case ".xml":
+      keys = parseXMLFile(content);
+      type = "xml";
+      break;
     case ".json":
       keys = parseJSONFile(content);
       type = "json";
@@ -278,6 +325,8 @@ async function parseFile(file) {
 function generateFileContent(keys, type, originalContent = "") {
   if (type === "strings") {
     return generateStringsContent(keys);
+  } else if (type === "xml") {
+    return generateXMLContent(keys, originalContent);
   } else if (type === "json") {
     return generateJSONContent(keys);
   } else if (type === "tsjs") {
@@ -310,6 +359,58 @@ function generateStringsContent(keys) {
 
     lines.push(`"${key}" = "${escapedValue}";`);
   }
+
+  return lines.join("\n");
+}
+
+/**
+ * Generate Android XML strings file content
+ * @param {Object} keys - Flattened keys object
+ * @param {string} originalContent - Original file content for structure preservation
+ * @returns {string} Generated XML content
+ */
+function generateXMLContent(keys, originalContent = "") {
+  const lines = [];
+
+  // Try to preserve the original XML header and namespace
+  if (originalContent.includes("<?xml")) {
+    const headerMatch = originalContent.match(/<\?xml[^>]*\?>/);
+    if (headerMatch) {
+      lines.push(headerMatch[0]);
+    }
+  } else {
+    lines.push('<?xml version="1.0" encoding="utf-8"?>');
+  }
+
+  // Try to preserve the resources tag with namespace
+  if (originalContent.includes("<resources")) {
+    const resourcesMatch = originalContent.match(/<resources[^>]*>/);
+    if (resourcesMatch) {
+      lines.push(resourcesMatch[0]);
+    } else {
+      lines.push("<resources>");
+    }
+  } else {
+    lines.push("<resources>");
+  }
+
+  lines.push(""); // Empty line after resources tag
+
+  // Generate string entries
+  for (const [key, value] of Object.entries(keys)) {
+    // Escape XML special characters
+    const escapedValue = value
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&apos;");
+
+    lines.push(`    <string name="${key}">${escapedValue}</string>`);
+  }
+
+  lines.push("");
+  lines.push("</resources>");
 
   return lines.join("\n");
 }
@@ -374,10 +475,12 @@ function unflattenObject(flattened) {
 module.exports = {
   parseFile,
   parseStringsFile,
+  parseXMLFile,
   parseJSONFile,
   parseTSJSFile,
   generateFileContent,
   generateStringsContent,
+  generateXMLContent,
   generateJSONContent,
   generateTSJSContent,
   detectLanguage,

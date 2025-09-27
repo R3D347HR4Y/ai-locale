@@ -1,0 +1,16 @@
+export default {
+  app_name: "Mon App",
+  welcome_message: "Bienvenue dans notre app !",
+  hello_user: "Bonjour %1$s !",
+  price_format: "Prix : %1$s%2$s",
+  terms_text:
+    "En utilisant cette app, vous acceptez nos <b>Conditions Générales</b>.",
+  special_chars: "Prix : 25,50 € & Taxe : 20%",
+  quoted_text: 'Elle a dit "Bonjour le monde !"',
+  multiline_text: "Ligne 1\nLigne 2\nLigne 3",
+  nested: {
+    deep: {
+      key: "Valeur imbriquée",
+    },
+  },
+} as const;

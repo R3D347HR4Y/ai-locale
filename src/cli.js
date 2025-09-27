@@ -36,7 +36,7 @@ const program = new Command();
 program
   .name("ai-locale")
   .description("CLI tool for translating localization files using OpenAI")
-  .version("1.0.5");
+  .version("1.0.8");
 
 program
   .command("translate")
@@ -62,6 +62,16 @@ program
   .option("--verbose", "Show detailed output")
   .option("--no-backup", "Don't create backup files")
   .option("--yes", "Skip confirmation prompt")
+  .option(
+    "--batch-size <size>",
+    "Number of translations to process in parallel (default: 5)",
+    "5"
+  )
+  .option(
+    "--batch-delay <ms>",
+    "Delay between batches in milliseconds (default: 1000)",
+    "1000"
+  )
   .action(async (pattern, options) => {
     try {
       await translateFiles(pattern, options);
@@ -131,6 +141,20 @@ async function translateFiles(pattern, options) {
       );
     }
 
+    // Validate batch options
+    const batchSize = parseInt(options.batchSize, 10);
+    const batchDelay = parseInt(options.batchDelay, 10);
+
+    if (isNaN(batchSize) || batchSize < 1 || batchSize > 50) {
+      throw new Error("Batch size must be a number between 1 and 50");
+    }
+
+    if (isNaN(batchDelay) || batchDelay < 0 || batchDelay > 10000) {
+      throw new Error(
+        "Batch delay must be a number between 0 and 10000 milliseconds"
+      );
+    }
+
     // Discover files
     const files = await discoverFiles(pattern);
     if (files.length === 0) {
@@ -196,6 +220,14 @@ async function translateFiles(pattern, options) {
         `   ⚡ Translation requests: ${chalk.bold(uniqueKeysCount)} (optimized)`
       )
     );
+
+    // Show batch configuration in verbose mode
+    if (options.verbose) {
+      console.log(chalk.gray(`   ⚙️  Batch size: ${chalk.bold(batchSize)}`));
+      console.log(
+        chalk.gray(`   ⏱️  Batch delay: ${chalk.bold(batchDelay)}ms`)
+      );
+    }
 
     Object.entries(keysToTranslate).forEach(([lang, keyData]) => {
       const emoji = keyData.length > 0 ? "⚠️" : "✅";
@@ -275,6 +307,8 @@ async function translateFiles(pattern, options) {
       files: parsedFiles,
       targetLanguages,
       sourceLanguage: options.source,
+      batchSize: batchSize,
+      batchDelay: batchDelay,
       onProgress: (completed, total, currentKey, translations) => {
         const percentage = Math.round((completed / total) * 100);
 
@@ -660,7 +694,7 @@ async function discoverFiles(pattern) {
   }
 
   // Filter for supported file types
-  const supportedExtensions = [".strings", ".json", ".ts", ".js"];
+  const supportedExtensions = [".strings", ".xml", ".json", ".ts", ".js"];
   return files.filter((file) => {
     const ext = path.extname(file).toLowerCase();
     return supportedExtensions.includes(ext);

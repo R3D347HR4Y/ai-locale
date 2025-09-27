@@ -1,0 +1,13 @@
+/* 
+  Localizable.strings
+  MyApp
+*/
+
+"app_name" = "My App";
+"welcome_message" = "Welcome to our app!";
+"hello_user" = "Hello %1$s!";
+"price_format" = "Price: %1$s%2$s";
+"terms_text" = "By using this app, you agree to our <b>Terms & Conditions</b>.";
+"special_chars" = "Price: €25.50 & Tax: 20%";
+"quoted_text" = "She said \"Hello world!\"";
+"multiline_text" = "Line 1\nLine 2\nLine 3";

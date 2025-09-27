@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="app_name">Mon App</string>
+    <string name="welcome_message">Bienvenue dans notre app !</string>
+    <string name="hello_user">Bonjour %1$s !</string>
+</resources>

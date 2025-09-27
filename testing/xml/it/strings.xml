@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools"
+    xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+
+    <!-- Basic strings -->
+    <string name="app_name">La Mia App Bellezza</string>
+    <!-- Missing: welcome_message -->
+    <string name="booking_title">Prenota un Appuntamento</string>
+    
+    <!-- Strings with placeholders -->
+    <string name="hello_user">Ciao %1$s!</string>
+    <string name="appointment_time">Il tuo appuntamento è il %1$s alle %2$s</string>
+    <!-- Missing: price_format -->
+    
+    <!-- Strings with HTML formatting -->
+    <string name="terms_text"><![CDATA[
+        Utilizzando questa app, accetti i nostri <b>Termini e Condizioni</b>.
+        <br/><br/>
+        Per maggiori informazioni, visita la nostra <a href="https://example.com/privacy">Informativa sulla Privacy</a>.
+    ]]></string>
+    
+    <!-- Strings with Unicode and special characters -->
+    <string name="emoji_title">💅 Servizi di Bellezza ✨</string>
+    <string name="special_chars">Prezzo: €25,50 &amp; Tassa: 20%</string>
+    <string name="unicode_text">Caffè &amp; Riassunto</string>
+    
+    <!-- Strings with escaped characters -->
+    <string name="quoted_text">Ha detto \"Ciao mondo!\"</string>
+    <string name="apostrophe_text">Non dimenticare il tuo appuntamento</string>
+    
+    <!-- Strings with line breaks -->
+    <string name="multiline_text">Riga 1\nRiga 2\nRiga 3</string>
+    
+    <!-- Strings with XML entities -->
+    <string name="xml_entities">&lt;tag&gt;contenuto&lt;/tag&gt;</string>
+    
+    <!-- Strings with xliff annotations -->
+    <string name="xliff_example" xliff:gid="123">Questo è traducibile</string>
+    
+    <!-- Strings with tools attributes -->
+    <string name="tools_example" tools:ignore="MissingTranslation">Questo potrebbe mancare</string>
+    
+    <!-- Strings with plurals (Android format) -->
+    <plurals name="appointment_count">
+        <item quantity="zero">Nessun appuntamento</item>
+        <item quantity="one">1 appuntamento</item>
+        <item quantity="other">%d appuntamenti</item>
+    </plurals>
+    
+    <!-- Strings with arrays -->
+    <string-array name="services">
+        <item>Trattamento Viso</item>
+        <item>Manicure</item>
+        <item>Pedicure</item>
+        <item>Massaggio</item>
+    </string-array>
+    
+    <!-- Complex string with multiple features -->
+    <string name="complex_string"><![CDATA[
+        <b>Offerta Speciale!</b><br/>
+        Ottieni il 20% di sconto su %1$s<br/>
+        Valido fino al %2$s<br/>
+        <a href="mailto:support@example.com">Contattaci</a> per i dettagli.
+    ]]></string>
+
+</resources>

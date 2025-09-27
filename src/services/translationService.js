@@ -139,6 +139,8 @@ async function processTranslations({
   files,
   targetLanguages,
   sourceLanguage,
+  batchSize = 5,
+  batchDelay = 1000,
   onProgress,
 }) {
   try {
@@ -207,6 +209,8 @@ async function processTranslations({
     const translationResults = await openaiService.translateKeysInParallel(
       translationTasks,
       {
+        batchSize,
+        batchDelay,
         onProgress: onProgress,
       }
     );

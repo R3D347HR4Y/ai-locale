@@ -1,6 +1,6 @@
 {
   "name": "ai-locale-cli",
-  "version": "1.0.5",
+  "version": "1.0.8",
   "description": "CLI tool for validating and translating localization files using OpenAI",
   "main": "src/cli.js",
   "bin": {
@@ -10,14 +10,20 @@
     "start": "node src/cli.js",
     "dev": "nodemon src/cli.js",
     "test": "jest",
+    "test:formats": "node tests/test-runner.js",
+    "test:format": "node tests/run-format-test.js",
     "build": "pkg . --out-path dist"
   },
   "keywords": [
     "translation",
+    "i18n",
     "localization",
     "openai",
     "cli",
-    "i18n"
+    "xml",
+    "json",
+    "ts",
+    "js"
   ],
   "author": "Red",
   "license": "MIT",

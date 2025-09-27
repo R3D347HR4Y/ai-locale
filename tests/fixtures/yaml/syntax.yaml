@@ -1,0 +1,5 @@
+
+# This is a comment
+app_name: &app_name "My App"
+welcome_message: "Welcome to our app!"
+display_name: *app_name

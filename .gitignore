@@ -69,3 +69,4 @@ ssl/
 *.key
 *.crt
 *.backup.*
+examples/
