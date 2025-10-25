@@ -694,7 +694,7 @@ async function discoverFiles(pattern) {
   }
 
   // Filter for supported file types
-  const supportedExtensions = [".strings", ".xml", ".json", ".ts", ".js"];
+  const supportedExtensions = [".strings", ".xml", ".json", ".ts", ".js", ".po"];
   return files.filter((file) => {
     const ext = path.extname(file).toLowerCase();
     return supportedExtensions.includes(ext);

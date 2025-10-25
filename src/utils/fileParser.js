@@ -101,6 +101,85 @@ function parseJSONFile(content) {
 }
 
 /**
+ * Parse GNU gettext .po files
+ * @param {string} content - File content
+ * @returns {Object} Parsed keys and values
+ */
+function parsePOFile(content) {
+  const keys = {};
+  const lines = content.split('\n');
+  
+  let currentMsgid = '';
+  let currentMsgstr = '';
+  let inMsgid = false;
+  let inMsgstr = false;
+  
+  for (let i = 0; i < lines.length; i++) {
+    const line = lines[i].trim();
+    
+    // Skip empty lines and comments (except #: comments)
+    if (!line || (line.startsWith('#') && !line.startsWith('#:'))) {
+      // If we have a complete entry, save it
+      if (currentMsgid && currentMsgstr && !inMsgid && !inMsgstr) {
+        // Unescape common escape sequences
+        const unescapedValue = currentMsgstr
+          .replace(/\\n/g, '\n')
+          .replace(/\\t/g, '\t')
+          .replace(/\\"/g, '"')
+          .replace(/\\\\/g, '\\');
+        keys[currentMsgid] = unescapedValue;
+        
+        // Reset for next entry
+        currentMsgid = '';
+        currentMsgstr = '';
+      }
+      continue;
+    }
+    
+    // Handle msgid
+    if (line.startsWith('msgid ')) {
+      // Save previous entry if exists
+      if (currentMsgid && currentMsgstr) {
+        const unescapedValue = currentMsgstr
+          .replace(/\\n/g, '\n')
+          .replace(/\\t/g, '\t')
+          .replace(/\\"/g, '"')
+          .replace(/\\\\/g, '\\');
+        keys[currentMsgid] = unescapedValue;
+      }
+      
+      // Start new entry
+      inMsgid = true;
+      inMsgstr = false;
+      currentMsgid = line.substring(6).replace(/^"|"$/g, '');
+      currentMsgstr = '';
+    } else if (line.startsWith('msgstr ')) {
+      inMsgid = false;
+      inMsgstr = true;
+      currentMsgstr = line.substring(7).replace(/^"|"$/g, '');
+    } else if (inMsgid && line.startsWith('"') && line.endsWith('"')) {
+      // Multi-line msgid
+      currentMsgid += line.substring(1, line.length - 1);
+    } else if (inMsgstr && line.startsWith('"') && line.endsWith('"')) {
+      // Multi-line msgstr
+      currentMsgstr += line.substring(1, line.length - 1);
+    }
+  }
+  
+  // Handle last entry if file doesn't end with empty line
+  if (currentMsgid && currentMsgstr) {
+    const unescapedValue = currentMsgstr
+      .replace(/\\n/g, '\n')
+      .replace(/\\t/g, '\t')
+      .replace(/\\"/g, '"')
+      .replace(/\\\\/g, '\\');
+    keys[currentMsgid] = unescapedValue;
+  }
+  
+  return keys;
+}
+
+/**
  * Parse TypeScript/JavaScript export files
  * @param {string} content - File content
  * @returns {Object} Parsed keys and values
@@ -254,6 +333,19 @@ function detectLanguage(filePath) {
     }
   }
 
+  // For GNU gettext .po files, try to detect from the full path
+  if (filePath.includes('.po')) {
+    const pathParts = filePath.split(/[/\\]/);
+    for (let i = 0; i < pathParts.length; i++) {
+      const part = pathParts[i].toLowerCase();
+      for (const [langCode, patterns] of Object.entries(languagePatterns)) {
+        if (patterns.some(pattern => part === pattern)) {
+          return langCode;
+        }
+      }
+    }
+  }
+
   // Default to 'en' if no language detected
   return "en";
 }
@@ -301,6 +393,10 @@ async function parseFile(file) {
       keys = parseTSJSFile(content);
       type = "tsjs";
       break;
+    case ".po":
+      keys = parsePOFile(content);
+      type = "po";
+      break;
     default:
       throw new Error(`Unsupported file type: ${extension}`);
   }
@@ -331,6 +427,8 @@ function generateFileContent(keys, type, originalContent = "") {
     return generateJSONContent(keys);
   } else if (type === "tsjs") {
     return generateTSJSContent(keys, originalContent);
+  } else if (type === "po") {
+    return generatePOContent(keys, originalContent);
   }
   throw new Error(`Unsupported file type: ${type}`);
 }
@@ -447,6 +545,60 @@ function generateTSJSContent(keys, originalContent) {
 }
 
 /**
+ * Generate GNU gettext .po file content
+ * @param {Object} keys - Flattened keys object
+ * @param {string} originalContent - Original file content for structure preservation
+ * @returns {string} Generated .po content
+ */
+function generatePOContent(keys, originalContent = "") {
+  const lines = [];
+  
+  // Try to preserve original header if it exists
+  if (originalContent.includes('msgid ""')) {
+    const headerMatch = originalContent.match(/msgid ""\s*\nmsgstr ""\s*\n([\s\S]*?)(?=\nmsgid|\n$)/);
+    if (headerMatch) {
+      lines.push('msgid ""');
+      lines.push('msgstr ""');
+      lines.push(headerMatch[1].trim());
+      lines.push('');
+    }
+  } else {
+    // Default header
+    lines.push('msgid ""');
+    lines.push('msgstr ""');
+    lines.push('"Content-Type: text/plain; charset=UTF-8\\n"');
+    lines.push('"Content-Transfer-Encoding: 8bit\\n"');
+    lines.push('"Language: \\n"');
+    lines.push('"Plural-Forms: nplurals=2; plural=(n != 1);\\n"');
+    lines.push('');
+  }
+  
+  // Generate translation entries
+  for (const [key, value] of Object.entries(keys)) {
+    if (key) { // Include keys even if value is empty
+      // Escape special characters for .po format
+      const escapedKey = key
+        .replace(/\\/g, '\\\\')
+        .replace(/"/g, '\\"')
+        .replace(/\n/g, '\\n')
+        .replace(/\t/g, '\\t');
+      
+      const escapedValue = (value || '') // Handle empty values
+        .replace(/\\/g, '\\\\')
+        .replace(/"/g, '\\"')
+        .replace(/\n/g, '\\n')
+        .replace(/\t/g, '\\t');
+      
+      lines.push(`msgid "${escapedKey}"`);
+      lines.push(`msgstr "${escapedValue}"`);
+      lines.push('');
+    }
+  }
+  
+  return lines.join('\n');
+}
+
+/**
  * Convert flattened object back to nested structure
  * @param {Object} flattened - Flattened object
  * @returns {Object} Nested object
@@ -478,11 +630,13 @@ module.exports = {
   parseXMLFile,
   parseJSONFile,
   parseTSJSFile,
+  parsePOFile,
   generateFileContent,
   generateStringsContent,
   generateXMLContent,
   generateJSONContent,
   generateTSJSContent,
+  generatePOContent,
   detectLanguage,
   flattenObject,
   unflattenObject,

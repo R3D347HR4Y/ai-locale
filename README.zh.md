@@ -519,7 +519,25 @@ ai-locale translate "translations/#locale/Localizable.strings" --source en
 ai-locale translate "locales/#locale/strings.xml" --source en
 ```
 
-### 示例 4：验证和统计信息
+### 示例 4：GNU gettext .po 文件
+
+```bash
+# 项目结构：
+# locale/
+#   ├── en/
+#   │   └── LC_MESSAGES/
+#   │       └── messages.po
+#   ├── fr/
+#   │   └── LC_MESSAGES/
+#   │       └── messages.po
+#   └── es/
+#       └── LC_MESSAGES/
+#           └── messages.po
+
+ai-locale translate "locale/#locale/LC_MESSAGES/messages.po" --source en
+```
+
+### 示例 5：验证和统计信息
 
 ```bash
 # 检查缺失的内容
@@ -532,7 +550,7 @@ ai-locale stats "locales/#locale/messages.json"
 ai-locale translate "locales/#locale/messages.json" --dry-run --verbose
 ```
 
-### 示例 5：清理过时的键
+### 示例 6：清理过时的键
 
 ```bash
 # 删除英语中不存在的键
