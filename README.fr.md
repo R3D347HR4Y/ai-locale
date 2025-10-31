@@ -53,6 +53,19 @@ export default {
 } as const;
 ```
 
+### 🌍 **Fichiers GNU gettext .po**
+
+```po
+msgid "Bienvenue"
+msgstr "Bienvenue"
+
+msgid "Bonjour %(name)s"
+msgstr "Bonjour %(name)s"
+
+msgid "Enregistrer"
+msgstr "Enregistrer"
+```
+
 ## 🗂️ Correspondance de Chemins avec `#locale`
 
 Le CLI utilise le placeholder `#locale` pour la découverte intelligente de fichiers et la détection de langue :
@@ -99,7 +112,7 @@ Le CLI détecte automatiquement les langues à partir de :
 
 ## Fonctionnalités
 
-- ✅ **Support Multi-format** : Gère les fichiers iOS `.strings`, Android XML, JSON et TypeScript/JavaScript
+- ✅ **Support Multi-format** : Gère les fichiers iOS `.strings`, Android XML, JSON, TypeScript/JavaScript et GNU gettext `.po`
 - ✅ **Correspondance de Chemins Intelligente** : Utilisez le placeholder `#locale` pour la découverte intelligente de fichiers
 - ✅ **Détection de Clés Manquantes** : Identifie automatiquement les traductions manquantes dans les fichiers de langue
 - ✅ **Traduction Alimentée par IA** : Utilise GPT-4o-mini d'OpenAI pour des traductions de haute qualité
@@ -519,7 +532,25 @@ ai-locale translate "translations/#locale/Localizable.strings" --source en
 ai-locale translate "locales/#locale/strings.xml" --source en
 ```
 
-### Exemple 4 : Validation et Statistiques
+### Exemple 4 : Fichiers GNU gettext .po
+
+```bash
+# Structure du projet :
+# locale/
+#   ├── en/
+#   │   └── LC_MESSAGES/
+#   │       └── messages.po
+#   ├── fr/
+#   │   └── LC_MESSAGES/
+#   │       └── messages.po
+#   └── es/
+#       └── LC_MESSAGES/
+#           └── messages.po
+
+ai-locale translate "locale/#locale/LC_MESSAGES/messages.po" --source en
+```
+
+### Exemple 5 : Validation et Statistiques
 
 ```bash
 # Vérifier ce qui manque
@@ -532,7 +563,7 @@ ai-locale stats "locales/#locale/messages.json"
 ai-locale translate "locales/#locale/messages.json" --dry-run --verbose
 ```
 
-### Exemple 5 : Purge des Clés Obsolètes
+### Exemple 6 : Purge des Clés Obsolètes
 
 ```bash
 # Supprimer les clés non présentes en anglais

@@ -519,7 +519,25 @@ ai-locale translate "translations/#locale/Localizable.strings" --source en
 ai-locale translate "locales/#locale/strings.xml" --source en
 ```
 
-### Ejemplo 4: Validación y Estadísticas
+### Ejemplo 4: Archivos GNU gettext .po
+
+```bash
+# Estructura del proyecto:
+# locale/
+#   ├── en/
+#   │   └── LC_MESSAGES/
+#   │       └── messages.po
+#   ├── fr/
+#   │   └── LC_MESSAGES/
+#   │       └── messages.po
+#   └── es/
+#       └── LC_MESSAGES/
+#           └── messages.po
+
+ai-locale translate "locale/#locale/LC_MESSAGES/messages.po" --source en
+```
+
+### Ejemplo 5: Validación y Estadísticas
 
 ```bash
 # Verificar qué falta
@@ -532,7 +550,7 @@ ai-locale stats "locales/#locale/messages.json"
 ai-locale translate "locales/#locale/messages.json" --dry-run --verbose
 ```
 
-### Ejemplo 5: Purgar Claves Obsoletas
+### Ejemplo 6: Purgar Claves Obsoletas
 
 ```bash
 # Eliminar claves no presentes en inglés

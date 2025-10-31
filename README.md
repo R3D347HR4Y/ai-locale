@@ -53,6 +53,19 @@ export default {
 } as const;
 ```
 
+### 🌍 **GNU gettext .po Files**
+
+```po
+msgid "Welcome"
+msgstr "Welcome"
+
+msgid "Hello %(name)s"
+msgstr "Hello %(name)s"
+
+msgid "Save"
+msgstr "Save"
+```
+
 ## 🗂️ Path Matching with `#locale`
 
 The CLI uses the `#locale` placeholder for intelligent file discovery and language detection:
@@ -84,9 +97,14 @@ ai-locale translate 'locales/#locale/messages.json'
 'src/locales/#locale/index.ts'
 'locales/#locale/translation.ts'
 
+# GNU gettext structure
+'locale/#locale/LC_MESSAGES/messages.po'
+'locales/#locale/messages.po'
+
 # Mixed formats
 'locales/#locale/strings.xml'
 'locales/#locale/messages.json'
+'locales/#locale/messages.po'
 ```
 
 ### **Language Detection**
@@ -99,7 +117,7 @@ The CLI automatically detects languages from:
 
 ## Features
 
-- ✅ **Multi-format Support**: Handles iOS `.strings`, Android XML, JSON, and TypeScript/JavaScript files
+- ✅ **Multi-format Support**: Handles iOS `.strings`, Android XML, JSON, TypeScript/JavaScript, and GNU gettext `.po` files
 - ✅ **Smart Path Matching**: Use `#locale` placeholder for intelligent file discovery
 - ✅ **Missing Key Detection**: Automatically identifies missing translations across language files
 - ✅ **AI-Powered Translation**: Uses OpenAI's GPT-4o-mini for high-quality translations
@@ -519,7 +537,25 @@ ai-locale translate "translations/#locale/Localizable.strings" --source en
 ai-locale translate "locales/#locale/strings.xml" --source en
 ```
 
-### Example 4: Validation and Statistics
+### Example 4: GNU gettext .po Files
+
+```bash
+# Project structure:
+# locale/
+#   ├── en/
+#   │   └── LC_MESSAGES/
+#   │       └── messages.po
+#   ├── fr/
+#   │   └── LC_MESSAGES/
+#   │       └── messages.po
+#   └── es/
+#       └── LC_MESSAGES/
+#           └── messages.po
+
+ai-locale translate "locale/#locale/LC_MESSAGES/messages.po" --source en
+```
+
+### Example 5: Validation and Statistics
 
 ```bash
 # Check what's missing
@@ -532,7 +568,7 @@ ai-locale stats "locales/#locale/messages.json"
 ai-locale translate "locales/#locale/messages.json" --dry-run --verbose
 ```
 
-### Example 5: Purging Obsolete Keys
+### Example 6: Purging Obsolete Keys
 
 ```bash
 # Remove keys not present in English
