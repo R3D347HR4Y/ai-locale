@@ -36,7 +36,7 @@ const program = new Command();
 program
   .name("ai-locale")
   .description("CLI tool for translating localization files using OpenAI")
-  .version("1.0.8");
+  .version("1.0.11");
 
 program
   .command("translate")
@@ -61,7 +61,8 @@ program
   .option("--dry-run", "Show what would be translated without making changes")
   .option("--verbose", "Show detailed output")
   .option("--no-backup", "Don't create backup files")
-  .option("--yes", "Skip confirmation prompt")
+  .option("-y, --yes", "Skip confirmation prompt")
+  .option("--non-interactive", "Skip confirmation prompt (same as --yes)")
   .option(
     "--batch-size <size>",
     "Number of translations to process in parallel (default: 5)",
@@ -125,6 +126,10 @@ program
       process.exit(1);
     }
   });
+
+function shouldSkipConfirmation(options) {
+  return options.yes || options.nonInteractive;
+}
 
 /**
  * Main translation function
@@ -265,8 +270,8 @@ async function translateFiles(pattern, options) {
       return;
     }
 
-    // Confirm before proceeding (unless --yes is provided)
-    if (!options.yes) {
+    // Confirm before proceeding (unless -y/--yes/--non-interactive is provided)
+    if (!shouldSkipConfirmation(options)) {
       const { proceed } = await inquirer.prompt([
         {
           type: "confirm",
