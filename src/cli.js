@@ -12,6 +12,11 @@ require("dotenv").config();
 
 const translationService = require("./services/translationService");
 const fileParser = require("./utils/fileParser");
+const {
+  canonicalizeLanguageCode,
+  expandLocalePattern,
+  filterDiscoveredFiles,
+} = require("./utils/locale");
 const openaiService = require("./services/openaiService");
 const winston = require("winston");
 
@@ -36,7 +41,7 @@ const program = new Command();
 program
   .name("ai-locale")
   .description("CLI tool for translating localization files using OpenAI")
-  .version("1.0.11");
+  .version("1.0.12");
 
 program
   .command("translate")
@@ -49,10 +54,14 @@ program
     "-k, --api-key <key>",
     "OpenAI API key (or set OPENAI_API_KEY env var)"
   )
-  .option("-s, --source <lang>", "Source language code", "en")
+  .option(
+    "-s, --source <lang>",
+    "Source language (en, fr, fr-CA, nl-BE)",
+    "en"
+  )
   .option(
     "-t, --target <langs>",
-    "Comma-separated target languages (auto-detected if not provided)"
+    "Comma-separated targets such as fr,fr-CA,nl-BE (auto-detected if omitted)"
   )
   .option(
     "-o, --output <dir>",
@@ -86,7 +95,11 @@ program
   .command("validate")
   .description("Validate translation files for missing keys")
   .argument("<pattern>", "File pattern to validate")
-  .option("-s, --source <lang>", "Source language code", "en")
+  .option(
+    "-s, --source <lang>",
+    "Source language (en, fr, fr-CA, nl-BE)",
+    "en"
+  )
   .action(async (pattern, options) => {
     try {
       await validateFiles(pattern, options);
@@ -114,7 +127,11 @@ program
   .command("purge")
   .description("Remove keys that don't exist in the source language")
   .argument("<pattern>", "File pattern to purge")
-  .option("-s, --source <lang>", "Source language code", "en")
+  .option(
+    "-s, --source <lang>",
+    "Source language (en, fr, fr-CA, nl-BE)",
+    "en"
+  )
   .option("--dry-run", "Show what would be purged without making changes")
   .option("--verbose", "Show detailed output")
   .option("--no-backup", "Don't create backup files")
@@ -131,10 +148,24 @@ function shouldSkipConfirmation(options) {
   return options.yes || options.nonInteractive;
 }
 
+function normalizeLanguageOptions(options) {
+  if (options.source) {
+    options.source = canonicalizeLanguageCode(options.source);
+  }
+  if (options.target) {
+    options.target = options.target
+      .split(",")
+      .map((lang) => canonicalizeLanguageCode(lang.trim()))
+      .filter(Boolean)
+      .join(",");
+  }
+}
+
 /**
  * Main translation function
  */
 async function translateFiles(pattern, options) {
+  normalizeLanguageOptions(options);
   const spinner = ora("Discovering translation files...").start();
 
   try {
@@ -483,6 +514,7 @@ async function showStats(pattern, options = {}) {
  * Purge keys that don't exist in source language
  */
 async function purgeFiles(pattern, options) {
+  normalizeLanguageOptions(options);
   const spinner = ora("Discovering translation files...").start();
 
   try {
@@ -592,115 +624,21 @@ async function purgeFiles(pattern, options) {
  * Discover files using glob pattern with #locale support
  */
 async function discoverFiles(pattern) {
-  let files = [];
+  const usesLocalePlaceholder = pattern.includes("#locale");
+  const globPattern = usesLocalePlaceholder
+    ? expandLocalePattern(pattern)
+    : pattern;
 
-  // Check if pattern contains #locale
-  if (pattern.includes("#locale")) {
-    // Common language codes to expand #locale
-    const commonLanguages = [
-      "en",
-      "fr",
-      "es",
-      "de",
-      "it",
-      "pt",
-      "nl",
-      "sv",
-      "da",
-      "no",
-      "fi",
-      "pl",
-      "ru",
-      "ja",
-      "ko",
-      "zh",
-      "ar",
-      "hi",
-      "tr",
-      "th",
-      "cs",
-      "hu",
-      "ro",
-      "bg",
-      "hr",
-      "sk",
-      "sl",
-      "et",
-      "lv",
-      "lt",
-      "mt",
-      "cy",
-      "ga",
-      "eu",
-      "ca",
-      "gl",
-      "is",
-      "mk",
-      "sq",
-      "sr",
-      "bs",
-      "uk",
-      "be",
-      "ka",
-      "hy",
-      "az",
-      "kk",
-      "ky",
-      "uz",
-      "tg",
-      "mn",
-      "my",
-      "km",
-      "lo",
-      "vi",
-      "id",
-      "ms",
-      "tl",
-      "sw",
-      "am",
-      "ti",
-      "om",
-      "so",
-      "ha",
-      "yo",
-      "ig",
-      "zu",
-      "xh",
-      "af",
-      "st",
-      "tn",
-      "ts",
-      "ss",
-      "nr",
-      "nso",
-      "ve",
-      "ts",
-    ];
+  let files = await glob(globPattern, {
+    nodir: true,
+    absolute: true,
+  });
 
-    // Expand #locale to all possible language codes
-    const expandedPatterns = commonLanguages.map((lang) =>
-      pattern.replace("#locale", lang)
-    );
+  // #locale is one segment: en and fr-CA match, js and notes do not.
+  files = filterDiscoveredFiles(pattern, files);
 
-    // Use glob to find files for each expanded pattern
-    for (const expandedPattern of expandedPatterns) {
-      const patternFiles = await glob(expandedPattern, {
-        nodir: true,
-        absolute: true,
-      });
-      files.push(...patternFiles);
-    }
-  } else {
-    // Use original pattern if no #locale
-    files = await glob(pattern, {
-      nodir: true,
-      absolute: true,
-    });
-  }
-
-  // Filter for supported file types
   const supportedExtensions = [".strings", ".xml", ".json", ".ts", ".js", ".po"];
-  return files.filter((file) => {
+  return [...new Set(files)].filter((file) => {
     const ext = path.extname(file).toLowerCase();
     return supportedExtensions.includes(ext);
   });

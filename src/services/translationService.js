@@ -1,5 +1,6 @@
 const openaiService = require("./openaiService");
 const fileParser = require("../utils/fileParser");
+const { canonicalizeLanguageCode } = require("../utils/locale");
 const winston = require("winston");
 
 // Configure logger
@@ -26,9 +27,12 @@ const logger = winston.createLogger({
  */
 function findMissingKeys(files, sourceLanguage) {
   const missingKeys = {};
+  sourceLanguage = canonicalizeLanguageCode(sourceLanguage);
 
   // Find the source file (usually the most complete one)
-  const sourceFile = files.find((file) => file.language === sourceLanguage);
+  const sourceFile = files.find(
+    (file) => canonicalizeLanguageCode(file.language) === sourceLanguage
+  );
   if (!sourceFile) {
     throw new Error(`Source language file (${sourceLanguage}) not found`);
   }
@@ -37,10 +41,11 @@ function findMissingKeys(files, sourceLanguage) {
 
   // Check each target language file for missing keys
   files.forEach((file) => {
-    if (file.language !== sourceLanguage) {
+    const language = canonicalizeLanguageCode(file.language);
+    if (language !== sourceLanguage) {
       const missing = sourceKeys.filter((key) => !(key in file.keys));
       if (missing.length > 0) {
-        missingKeys[file.language] = missing;
+        missingKeys[language] = missing;
       }
     }
   });
@@ -63,9 +68,12 @@ function findMissingKeys(files, sourceLanguage) {
  */
 function findKeysToTranslate(files, sourceLanguage) {
   const keysToTranslate = {};
+  sourceLanguage = canonicalizeLanguageCode(sourceLanguage);
 
   // Find the source file
-  const sourceFile = files.find((file) => file.language === sourceLanguage);
+  const sourceFile = files.find(
+    (file) => canonicalizeLanguageCode(file.language) === sourceLanguage
+  );
   if (!sourceFile) {
     throw new Error(`Source language file (${sourceLanguage}) not found`);
   }
@@ -79,10 +87,11 @@ function findKeysToTranslate(files, sourceLanguage) {
 
     // Collect all existing translations for this key
     files.forEach((file) => {
+      const language = canonicalizeLanguageCode(file.language);
       if (file.keys[key]) {
-        existingTranslations[file.language] = file.keys[key];
-      } else if (file.language !== sourceLanguage) {
-        missingLanguages.push(file.language);
+        existingTranslations[language] = file.keys[key];
+      } else if (language !== sourceLanguage) {
+        missingLanguages.push(language);
       }
     });
 
@@ -230,7 +239,9 @@ async function processTranslations({
 
             // Update the corresponding file
             const fileIndex = updatedFiles.findIndex(
-              (file) => file.language === language
+              (file) =>
+                canonicalizeLanguageCode(file.language) ===
+                canonicalizeLanguageCode(language)
             );
             if (fileIndex !== -1) {
               updatedFiles[fileIndex].keys[result.key] = translation;
@@ -415,9 +426,12 @@ function purgeKeys(files, sourceLanguage) {
     totalPurged: 0,
     filesUpdated: 0,
   };
+  sourceLanguage = canonicalizeLanguageCode(sourceLanguage);
 
   // Find the source file
-  const sourceFile = files.find((file) => file.language === sourceLanguage);
+  const sourceFile = files.find(
+    (file) => canonicalizeLanguageCode(file.language) === sourceLanguage
+  );
   if (!sourceFile) {
     throw new Error(`Source language file (${sourceLanguage}) not found`);
   }
@@ -426,13 +440,14 @@ function purgeKeys(files, sourceLanguage) {
 
   // Check each file for keys that don't exist in source
   files.forEach((file) => {
-    if (file.language !== sourceLanguage) {
+    const language = canonicalizeLanguageCode(file.language);
+    if (language !== sourceLanguage) {
       const keysToPurge = Object.keys(file.keys).filter(
         (key) => !sourceKeys.includes(key)
       );
 
       if (keysToPurge.length > 0) {
-        purgeResults.purgedKeys[file.language] = keysToPurge;
+        purgeResults.purgedKeys[language] = keysToPurge;
         purgeResults.totalPurged += keysToPurge.length;
 
         // Remove the keys from the file

@@ -104,6 +104,71 @@ class TypeScriptFormatTest extends BaseFormatTest {
     );
   }
 
+  async testDoubleSlashInsideStrings() {
+    const content = `export default {
+      // should_not_appear: "nope",
+      "url_placeholder": "https://example.com/booksy/",
+      "max_chars": "Nombre maximal de caractères atteint",
+      single: 'https://example.com/path/',
+      template: \`https://example.com/booksy/\`,
+      nested: \`Hello \${
+        // comment
+        "https://example.com/booksy/"
+      }\`,
+      after: "keep", // trailing comment https://example.com
+      block: "/* not a comment */",
+      escaped: "say \\"https://example.com\\"",
+      /* block comment https://example.com */
+    } as const;`;
+
+    const parsed = this.fileParser.parseTSJSFile(content);
+
+    this.assertEqual(
+      parsed.url_placeholder,
+      "https://example.com/booksy/",
+      "Should keep // inside a double-quoted URL"
+    );
+    this.assertEqual(
+      parsed.max_chars,
+      "Nombre maximal de caractères atteint",
+      "Should keep the key that follows a URL"
+    );
+    this.assertEqual(
+      parsed.single,
+      "https://example.com/path/",
+      "Should keep // inside a single-quoted URL"
+    );
+    this.assertEqual(
+      parsed.template,
+      "https://example.com/booksy/",
+      "Should keep // inside a template literal"
+    );
+    this.assertEqual(
+      parsed.nested,
+      "Hello https://example.com/booksy/",
+      "Should drop a comment inside a template expression and keep the URL"
+    );
+    this.assertEqual(
+      parsed.after,
+      "keep",
+      "Should still drop a line comment after a string"
+    );
+    this.assertEqual(
+      parsed.block,
+      "/* not a comment */",
+      "Should keep /* */ that is inside a string"
+    );
+    this.assertEqual(
+      parsed.escaped,
+      'say "https://example.com"',
+      "Should keep // after an escaped quote"
+    );
+    this.assertTrue(
+      parsed.should_not_appear === undefined,
+      "Should drop keys that only appear in comments"
+    );
+  }
+
   async testSpecialCharacters() {
     const content = this.loadFixture("ts/en.ts");
     const parsed = this.fileParser.parseTSJSFile(content);

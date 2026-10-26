@@ -1,5 +1,6 @@
 const fs = require("fs");
 const path = require("path");
+const { detectLanguage } = require("./locale");
 
 /**
  * Parse iOS .strings files
@@ -180,6 +181,144 @@ function parsePOFile(content) {
 }
 
 /**
+ * Strip // and block comments without cutting // that live inside strings.
+ * A line-comment regex on the raw text truncates values such as
+ * "https://example.com/booksy/" and then the next key fails to parse.
+ * @param {string} source - Source text
+ * @returns {string} Source with comments removed
+ */
+function stripJsComments(source) {
+  const result = [];
+  const stack = [{ type: "code", braceDepth: null }];
+  let i = 0;
+  const n = source.length;
+
+  while (i < n) {
+    const frame = stack[stack.length - 1];
+    const c = source[i];
+    const next = i + 1 < n ? source[i + 1] : "";
+
+    if (frame.type === "line") {
+      if (c === "\n" || c === "\r") {
+        if (c === "\r" && next === "\n") {
+          result.push("\r\n");
+          i += 2;
+        } else {
+          result.push(c);
+          i++;
+        }
+        stack.pop();
+      } else {
+        i++;
+      }
+      continue;
+    }
+
+    if (frame.type === "block") {
+      if (c === "*" && next === "/") {
+        stack.pop();
+        i += 2;
+      } else {
+        i++;
+      }
+      continue;
+    }
+
+    if (frame.type === "string") {
+      result.push(c);
+      i++;
+      if (c === "\\") {
+        if (i < n) {
+          result.push(source[i]);
+          i++;
+        }
+        continue;
+      }
+      if (c === frame.quote) {
+        stack.pop();
+      }
+      continue;
+    }
+
+    if (frame.type === "template") {
+      if (c === "\\") {
+        result.push(c);
+        i++;
+        if (i < n) {
+          result.push(source[i]);
+          i++;
+        }
+        continue;
+      }
+      if (c === "`") {
+        result.push(c);
+        i++;
+        stack.pop();
+        continue;
+      }
+      if (c === "$" && next === "{") {
+        result.push("${");
+        i += 2;
+        stack.push({ type: "code", braceDepth: 1 });
+        continue;
+      }
+      result.push(c);
+      i++;
+      continue;
+    }
+
+    if (frame.braceDepth !== null) {
+      if (c === "{") {
+        frame.braceDepth++;
+        result.push(c);
+        i++;
+        continue;
+      }
+      if (c === "}") {
+        frame.braceDepth--;
+        result.push(c);
+        i++;
+        if (frame.braceDepth === 0) {
+          stack.pop();
+        }
+        continue;
+      }
+    }
+
+    if (c === "/" && next === "/") {
+      stack.push({ type: "line" });
+      i += 2;
+      continue;
+    }
+
+    if (c === "/" && next === "*") {
+      stack.push({ type: "block" });
+      i += 2;
+      continue;
+    }
+
+    if (c === '"' || c === "'") {
+      result.push(c);
+      stack.push({ type: "string", quote: c });
+      i++;
+      continue;
+    }
+
+    if (c === "`") {
+      result.push(c);
+      stack.push({ type: "template" });
+      i++;
+      continue;
+    }
+
+    result.push(c);
+    i++;
+  }
+
+  return result.join("");
+}
+
+/**
  * Parse TypeScript/JavaScript export files
  * @param {string} content - File content
  * @returns {Object} Parsed keys and values
@@ -193,10 +332,7 @@ function parseTSJSFile(content) {
       .replace(/\s+as\s+const\s*;?\s*$/m, ""); // Remove "as const" syntax (multiline)
 
     // Handle multiline strings and complex objects
-    // Remove comments (both // and /* */ style)
-    cleanedContent = cleanedContent
-      .replace(/\/\*[\s\S]*?\*\//g, "") // Remove /* */ comments
-      .replace(/\/\/.*$/gm, ""); // Remove // comments
+    cleanedContent = stripJsComments(cleanedContent);
 
     // Clean up any remaining TypeScript-specific syntax
     cleanedContent = cleanedContent
@@ -265,89 +401,6 @@ function flattenObject(obj, prefix = "") {
   }
 
   return flattened;
-}
-
-/**
- * Detect language from filename
- * @param {string} filename - Filename
- * @returns {string} Detected language code
- */
-function detectLanguage(filePath) {
-  // For .strings files, check the directory structure first
-  const dirname = path.dirname(filePath);
-  const parentDir = path.basename(dirname);
-
-  // Check if parent directory is a language code
-  const languagePatterns = {
-    en: ["en", "english", "eng"],
-    fr: ["fr", "french", "francais"],
-    es: ["es", "spanish", "espanol"],
-    de: ["de", "german", "deutsch"],
-    it: ["it", "italian", "italiano"],
-    pt: ["pt", "portuguese", "portugues"],
-    nl: ["nl", "dutch", "nederlands"],
-    sv: ["sv", "swedish", "svenska"],
-    da: ["da", "danish", "dansk"],
-    no: ["no", "norwegian", "norsk"],
-    fi: ["fi", "finnish", "suomi"],
-    pl: ["pl", "polish", "polski"],
-    ru: ["ru", "russian", "russkiy"],
-    ja: ["ja", "japanese", "nihongo"],
-    ko: ["ko", "korean", "hangul"],
-    zh: ["zh", "chinese", "zhongwen"],
-    ar: ["ar", "arabic", "arabiyya"],
-    hi: ["hi", "hindi", "hindustani"],
-    tr: ["tr", "turkish", "turkce"],
-    th: ["th", "thai", "thailand"],
-  };
-
-  // First, check if parent directory is a language code
-  const lowerParentDir = parentDir.toLowerCase();
-  for (const [langCode, patterns] of Object.entries(languagePatterns)) {
-    if (
-      patterns.some(
-        (pattern) =>
-          lowerParentDir === pattern ||
-          lowerParentDir.startsWith(pattern + ".") ||
-          lowerParentDir.endsWith("." + pattern)
-      )
-    ) {
-      return langCode;
-    }
-  }
-
-  // If parent directory doesn't contain language info, check filename
-  const basename = path.basename(filePath, path.extname(filePath));
-  const lowerBasename = basename.toLowerCase();
-
-  for (const [langCode, patterns] of Object.entries(languagePatterns)) {
-    if (
-      patterns.some(
-        (pattern) =>
-          lowerBasename === pattern ||
-          lowerBasename.startsWith(pattern + ".") ||
-          lowerBasename.endsWith("." + pattern)
-      )
-    ) {
-      return langCode;
-    }
-  }
-
-  // For GNU gettext .po files, try to detect from the full path
-  if (filePath.includes('.po')) {
-    const pathParts = filePath.split(/[/\\]/);
-    for (let i = 0; i < pathParts.length; i++) {
-      const part = pathParts[i].toLowerCase();
-      for (const [langCode, patterns] of Object.entries(languagePatterns)) {
-        if (patterns.some(pattern => part === pattern)) {
-          return langCode;
-        }
-      }
-    }
-  }
-
-  // Default to 'en' if no language detected
-  return "en";
 }
 
 /**
