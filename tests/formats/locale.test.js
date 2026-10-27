@@ -57,6 +57,225 @@ class LocaleTest extends BaseFormatTest {
     );
   }
 
+  async testRequestedLanguageNames() {
+    const languages = [
+      ["Bulgarian", "bg"],
+      ["Croatian", "hr"],
+      ["Czech", "cs"],
+      ["Danish", "da"],
+      ["Dutch", "nl"],
+      ["Estonian", "et"],
+      ["Finnish", "fi"],
+      ["German", "de"],
+      ["Greek", "el"],
+      ["Hungarian", "hu"],
+      ["Irish", "ga"],
+      ["Italian", "it"],
+      ["Latvian", "lv"],
+      ["Lithuanian", "lt"],
+      ["Maltese", "mt"],
+      ["Polish", "pl"],
+      ["Portuguese", "pt"],
+      ["Romanian", "ro"],
+      ["Slovak", "sk"],
+      ["Slovene", "sl"],
+      ["Spanish", "es"],
+      ["Swedish", "sv"],
+      ["Chinese", "zh"],
+      ["Japanese", "ja"],
+      ["Korean", "ko"],
+      ["Arabic", "ar"],
+      ["Swahili", "sw"],
+      ["Ukrainian", "uk"],
+      ["Russian", "ru"],
+      ["Hindi", "hi"],
+      ["Bengali", "bn"],
+    ];
+
+    languages.forEach(([name, code]) => {
+      const folder = name.toLowerCase();
+      this.assertEqual(
+        this.fileParser.detectLanguage(`locales/${code}/messages.json`),
+        code,
+        `Should detect ${name} from its code ${code}`
+      );
+      this.assertEqual(
+        this.fileParser.detectLanguage(`locales/${folder}/messages.json`),
+        code,
+        `Should detect ${name} from its English name`
+      );
+      this.assertEqual(
+        locale.canonicalizeLanguageCode(name),
+        code,
+        `Should canonicalize ${name} to ${code}`
+      );
+      this.assertTrue(
+        locale.fileMatchesLocalePattern(
+          "locales/#locale/messages.json",
+          `/project/locales/${code}/messages.json`
+        ),
+        `Should discover #locale directory ${code}`
+      );
+      this.assertTrue(
+        locale.fileMatchesLocalePattern(
+          "locales/#locale/messages.json",
+          `/project/locales/${folder}/messages.json`
+        ),
+        `Should discover #locale directory ${folder}`
+      );
+    });
+
+    this.assertEqual(
+      locale.canonicalizeLanguageCode("slovenian"),
+      "sl",
+      "Should accept Slovenian as an alias of Slovene"
+    );
+    this.assertEqual(
+      this.fileParser.detectLanguage("locales/el-GR/messages.json"),
+      "el-GR",
+      "Should keep a regional Greek tag"
+    );
+  }
+
+  async testEthnologueTop100() {
+    // Ethnologue 2025, total speakers. Folder token -> canonical code.
+    const languages = [
+      ["english", "en"],
+      ["mandarin", "zh"],
+      ["hindi", "hi"],
+      ["spanish", "es"],
+      ["arabic", "ar"],
+      ["french", "fr"],
+      ["bengali", "bn"],
+      ["portuguese", "pt"],
+      ["russian", "ru"],
+      ["indonesian", "id"],
+      ["urdu", "ur"],
+      ["german", "de"],
+      ["japanese", "ja"],
+      ["nigerian-pidgin", "pcm"],
+      ["egyptian-arabic", "arz"],
+      ["marathi", "mr"],
+      ["vietnamese", "vi"],
+      ["telugu", "te"],
+      ["hausa", "ha"],
+      ["turkish", "tr"],
+      ["western-punjabi", "pnb"],
+      ["swahili", "sw"],
+      ["tagalog", "tl"],
+      ["tamil", "ta"],
+      ["cantonese", "yue"],
+      ["wu", "wuu"],
+      ["persian", "fa"],
+      ["korean", "ko"],
+      ["thai", "th"],
+      ["javanese", "jv"],
+      ["italian", "it"],
+      ["gujarati", "gu"],
+      ["levantine-arabic", "apc"],
+      ["amharic", "am"],
+      ["kannada", "kn"],
+      ["bhojpuri", "bho"],
+      ["sudanese-arabic", "apd"],
+      ["yoruba", "yo"],
+      ["jinyu", "cjy"],
+      ["min-nan", "nan"],
+      ["polish", "pl"],
+      ["burmese", "my"],
+      ["algerian-arabic", "arq"],
+      ["hakka", "hak"],
+      ["lingala", "ln"],
+      ["moroccan-arabic", "ary"],
+      ["odia", "or"],
+      ["ukrainian", "uk"],
+      ["xiang", "hsn"],
+      ["malayalam", "ml"],
+      ["sindhi", "sd"],
+      ["eastern-punjabi", "pa"],
+      ["sundanese", "su"],
+      ["igbo", "ig"],
+      ["dari", "prs"],
+      ["nepali", "ne"],
+      ["malay", "ms"],
+      ["uzbek", "uz"],
+      ["zulu", "zu"],
+      ["saidi-arabic", "aec"],
+      ["northern-pashto", "pbu"],
+      ["oromo", "om"],
+      ["saraiki", "skr"],
+      ["dutch", "nl"],
+      ["somali", "so"],
+      ["romanian", "ro"],
+      ["assamese", "as"],
+      ["gan", "gan"],
+      ["southern-pashto", "pbt"],
+      ["cebuano", "ceb"],
+      ["kazakh", "kk"],
+      ["magahi", "mag"],
+      ["najdi-arabic", "ars"],
+      ["sinhala", "si"],
+      ["mesopotamian-arabic", "acm"],
+      ["xhosa", "xh"],
+      ["khmer", "km"],
+      ["afrikaans", "af"],
+      ["fulfulde", "fuv"],
+      ["maithili", "mai"],
+      ["wolof", "wo"],
+      ["northern-kurdish", "kmr"],
+      ["chhattisgarhi", "hne"],
+      ["kinyarwanda", "rw"],
+      ["isan", "tts"],
+      ["chichewa", "ny"],
+      ["bamanankan", "bm"],
+      ["shona", "sn"],
+      ["south-azerbaijani", "azb"],
+      ["setswana", "tn"],
+      ["northern-sotho", "nso"],
+      ["bavarian", "bar"],
+      ["haitian-creole", "ht"],
+      ["uyghur", "ug"],
+      ["southern-sotho", "st"],
+      ["greek", "el"],
+      ["swedish", "sv"],
+      ["chittagonian", "ctg"],
+      ["kirundi", "rn"],
+      ["jula", "dyu"],
+    ];
+
+    this.assertEqual(languages.length, 100, "Should cover the Ethnologue top 100");
+
+    languages.forEach(([token, code]) => {
+      this.assertEqual(
+        this.fileParser.detectLanguage(`locales/${token}/messages.json`),
+        code,
+        `Should detect ${token} as ${code}`
+      );
+      this.assertTrue(
+        locale.fileMatchesLocalePattern(
+          "locales/#locale/messages.json",
+          `/project/locales/${token}/messages.json`
+        ),
+        `Should discover #locale directory ${token}`
+      );
+    });
+
+    this.assertEqual(
+      locale.canonicalizeLanguageCode("cmn-CN"),
+      "zh-CN",
+      "Should fold Mandarin cmn onto zh"
+    );
+    this.assertEqual(
+      this.fileParser.detectLanguage("locales/yue-HK/messages.json"),
+      "yue-HK",
+      "Should keep Cantonese distinct from Mandarin"
+    );
+    this.assertEqual(
+      this.fileParser.detectLanguage("locales/src/messages.json"),
+      "en",
+      "Should ignore a three-letter directory that is not a language"
+    );
+  }
+
   async testSourceLookupAcceptsRegionalAliases() {
     if (!process.env.OPENAI_API_KEY) {
       process.env.OPENAI_API_KEY = "test-key";

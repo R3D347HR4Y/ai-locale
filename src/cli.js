@@ -41,7 +41,7 @@ const program = new Command();
 program
   .name("ai-locale")
   .description("CLI tool for translating localization files using OpenAI")
-  .version("1.0.12");
+  .version("1.0.13");
 
 program
   .command("translate")

@@ -32,6 +32,81 @@ const ISO_639_1 = new Set(
   ).split(/\s+/)
 );
 
+// ISO 639-3 codes for large languages that have no two-letter code, plus
+// common three-letter aliases that fold onto a two-letter tag.
+// Source: Ethnologue 2025 top 100 by total speakers.
+const ISO_639_3 = {
+  cmn: "zh",
+  zho: "zh",
+  chi: "zh",
+  arb: "ar",
+  ara: "ar",
+  pes: "fa",
+  uzn: "uz",
+  fil: "tl",
+  eng: "en",
+  fra: "fr",
+  fre: "fr",
+  spa: "es",
+  deu: "de",
+  ger: "de",
+  hin: "hi",
+  ben: "bn",
+  por: "pt",
+  rus: "ru",
+  jpn: "ja",
+  kor: "ko",
+  tur: "tr",
+  vie: "vi",
+  ind: "id",
+  urd: "ur",
+  nld: "nl",
+  dut: "nl",
+  ita: "it",
+  pol: "pl",
+  ukr: "uk",
+  ell: "el",
+  gre: "el",
+  swe: "sv",
+  ron: "ro",
+  rum: "ro",
+  yue: "yue",
+  wuu: "wuu",
+  cjy: "cjy",
+  nan: "nan",
+  hak: "hak",
+  hsn: "hsn",
+  gan: "gan",
+  pcm: "pcm",
+  arz: "arz",
+  apc: "apc",
+  apd: "apd",
+  arq: "arq",
+  ary: "ary",
+  aec: "aec",
+  ars: "ars",
+  acm: "acm",
+  pnb: "pnb",
+  bho: "bho",
+  prs: "prs",
+  skr: "skr",
+  gaz: "gaz",
+  pbu: "pbu",
+  pbt: "pbt",
+  ceb: "ceb",
+  mag: "mag",
+  fuv: "fuv",
+  mai: "mai",
+  kmr: "kmr",
+  hne: "hne",
+  tts: "tts",
+  nso: "nso",
+  bar: "bar",
+  azb: "azb",
+  ctg: "ctg",
+  dyu: "dyu",
+};
+
 const NAMED_LANGUAGES = {
   english: "en",
   eng: "en",
@@ -73,11 +148,146 @@ const NAMED_LANGUAGES = {
   turkce: "tr",
   thai: "th",
   thailand: "th",
+  bulgarian: "bg",
+  croatian: "hr",
+  czech: "cs",
+  estonian: "et",
+  greek: "el",
+  hungarian: "hu",
+  irish: "ga",
+  latvian: "lv",
+  lithuanian: "lt",
+  maltese: "mt",
+  romanian: "ro",
+  slovak: "sk",
+  slovene: "sl",
+  slovenian: "sl",
+  swahili: "sw",
+  ukrainian: "uk",
+  bengali: "bn",
+  bangla: "bn",
+  mandarin: "zh",
+  "mandarin-chinese": "zh",
+  indonesian: "id",
+  urdu: "ur",
+  "nigerian-pidgin": "pcm",
+  "egyptian-arabic": "arz",
+  marathi: "mr",
+  vietnamese: "vi",
+  telugu: "te",
+  hausa: "ha",
+  punjabi: "pa",
+  "western-punjabi": "pnb",
+  "eastern-punjabi": "pa",
+  tagalog: "tl",
+  filipino: "tl",
+  tamil: "ta",
+  cantonese: "yue",
+  "yue-chinese": "yue",
+  wu: "wuu",
+  "wu-chinese": "wuu",
+  shanghainese: "wuu",
+  persian: "fa",
+  farsi: "fa",
+  "iranian-persian": "fa",
+  javanese: "jv",
+  gujarati: "gu",
+  "levantine-arabic": "apc",
+  amharic: "am",
+  kannada: "kn",
+  bhojpuri: "bho",
+  "sudanese-arabic": "apd",
+  yoruba: "yo",
+  jinyu: "cjy",
+  "jinyu-chinese": "cjy",
+  "min-nan": "nan",
+  hokkien: "nan",
+  hakka: "hak",
+  "hakka-chinese": "hak",
+  xiang: "hsn",
+  "xiang-chinese": "hsn",
+  "gan-chinese": "gan",
+  burmese: "my",
+  myanmar: "my",
+  "algerian-arabic": "arq",
+  lingala: "ln",
+  "moroccan-arabic": "ary",
+  odia: "or",
+  oriya: "or",
+  malayalam: "ml",
+  sindhi: "sd",
+  sundanese: "su",
+  sunda: "su",
+  igbo: "ig",
+  dari: "prs",
+  nepali: "ne",
+  malay: "ms",
+  uzbek: "uz",
+  zulu: "zu",
+  "saidi-arabic": "aec",
+  pashto: "ps",
+  "northern-pashto": "pbu",
+  "southern-pashto": "pbt",
+  oromo: "om",
+  saraiki: "skr",
+  seraiki: "skr",
+  somali: "so",
+  assamese: "as",
+  cebuano: "ceb",
+  kazakh: "kk",
+  magahi: "mag",
+  "najdi-arabic": "ars",
+  sinhala: "si",
+  sinhalese: "si",
+  "mesopotamian-arabic": "acm",
+  xhosa: "xh",
+  khmer: "km",
+  cambodian: "km",
+  afrikaans: "af",
+  fulfulde: "fuv",
+  fula: "ff",
+  fulani: "ff",
+  maithili: "mai",
+  wolof: "wo",
+  kurdish: "ku",
+  kurmanji: "kmr",
+  "northern-kurdish": "kmr",
+  chhattisgarhi: "hne",
+  kinyarwanda: "rw",
+  isan: "tts",
+  "northeastern-thai": "tts",
+  chichewa: "ny",
+  nyanja: "ny",
+  chewa: "ny",
+  bambara: "bm",
+  bamanankan: "bm",
+  shona: "sn",
+  azerbaijani: "az",
+  azeri: "az",
+  "south-azerbaijani": "azb",
+  tswana: "tn",
+  setswana: "tn",
+  "northern-sotho": "nso",
+  pedi: "nso",
+  sepedi: "nso",
+  bavarian: "bar",
+  haitian: "ht",
+  "haitian-creole": "ht",
+  uyghur: "ug",
+  uighur: "ug",
+  sotho: "st",
+  sesotho: "st",
+  "southern-sotho": "st",
+  chittagonian: "ctg",
+  kirundi: "rn",
+  rundi: "rn",
+  jula: "dyu",
+  dyula: "dyu",
 };
 
-// ll, ll-RR, ll-Ssss, ll-Ssss-RR. Separators may be "-" or "_".
+// ll or lll, then optional script and region. Separators may be "-" or "_".
 const LOCALE_RE =
-  /^([a-z]{2})(?:[-_]([a-z]{4}))?(?:[-_]([a-z]{2}|\d{3}))?$/i;
+  /^([a-z]{2,3})(?:[-_]([a-z]{4}))?(?:[-_]([a-z]{2}|\d{3}))?$/i;
 
 /**
  * Canonical BCP 47 tag, or null when the token is not a locale.
@@ -90,8 +300,14 @@ function normalizeLocale(token) {
   const match = String(token).match(LOCALE_RE);
   if (!match) return null;
 
-  const language = match[1].toLowerCase();
-  if (!ISO_639_1.has(language)) return null;
+  const subtag = match[1].toLowerCase();
+  let language = null;
+  if (subtag.length === 2 && ISO_639_1.has(subtag)) {
+    language = subtag;
+  } else if (subtag.length === 3 && Object.prototype.hasOwnProperty.call(ISO_639_3, subtag)) {
+    language = ISO_639_3[subtag];
+  }
+  if (!language) return null;
 
   let tag = language;
   if (match[2]) {
@@ -170,7 +386,14 @@ function detectLanguage(filePath) {
 }
 
 const LOCALE_SHAPE =
-  "[A-Za-z]{2}(?:[-_][A-Za-z]{4})?(?:[-_](?:[A-Za-z]{2}|[0-9]{3}))?";
+  "[A-Za-z]{2,3}(?:[-_][A-Za-z]{4})?(?:[-_](?:[A-Za-z]{2}|[0-9]{3}))?";
+
+function localeTokenPattern() {
+  const names = Object.keys(NAMED_LANGUAGES)
+    .sort((a, b) => b.length - a.length)
+    .join("|");
+  return `(?:${LOCALE_SHAPE}|${names})`;
+}
 
 function escapeGlobPiece(piece) {
   return piece
@@ -194,7 +417,7 @@ function matchPatternSegment(patternPart, filePart) {
   const body = patternPart
     .split("#locale")
     .map(escapeGlobPiece)
-    .join(`(${LOCALE_SHAPE})`);
+    .join(`(${localeTokenPattern()})`);
   const match = String(filePart).match(new RegExp(`^${body}$`, "i"));
   if (!match) return { ok: false, locales: [] };
 
@@ -246,7 +469,7 @@ function expandLocalePattern(pattern) {
 }
 
 /**
- * Keep files whose #locale segment is a two-letter code or a regional tag.
+ * Keep files whose #locale segment is a language code, a regional tag, or a language name.
  * @param {string} pattern
  * @param {string[]} files
  * @returns {string[]}
