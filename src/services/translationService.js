@@ -51,6 +51,39 @@ function findSourceFile(groupFiles, sourceLanguage) {
   );
 }
 
+/**
+ * Source catalog content for each file, used as the formatting reference
+ * (final newline) when a file is regenerated.
+ * @param {Array} files - Array of parsed files
+ * @param {string} sourceLanguage - Source language code
+ * @returns {Map<Object, string>} File to source content
+ */
+function sourceContentByFile(files, sourceLanguage) {
+  const source = canonicalizeLanguageCode(sourceLanguage);
+  const result = new Map();
+  groupFilesByNamespace(files).forEach((groupFiles) => {
+    const sourceFile = findSourceFile(groupFiles, source);
+    if (!sourceFile) return;
+    groupFiles.forEach((file) => result.set(file, sourceFile.content || ""));
+  });
+  return result;
+}
+
+/**
+ * Regenerate a file, keeping its final newline or taking the source's.
+ * @param {Object} file - Parsed file
+ * @param {Map<Object, string>} referenceContents - From sourceContentByFile
+ * @returns {string}
+ */
+function regenerateFile(file, referenceContents) {
+  return fileParser.generateFileContent(
+    file.keys,
+    file.type,
+    file.content,
+    referenceContents ? referenceContents.get(file) : ""
+  );
+}
+
 function sourceNotFound(sourceLanguage) {
   return new Error(`Source language file (${sourceLanguage}) not found`);
 }
@@ -304,13 +337,14 @@ async function processTranslations({
     });
 
     // Only files that received a translation are regenerated.
+    const referenceContents = sourceContentByFile(files, sourceLanguage);
     const generatedFiles = files
       .filter((file) => changedFiles.has(file))
       .map((file) => ({
         filename: file.filename,
         filePath: file.filePath,
         language: file.language,
-        content: fileParser.generateFileContent(file.keys, file.type, file.content),
+        content: regenerateFile(file, referenceContents),
         type: file.type,
         keysCount: Object.keys(file.keys).length,
       }));
@@ -556,6 +590,8 @@ module.exports = {
   buildTranslationTasks,
   groupFilesByNamespace,
   isMissingValue,
+  regenerateFile,
+  sourceContentByFile,
   purgeKeys,
   validateTranslationConsistency,
   getTranslationStatistics,

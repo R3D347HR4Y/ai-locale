@@ -41,7 +41,7 @@ const program = new Command();
 program
   .name("ai-locale")
   .description("CLI tool for translating localization files using OpenAI")
-  .version("1.0.14");
+  .version("1.0.15");
 
 program
   .command("translate")
@@ -638,12 +638,12 @@ async function purgeFiles(pattern, options) {
     }
 
     // Generate updated file contents
+    const referenceContents = translationService.sourceContentByFile(
+      parsedFiles,
+      options.source
+    );
     const updatedFiles = purgeResults.updatedFiles.map((file) => {
-      const content = fileParser.generateFileContent(
-        file.keys,
-        file.type,
-        file.content
-      );
+      const content = translationService.regenerateFile(file, referenceContents);
       return {
         filename: file.filename,
         language: file.language,

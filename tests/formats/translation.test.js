@@ -361,6 +361,39 @@ class TranslationTest extends BaseFormatTest {
     );
   }
 
+  async testMissingFinalNewlineIsRestoredFromSource() {
+    await this.withTempDir(async (root) => {
+      writeCatalogs(root, "m.json", {
+        fr: '{\n  "a": "Bonjour",\n  "b": "Salut"\n}\n',
+        de: '{\n  "a": "Hallo"\n}',
+        es: "{}",
+      });
+      openaiService.setClient(createMockClient());
+
+      const files = await parseAll(this.fileParser, root);
+      const result = await translationService.processTranslations({
+        files,
+        sourceLanguage: "fr",
+        batchDelay: 0,
+      });
+      ["de", "es"].forEach((language) => {
+        const file = result.data.files.find((f) => f.language === language);
+        this.assertTrue(file.content.endsWith("}\n"), `${language} gets the source's final newline back`);
+      });
+
+      const purgeFiles = await parseAll(this.fileParser, root);
+      purgeFiles.find((f) => f.language === "de").keys.extra = "x";
+      const purge = translationService.purgeKeys(purgeFiles, "fr");
+      const refs = translationService.sourceContentByFile(purgeFiles, "fr");
+      purge.updatedFiles.forEach((file) => {
+        this.assertTrue(
+          translationService.regenerateFile(file, refs).endsWith("}\n"),
+          "purge restores the final newline too"
+        );
+      });
+    });
+  }
+
   async testTrailingNewlineIsPreserved() {
     const keys = { a: "b" };
     this.assertTrue(
@@ -373,7 +406,11 @@ class TranslationTest extends BaseFormatTest {
     );
     this.assertTrue(
       this.fileParser.generateFileContent(keys, "json", "{}").endsWith("}"),
-      "No newline added when there was none"
+      "No newline added when neither file has one"
+    );
+    this.assertTrue(
+      this.fileParser.generateFileContent(keys, "json", "{}", "{}\r\n").endsWith("}\r\n"),
+      "Falls back to the reference file's newline"
     );
   }
 }

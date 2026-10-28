@@ -471,7 +471,7 @@ async function parseFile(file) {
  * @param {string} originalContent - Original file content for structure preservation
  * @returns {string} Generated file content
  */
-function generateFileContent(keys, type, originalContent = "") {
+function generateFileContent(keys, type, originalContent = "", referenceContent = "") {
   let content;
   if (type === "strings") {
     content = generateStringsContent(keys);
@@ -486,18 +486,23 @@ function generateFileContent(keys, type, originalContent = "") {
   } else {
     throw new Error(`Unsupported file type: ${type}`);
   }
-  return matchTrailingNewline(content, originalContent);
+  return matchTrailingNewline(content, originalContent, referenceContent);
 }
 
 /**
- * End generated content the way the original file ended (no newline, \n or \r\n).
+ * End generated content with the original file's final newline (\n or \r\n).
+ * When the original has none, use the reference file's (the source catalog),
+ * so files that already lost their newline, or empty "{}" stubs, get it back.
  * @param {string} content
  * @param {string} originalContent
+ * @param {string} [referenceContent]
  * @returns {string}
  */
-function matchTrailingNewline(content, originalContent = "") {
+function matchTrailingNewline(content, originalContent = "", referenceContent = "") {
   const trimmed = content.replace(/(?:\r?\n)+$/, "");
-  const ending = String(originalContent || "").match(/\r?\n$/);
+  const ending =
+    String(originalContent || "").match(/\r?\n$/) ||
+    String(referenceContent || "").match(/\r?\n$/);
   return ending ? `${trimmed}${ending[0]}` : trimmed;
 }
 
