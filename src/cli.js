@@ -41,7 +41,7 @@ const program = new Command();
 program
   .name("ai-locale")
   .description("CLI tool for translating localization files using OpenAI")
-  .version("1.0.13");
+  .version("1.0.14");
 
 program
   .command("translate")
@@ -66,6 +66,10 @@ program
   .option(
     "-o, --output <dir>",
     "Output directory (default: overwrite original files)"
+  )
+  .option(
+    "-c, --context <text>",
+    "Short description of the app given to the translator (e.g. 'Booking app for hair salons')"
   )
   .option("--dry-run", "Show what would be translated without making changes")
   .option("--verbose", "Show detailed output")
@@ -97,9 +101,9 @@ program
   .argument("<pattern>", "File pattern to validate")
   .option(
     "-s, --source <lang>",
-    "Source language (en, fr, fr-CA, nl-BE)",
-    "en"
+    "Reference language (en, fr, fr-CA, nl-BE); defaults to all keys found"
   )
+  .option("--verbose", "Show detailed output")
   .action(async (pattern, options) => {
     try {
       await validateFiles(pattern, options);
@@ -113,6 +117,10 @@ program
   .command("stats")
   .description("Show translation statistics")
   .argument("<pattern>", "File pattern to analyze")
+  .option(
+    "-s, --source <lang>",
+    "Reference language (en, fr, fr-CA, nl-BE); defaults to all keys found"
+  )
   .option("--verbose", "Show detailed output")
   .action(async (pattern, options) => {
     try {
@@ -135,6 +143,8 @@ program
   .option("--dry-run", "Show what would be purged without making changes")
   .option("--verbose", "Show detailed output")
   .option("--no-backup", "Don't create backup files")
+  .option("-y, --yes", "Skip confirmation prompt")
+  .option("--non-interactive", "Skip confirmation prompt (same as --yes)")
   .action(async (pattern, options) => {
     try {
       await purgeFiles(pattern, options);
@@ -176,6 +186,7 @@ async function translateFiles(pattern, options) {
         "OpenAI API key is required. Set OPENAI_API_KEY env var or use --api-key option"
       );
     }
+    process.env.OPENAI_API_KEY = apiKey;
 
     // Validate batch options
     const batchSize = parseInt(options.batchSize, 10);
@@ -206,10 +217,40 @@ async function translateFiles(pattern, options) {
     const parsedFiles = await parseFiles(files, options.verbose);
 
     // Auto-detect target languages from available files (excluding source language)
-    const detectedLanguages = parsedFiles.map((file) => file.language);
+    const detectedLanguages = [
+      ...new Set(
+        parsedFiles.map((file) => canonicalizeLanguageCode(file.language))
+      ),
+    ];
     const targetLanguages = options.target
-      ? options.target.split(",").map((lang) => lang.trim())
+      ? options.target.split(",").filter((lang) => lang !== options.source)
       : detectedLanguages.filter((lang) => lang !== options.source);
+
+    if (options.target) {
+      const withoutFile = targetLanguages.filter(
+        (lang) => !detectedLanguages.includes(lang)
+      );
+      if (withoutFile.length > 0 && withoutFile.length === targetLanguages.length) {
+        throw new Error(
+          `No file found for target languages: ${withoutFile.join(
+            ", "
+          )}. Available languages: ${detectedLanguages.join(
+            ", "
+          )}. Create the file (e.g. an empty {}) to translate into it.`
+        );
+      }
+      if (withoutFile.length > 0) {
+        console.log(
+          chalk.yellow(
+            `⚠️  No file found for: ${withoutFile.join(
+              ", "
+            )}. Create the file (e.g. an empty {}) to translate into it.`
+          )
+        );
+        // A requested target was skipped, so CI should not report success.
+        process.exitCode = 1;
+      }
+    }
 
     // Validate that we have target languages
     if (targetLanguages.length === 0) {
@@ -224,15 +265,17 @@ async function translateFiles(pattern, options) {
     // Show what will be translated
     const keysToTranslate = translationService.findKeysToTranslate(
       parsedFiles,
-      options.source
+      options.source,
+      targetLanguages
     );
-    // Count unique keys that need translation (not key-language combinations)
-    const uniqueKeysToTranslate = new Set();
-    Object.values(keysToTranslate).forEach((keyData) => {
-      keyData.forEach(({ key }) => uniqueKeysToTranslate.add(key));
-    });
+    const context = options.context || "";
+    const translationTasks = translationService.buildTranslationTasks(
+      keysToTranslate,
+      options.source,
+      context
+    );
     const totalMissingKeys = Object.values(keysToTranslate).flat().length;
-    const uniqueKeysCount = uniqueKeysToTranslate.size;
+    const uniqueKeysCount = translationTasks.length;
 
     if (totalMissingKeys === 0) {
       console.log(chalk.green("✅ All translation files are complete!"));
@@ -252,10 +295,11 @@ async function translateFiles(pattern, options) {
       chalk.blue(`   🔍 Missing translations: ${chalk.bold(totalMissingKeys)}`)
     );
     console.log(
-      chalk.blue(
-        `   ⚡ Translation requests: ${chalk.bold(uniqueKeysCount)} (optimized)`
-      )
+      chalk.blue(`   🔑 Keys to translate: ${chalk.bold(uniqueKeysCount)}`)
     );
+    if (context) {
+      console.log(chalk.blue(`   📝 Context: ${context}`));
+    }
 
     // Show batch configuration in verbose mode
     if (options.verbose) {
@@ -275,24 +319,13 @@ async function translateFiles(pattern, options) {
     });
 
     // Cost estimation
-    const costEstimate = openaiService.getCostEstimate(
-      Object.values(keysToTranslate)
-        .flat()
-        .map(({ key, sourceValue, existingTranslations }) => ({
-          key,
-          sourceValue,
-          sourceLanguage: options.source,
-          targetLanguages: [targetLanguages[0]], // Estimate for one language
-          existingTranslations,
-          context: "Mobile app localization",
-        }))
-    );
+    const costEstimate = openaiService.getCostEstimate(translationTasks);
 
     console.log(
       chalk.green(
         `\n💰 Estimated cost: ${chalk.bold(
           costEstimate.estimatedCostFormatted
-        )}`
+        )} (${costEstimate.estimatedRequests} requests)`
       )
     );
 
@@ -318,11 +351,6 @@ async function translateFiles(pattern, options) {
       }
     }
 
-    // Create backups if requested
-    if (options.backup !== false) {
-      await createBackups(files);
-    }
-
     // Create progress bar
     const progressBar = new cliProgress.SingleBar({
       format:
@@ -343,18 +371,13 @@ async function translateFiles(pattern, options) {
       files: parsedFiles,
       targetLanguages,
       sourceLanguage: options.source,
+      context,
       batchSize: batchSize,
       batchDelay: batchDelay,
       onProgress: (completed, total, currentKey, translations) => {
-        const percentage = Math.round((completed / total) * 100);
-
         // Create translation preview
         let translationPreview = "";
         if (Object.keys(translations).length > 0) {
-          const sourceValue =
-            parsedFiles.find((f) => f.language === options.source)?.keys[
-              currentKey
-            ] || "N/A";
           const translationEntries = Object.entries(translations).slice(0, 2); // Show max 2 translations
           translationPreview = translationEntries
             .map(
@@ -374,39 +397,48 @@ async function translateFiles(pattern, options) {
 
     progressBar.stop();
 
-    // Write updated files
-    await writeUpdatedFiles(result.data.files, options.output);
+    // Only files that received a translation are backed up and rewritten.
+    if (result.data.files.length > 0) {
+      if (options.backup !== false) {
+        await createBackups(result.data.files.map((file) => file.filePath));
+      }
+      await writeUpdatedFiles(result.data.files, options.output);
+    }
 
     // Show results
-    console.log(chalk.green("\n🎉 Translation completed successfully!"));
-    console.log(
-      chalk.green(
-        `   ✅ Successful: ${result.data.statistics.successfulTranslations}`
-      )
-    );
-    if (result.data.statistics.failedTranslations > 0) {
-      console.log(
-        chalk.red(`   ❌ Failed: ${result.data.statistics.failedTranslations}`)
-      );
+    const statistics = result.data.statistics;
+    if (statistics.failedTranslations > 0) {
+      console.log(chalk.yellow("\n⚠️  Translation finished with failures"));
+    } else {
+      console.log(chalk.green("\n🎉 Translation completed successfully!"));
     }
     console.log(
-      chalk.blue(
-        `   📁 Files updated: ${result.data.statistics.filesGenerated}`
-      )
+      chalk.green(`   ✅ Translations written: ${statistics.successfulTranslations}`)
     );
+    if (statistics.failedTranslations > 0) {
+      console.log(
+        chalk.red(
+          `   ❌ Failed: ${statistics.failedTranslations} (in ${statistics.keysFailed} keys)`
+        )
+      );
+    }
+    console.log(chalk.blue(`   📁 Files updated: ${statistics.filesGenerated}`));
 
     // Show translation summary - only show targeted languages
-    if (result.data.statistics.successfulTranslations > 0) {
+    if (statistics.successfulTranslations > 0) {
       console.log(chalk.cyan("\n📊 Translation Summary:"));
       targetLanguages.forEach((language) => {
-        const translations = result.data.translations[language] || {};
-        const count = Object.keys(translations).length;
+        const count = (statistics.perLanguage || {})[language] || 0;
         if (count > 0) {
           console.log(
             chalk.gray(`   ${language}: ${chalk.green(count)} new translations`)
           );
         }
       });
+    }
+
+    if (statistics.failedTranslations > 0) {
+      process.exitCode = 1;
     }
   } catch (error) {
     spinner.fail();
@@ -418,6 +450,7 @@ async function translateFiles(pattern, options) {
  * Validate translation files
  */
 async function validateFiles(pattern, options) {
+  normalizeLanguageOptions(options);
   const spinner = ora("Discovering translation files...").start();
 
   try {
@@ -432,24 +465,24 @@ async function validateFiles(pattern, options) {
     spinner.succeed();
 
     const parsedFiles = await parseFiles(files, options.verbose);
-    const validation =
-      translationService.validateTranslationConsistency(parsedFiles);
-    const stats = translationService.getTranslationStatistics(parsedFiles);
+    const validation = translationService.validateTranslationConsistency(
+      parsedFiles,
+      options.source
+    );
+    const stats = translationService.getTranslationStatistics(
+      parsedFiles,
+      options.source
+    );
 
     console.log(chalk.blue(`\n📊 Validation Results:`));
     console.log(chalk.blue(`   Files: ${stats.totalFiles}`));
     console.log(chalk.blue(`   Languages: ${stats.languages.join(", ")}`));
+    if (options.source) {
+      console.log(chalk.blue(`   Reference language: ${options.source}`));
+    }
     console.log(chalk.blue(`   Total keys: ${stats.totalKeys}`));
 
-    console.log(chalk.blue(`\n📈 Completeness:`));
-    Object.entries(stats.completeness).forEach(([lang, data]) => {
-      const status = data.percentage === 100 ? "✅" : "⚠️";
-      console.log(
-        chalk.blue(
-          `   ${status} ${lang}: ${data.totalKeys}/${stats.totalKeys} (${data.percentage}%)`
-        )
-      );
-    });
+    printCompleteness(stats);
 
     if (validation.isValid) {
       console.log(chalk.green(`\n✅ All files are valid and complete!`));
@@ -458,6 +491,7 @@ async function validateFiles(pattern, options) {
       validation.issues.forEach((issue) => {
         console.log(chalk.red(`   - ${issue}`));
       });
+      process.exitCode = 1;
     }
   } catch (error) {
     spinner.fail();
@@ -469,6 +503,7 @@ async function validateFiles(pattern, options) {
  * Show translation statistics
  */
 async function showStats(pattern, options = {}) {
+  normalizeLanguageOptions(options);
   const spinner = ora("Discovering translation files...").start();
 
   try {
@@ -483,11 +518,17 @@ async function showStats(pattern, options = {}) {
     spinner.succeed();
 
     const parsedFiles = await parseFiles(files, options.verbose);
-    const stats = translationService.getTranslationStatistics(parsedFiles);
+    const stats = translationService.getTranslationStatistics(
+      parsedFiles,
+      options.source
+    );
 
     console.log(chalk.blue(`\n📊 Translation Statistics:`));
     console.log(chalk.blue(`   Files: ${stats.totalFiles}`));
     console.log(chalk.blue(`   Languages: ${stats.languages.join(", ")}`));
+    if (options.source) {
+      console.log(chalk.blue(`   Reference language: ${options.source}`));
+    }
     console.log(chalk.blue(`   Total keys: ${stats.totalKeys}`));
 
     console.log(chalk.blue(`\n📈 File Types:`));
@@ -495,19 +536,23 @@ async function showStats(pattern, options = {}) {
       console.log(chalk.blue(`   ${type}: ${count} files`));
     });
 
-    console.log(chalk.blue(`\n📈 Completeness:`));
-    Object.entries(stats.completeness).forEach(([lang, data]) => {
-      const status = data.percentage === 100 ? "✅" : "⚠️";
-      console.log(
-        chalk.blue(
-          `   ${status} ${lang}: ${data.totalKeys}/${stats.totalKeys} (${data.percentage}%)`
-        )
-      );
-    });
+    printCompleteness(stats);
   } catch (error) {
     spinner.fail();
     throw error;
   }
+}
+
+function printCompleteness(stats) {
+  console.log(chalk.blue(`\n📈 Completeness:`));
+  Object.entries(stats.completeness).forEach(([lang, data]) => {
+    const status = data.percentage === 100 ? "✅" : "⚠️";
+    console.log(
+      chalk.blue(
+        `   ${status} ${lang}: ${data.totalKeys}/${data.expectedKeys} (${data.percentage}%)`
+      )
+    );
+  });
 }
 
 /**
@@ -570,28 +615,30 @@ async function purgeFiles(pattern, options) {
       return;
     }
 
-    // Confirm before proceeding
-    const { proceed } = await inquirer.prompt([
-      {
-        type: "confirm",
-        name: "proceed",
-        message: "Do you want to proceed with purging these keys?",
-        default: true,
-      },
-    ]);
+    // Confirm before proceeding (unless -y/--yes/--non-interactive is provided)
+    if (!shouldSkipConfirmation(options)) {
+      const { proceed } = await inquirer.prompt([
+        {
+          type: "confirm",
+          name: "proceed",
+          message: "Do you want to proceed with purging these keys?",
+          default: true,
+        },
+      ]);
 
-    if (!proceed) {
-      console.log(chalk.yellow("Purge cancelled"));
-      return;
+      if (!proceed) {
+        console.log(chalk.yellow("Purge cancelled"));
+        return;
+      }
     }
 
     // Create backups if requested
     if (options.backup !== false) {
-      await createBackups(files);
+      await createBackups(purgeResults.updatedFiles.map((file) => file.filePath));
     }
 
     // Generate updated file contents
-    const updatedFiles = parsedFiles.map((file) => {
+    const updatedFiles = purgeResults.updatedFiles.map((file) => {
       const content = fileParser.generateFileContent(
         file.keys,
         file.type,

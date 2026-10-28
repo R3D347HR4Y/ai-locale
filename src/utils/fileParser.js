@@ -472,18 +472,33 @@ async function parseFile(file) {
  * @returns {string} Generated file content
  */
 function generateFileContent(keys, type, originalContent = "") {
+  let content;
   if (type === "strings") {
-    return generateStringsContent(keys);
+    content = generateStringsContent(keys);
   } else if (type === "xml") {
-    return generateXMLContent(keys, originalContent);
+    content = generateXMLContent(keys, originalContent);
   } else if (type === "json") {
-    return generateJSONContent(keys);
+    content = generateJSONContent(keys);
   } else if (type === "tsjs") {
-    return generateTSJSContent(keys, originalContent);
+    content = generateTSJSContent(keys, originalContent);
   } else if (type === "po") {
-    return generatePOContent(keys, originalContent);
+    content = generatePOContent(keys, originalContent);
+  } else {
+    throw new Error(`Unsupported file type: ${type}`);
   }
-  throw new Error(`Unsupported file type: ${type}`);
+  return matchTrailingNewline(content, originalContent);
+}
+
+/**
+ * End generated content the way the original file ended (no newline, \n or \r\n).
+ * @param {string} content
+ * @param {string} originalContent
+ * @returns {string}
+ */
+function matchTrailingNewline(content, originalContent = "") {
+  const trimmed = content.replace(/(?:\r?\n)+$/, "");
+  const ending = String(originalContent || "").match(/\r?\n$/);
+  return ending ? `${trimmed}${ending[0]}` : trimmed;
 }
 
 /**

@@ -216,6 +216,7 @@ ai-locale translate <pattern> [options]
 - `-s, --source <lang>` - Source language code (default: "en")
 - `-t, --target <langs>` - Comma-separated target languages (auto-detected if not provided)
 - `-o, --output <dir>` - Output directory (default: overwrite original files)
+- `-c, --context <text>` - Short description of your app given to the translator (empty by default)
 - `--dry-run` - Show what would be translated without making changes
 - `--verbose` - Show detailed output
 - `--no-backup` - Don't create backup files

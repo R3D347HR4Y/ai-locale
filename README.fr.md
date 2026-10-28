@@ -211,6 +211,7 @@ ai-locale translate <pattern> [options]
 - `-s, --source <lang>` - Code de langue source (par défaut : "en")
 - `-t, --target <langs>` - Langues cibles séparées par des virgules (détectées automatiquement si non fournies)
 - `-o, --output <dir>` - Répertoire de sortie (par défaut : écraser les fichiers originaux)
+- `-c, --context <text>` - Courte description de votre application transmise au traducteur (vide par défaut)
 - `--dry-run` - Afficher ce qui serait traduit sans apporter de modifications
 - `--verbose` - Afficher la sortie détaillée
 - `--no-backup` - Ne pas créer de fichiers de sauvegarde

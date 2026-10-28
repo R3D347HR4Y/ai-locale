@@ -198,6 +198,7 @@ ai-locale translate <pattern> [options]
 - `-s, --source <lang>` - 源语言代码（默认："en"）
 - `-t, --target <langs>` - 逗号分隔的目标语言（如果未提供则自动检测）
 - `-o, --output <dir>` - 输出目录（默认：覆盖原始文件）
+- `-c, --context <text>` - 提供给翻译模型的应用简介（默认为空）
 - `--dry-run` - 显示将要翻译的内容而不进行更改
 - `--verbose` - 显示详细输出
 - `--no-backup` - 不创建备份文件

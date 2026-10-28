@@ -328,23 +328,38 @@ function normalizeLocale(token) {
  * @returns {string|null}
  */
 function matchLocaleToken(token) {
+  const found = locateLocaleInToken(token);
+  return found ? found.locale : null;
+}
+
+/**
+ * Locale in a token and the token with that locale replaced by #locale.
+ * @param {string} token
+ * @returns {{locale: string, masked: string}|null}
+ */
+function locateLocaleInToken(token) {
   if (!token) return null;
+  const text = String(token);
 
-  const lproj = String(token).match(/^(.+)\.lproj$/i);
-  if (lproj) return matchLocaleToken(lproj[1]);
+  const lproj = text.match(/^(.+)\.lproj$/i);
+  if (lproj) {
+    const inner = locateLocaleInToken(lproj[1]);
+    return inner ? { locale: inner.locale, masked: `${inner.masked}.lproj` } : null;
+  }
 
-  const exact = normalizeLocale(token);
-  if (exact) return exact;
+  const whole = normalizeLocale(text) || NAMED_LANGUAGES[text.toLowerCase()];
+  if (whole) return { locale: whole, masked: "#locale" };
 
-  const named = NAMED_LANGUAGES[String(token).toLowerCase()];
-  if (named) return named;
-
-  if (String(token).includes(".")) {
-    const parts = String(token).split(".");
+  if (text.includes(".")) {
+    const parts = text.split(".");
     for (let i = parts.length - 1; i >= 0; i--) {
       const locale =
         normalizeLocale(parts[i]) || NAMED_LANGUAGES[parts[i].toLowerCase()];
-      if (locale) return locale;
+      if (locale) {
+        const masked = parts.slice();
+        masked[i] = "#locale";
+        return { locale, masked: masked.join(".") };
+      }
     }
   }
 
@@ -383,6 +398,47 @@ function detectLanguage(filePath) {
   }
 
   return "en";
+}
+
+/**
+ * Path with its locale segment replaced by #locale, so that
+ * locales/fr/email.json and locales/de/email.json share one key and
+ * locales/fr/common.json gets another. Paths without a locale keep their own key.
+ * @param {string} filePath
+ * @returns {string}
+ */
+function localeGroupKey(filePath) {
+  const parts = String(filePath || "").split(/[/\\]/).filter(Boolean);
+
+  for (let i = parts.length - 1; i >= 0; i--) {
+    const ext = i === parts.length - 1 ? path.extname(parts[i]) : "";
+    const token = ext ? parts[i].slice(0, -ext.length) : parts[i];
+    const found = locateLocaleInToken(token);
+    if (found) {
+      const masked = parts.slice();
+      masked[i] = `${found.masked}${ext}`;
+      return masked.join("/");
+    }
+  }
+
+  return parts.join("/");
+}
+
+/**
+ * Human-readable label for prompts, e.g. "tts (isan)" or "fr-CA (french, CA)".
+ * @param {string} code
+ * @returns {string}
+ */
+function languageLabel(code) {
+  const canonical = canonicalizeLanguageCode(code);
+  if (!canonical) return String(code);
+  const [base, ...rest] = String(canonical).split("-");
+  const name = Object.keys(NAMED_LANGUAGES).find(
+    (key) => NAMED_LANGUAGES[key] === base && key !== base && key.length > 3
+  );
+  if (!name) return canonical;
+  const extra = rest.length > 0 ? `, ${rest.join("-")}` : "";
+  return `${canonical} (${name.replace(/-/g, " ")}${extra})`;
 }
 
 const LOCALE_SHAPE =
@@ -485,6 +541,8 @@ module.exports = {
   expandLocalePattern,
   fileMatchesLocalePattern,
   filterDiscoveredFiles,
+  languageLabel,
+  localeGroupKey,
   matchLocaleToken,
   normalizeLocale,
 };

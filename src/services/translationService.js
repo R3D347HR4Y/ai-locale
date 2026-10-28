@@ -1,6 +1,6 @@
 const openaiService = require("./openaiService");
 const fileParser = require("../utils/fileParser");
-const { canonicalizeLanguageCode } = require("../utils/locale");
+const { canonicalizeLanguageCode, localeGroupKey } = require("../utils/locale");
 const winston = require("winston");
 
 // Configure logger
@@ -20,6 +20,47 @@ const logger = winston.createLogger({
 });
 
 /**
+ * A key counts as missing when it is absent, null or an empty string.
+ * @param {*} value
+ * @returns {boolean}
+ */
+function isMissingValue(value) {
+  return value === undefined || value === null || value === "";
+}
+
+/**
+ * Group files that hold the same catalog in different languages,
+ * e.g. locales/fr/email.json with locales/de/email.json.
+ * Files without a path (in-memory callers) form one group.
+ * @param {Array} files - Array of parsed files
+ * @returns {Map<string, Array>} Group key to files
+ */
+function groupFilesByNamespace(files) {
+  const groups = new Map();
+  files.forEach((file) => {
+    const key = localeGroupKey(file.filePath || file.filename || "");
+    if (!groups.has(key)) groups.set(key, []);
+    groups.get(key).push(file);
+  });
+  return groups;
+}
+
+function findSourceFile(groupFiles, sourceLanguage) {
+  return groupFiles.find(
+    (file) => canonicalizeLanguageCode(file.language) === sourceLanguage
+  );
+}
+
+function sourceNotFound(sourceLanguage) {
+  return new Error(`Source language file (${sourceLanguage}) not found`);
+}
+
+function normalizeTargets(targetLanguages) {
+  if (!targetLanguages || targetLanguages.length === 0) return null;
+  return new Set(targetLanguages.map((lang) => canonicalizeLanguageCode(lang)));
+}
+
+/**
  * Find missing keys across all language files
  * @param {Array} files - Array of parsed files
  * @param {string} sourceLanguage - Source language code
@@ -28,31 +69,32 @@ const logger = winston.createLogger({
 function findMissingKeys(files, sourceLanguage) {
   const missingKeys = {};
   sourceLanguage = canonicalizeLanguageCode(sourceLanguage);
+  let foundSource = false;
+  let totalSourceKeys = 0;
 
-  // Find the source file (usually the most complete one)
-  const sourceFile = files.find(
-    (file) => canonicalizeLanguageCode(file.language) === sourceLanguage
-  );
-  if (!sourceFile) {
-    throw new Error(`Source language file (${sourceLanguage}) not found`);
-  }
+  groupFilesByNamespace(files).forEach((groupFiles) => {
+    const sourceFile = findSourceFile(groupFiles, sourceLanguage);
+    if (!sourceFile) return;
+    foundSource = true;
 
-  const sourceKeys = Object.keys(sourceFile.keys);
+    const sourceKeys = Object.keys(sourceFile.keys);
+    totalSourceKeys += sourceKeys.length;
 
-  // Check each target language file for missing keys
-  files.forEach((file) => {
-    const language = canonicalizeLanguageCode(file.language);
-    if (language !== sourceLanguage) {
-      const missing = sourceKeys.filter((key) => !(key in file.keys));
+    groupFiles.forEach((file) => {
+      const language = canonicalizeLanguageCode(file.language);
+      if (language === sourceLanguage) return;
+      const missing = sourceKeys.filter((key) => isMissingValue(file.keys[key]));
       if (missing.length > 0) {
-        missingKeys[language] = missing;
+        missingKeys[language] = (missingKeys[language] || []).concat(missing);
       }
-    }
+    });
   });
+
+  if (!foundSource) throw sourceNotFound(sourceLanguage);
 
   logger.info("Missing keys analysis completed", {
     sourceLanguage,
-    totalSourceKeys: sourceKeys.length,
+    totalSourceKeys,
     languagesWithMissingKeys: Object.keys(missingKeys).length,
     totalMissingKeys: Object.values(missingKeys).flat().length,
   });
@@ -64,61 +106,85 @@ function findMissingKeys(files, sourceLanguage) {
  * Find keys that exist in source language but are missing in other languages
  * @param {Array} files - Array of parsed files
  * @param {string} sourceLanguage - Source language code
- * @returns {Object} Keys to translate per language with all existing translations as context
+ * @param {string[]} [targetLanguages] - Only these languages when given
+ * @returns {Object} Keys to translate per language; each entry carries its group
  */
-function findKeysToTranslate(files, sourceLanguage) {
+function findKeysToTranslate(files, sourceLanguage, targetLanguages) {
   const keysToTranslate = {};
   sourceLanguage = canonicalizeLanguageCode(sourceLanguage);
+  const targets = normalizeTargets(targetLanguages);
+  let foundSource = false;
 
-  // Find the source file
-  const sourceFile = files.find(
-    (file) => canonicalizeLanguageCode(file.language) === sourceLanguage
-  );
-  if (!sourceFile) {
-    throw new Error(`Source language file (${sourceLanguage}) not found`);
-  }
+  groupFilesByNamespace(files).forEach((groupFiles, group) => {
+    const sourceFile = findSourceFile(groupFiles, sourceLanguage);
+    if (!sourceFile) return;
+    foundSource = true;
 
-  const sourceKeys = Object.keys(sourceFile.keys);
+    Object.entries(sourceFile.keys).forEach(([key, sourceValue]) => {
+      if (typeof sourceValue !== "string" || sourceValue === "") return;
 
-  // For each source key, find which languages are missing it
-  sourceKeys.forEach((key) => {
-    const existingTranslations = {};
-    const missingLanguages = [];
+      const existingTranslations = {};
+      const missingLanguages = [];
 
-    // Collect all existing translations for this key
-    files.forEach((file) => {
-      const language = canonicalizeLanguageCode(file.language);
-      if (file.keys[key]) {
-        existingTranslations[language] = file.keys[key];
-      } else if (language !== sourceLanguage) {
-        missingLanguages.push(language);
-      }
-    });
+      groupFiles.forEach((file) => {
+        const language = canonicalizeLanguageCode(file.language);
+        if (!isMissingValue(file.keys[key])) {
+          existingTranslations[language] = file.keys[key];
+        } else if (
+          language !== sourceLanguage &&
+          (!targets || targets.has(language)) &&
+          !missingLanguages.includes(language)
+        ) {
+          missingLanguages.push(language);
+        }
+      });
 
-    // If there are missing languages, add to translation tasks
-    if (missingLanguages.length > 0) {
       missingLanguages.forEach((lang) => {
         if (!keysToTranslate[lang]) {
           keysToTranslate[lang] = [];
         }
         keysToTranslate[lang].push({
           key,
+          group,
           existingTranslations,
-          sourceValue: sourceFile.keys[key],
+          sourceValue,
         });
       });
-    }
+    });
   });
 
-  // Reduced logging for cleaner output
-  // logger.info("Keys to translate analysis completed", {
-  //   sourceLanguage,
-  //   totalSourceKeys: sourceKeys.length,
-  //   languagesNeedingTranslation: Object.keys(keysToTranslate).length,
-  //   totalKeysToTranslate: Object.values(keysToTranslate).flat().length,
-  // });
+  if (!foundSource) throw sourceNotFound(sourceLanguage);
 
   return keysToTranslate;
+}
+
+/**
+ * Translation tasks, one per key and catalog, listing every missing language.
+ * @param {Object} keysToTranslate - Output of findKeysToTranslate
+ * @param {string} sourceLanguage
+ * @param {string} [context]
+ * @returns {Array}
+ */
+function buildTranslationTasks(keysToTranslate, sourceLanguage, context = "") {
+  const tasks = new Map();
+  Object.entries(keysToTranslate).forEach(([language, keyData]) => {
+    keyData.forEach(({ key, group, existingTranslations, sourceValue }) => {
+      const id = `${group}\u0000${key}`;
+      if (!tasks.has(id)) {
+        tasks.set(id, {
+          key,
+          group,
+          sourceValue,
+          sourceLanguage,
+          targetLanguages: [],
+          existingTranslations,
+          context,
+        });
+      }
+      tasks.get(id).targetLanguages.push(language);
+    });
+  });
+  return [...tasks.values()];
 }
 
 /**
@@ -131,7 +197,7 @@ function getExistingTranslations(files, key) {
   const existingTranslations = {};
 
   files.forEach((file) => {
-    if (file.keys[key]) {
+    if (!isMissingValue(file.keys[key])) {
       existingTranslations[file.language] = file.keys[key];
     }
   });
@@ -142,26 +208,24 @@ function getExistingTranslations(files, key) {
 /**
  * Process translations for all missing keys
  * @param {Object} params - Translation parameters
- * @returns {Promise<Object>} Translation results
+ * @returns {Promise<Object>} Translation results; data.files only lists files that changed
  */
 async function processTranslations({
   files,
   targetLanguages,
   sourceLanguage,
+  context = "",
   batchSize = 5,
   batchDelay = 1000,
   onProgress,
 }) {
   try {
-    // Reduced logging for cleaner output
-    // logger.info("Starting translation process", {
-    //   fileCount: files.length,
-    //   targetLanguages,
-    //   sourceLanguage,
-    // });
-
-    // Find keys to translate with all existing translations as context
-    const keysToTranslate = findKeysToTranslate(files, sourceLanguage);
+    sourceLanguage = canonicalizeLanguageCode(sourceLanguage);
+    const keysToTranslate = findKeysToTranslate(
+      files,
+      sourceLanguage,
+      targetLanguages
+    );
 
     if (Object.keys(keysToTranslate).length === 0) {
       logger.info("No missing keys found, all files are complete");
@@ -171,50 +235,27 @@ async function processTranslations({
         data: {
           missingKeys: {},
           translations: {},
-          files: files.map((file) => ({
-            filename: file.filename,
-            language: file.language,
-            content: file.content,
-            type: file.type,
-          })),
+          files: [],
+          statistics: {
+            totalTasks: 0,
+            successfulTranslations: 0,
+            failedTranslations: 0,
+            keysTranslated: 0,
+            keysFailed: 0,
+            perLanguage: {},
+            languagesProcessed: 0,
+            filesGenerated: 0,
+          },
         },
       };
     }
 
-    // Prepare translation tasks grouped by key (one key to all missing languages)
-    const translationTasks = [];
+    const translationTasks = buildTranslationTasks(
+      keysToTranslate,
+      sourceLanguage,
+      context
+    );
 
-    // Group missing keys by key instead of by language
-    const keysGroupedByKey = {};
-
-    Object.entries(keysToTranslate).forEach(([language, keyData]) => {
-      keyData.forEach(({ key, existingTranslations, sourceValue }) => {
-        if (!keysGroupedByKey[key]) {
-          keysGroupedByKey[key] = {
-            key,
-            sourceValue,
-            sourceLanguage,
-            targetLanguages: [],
-            existingTranslations,
-            context: "Mobile app localization for beauty services platform",
-          };
-        }
-        keysGroupedByKey[key].targetLanguages.push(language);
-      });
-    });
-
-    // Create one task per key (translating to all missing languages)
-    Object.values(keysGroupedByKey).forEach((task) => {
-      translationTasks.push(task);
-    });
-
-    // Reduced logging for cleaner output
-    // logger.info("Translation tasks prepared", {
-    //   totalTasks: translationTasks.length,
-    //   costEstimate: openaiService.getCostEstimate(translationTasks),
-    // });
-
-    // Execute translations in parallel batches with progress tracking
     const translationResults = await openaiService.translateKeysInParallel(
       translationTasks,
       {
@@ -224,31 +265,37 @@ async function processTranslations({
       }
     );
 
-    // Process results and update files
+    const groups = groupFilesByNamespace(files);
+    const changedFiles = new Set();
     const translations = {};
-    const updatedFiles = [...files];
+    const perLanguage = {};
+    let successfulTranslations = 0;
+    let failedTranslations = 0;
 
     translationResults.forEach((result) => {
-      if (result.success) {
-        Object.entries(result.translations).forEach(
-          ([language, translation]) => {
-            if (!translations[language]) {
-              translations[language] = {};
-            }
-            translations[language][result.key] = translation;
+      const groupFiles = groups.get(result.group) || files;
 
-            // Update the corresponding file
-            const fileIndex = updatedFiles.findIndex(
-              (file) =>
-                canonicalizeLanguageCode(file.language) ===
-                canonicalizeLanguageCode(language)
-            );
-            if (fileIndex !== -1) {
-              updatedFiles[fileIndex].keys[result.key] = translation;
-            }
-          }
+      Object.entries(result.translations || {}).forEach(([language, translation]) => {
+        const file = groupFiles.find(
+          (candidate) =>
+            canonicalizeLanguageCode(candidate.language) ===
+            canonicalizeLanguageCode(language)
         );
-      } else {
+        if (!file) return;
+
+        if (!translations[language]) {
+          translations[language] = {};
+        }
+        translations[language][result.key] = translation;
+        file.keys[result.key] = translation;
+        changedFiles.add(file);
+        successfulTranslations++;
+        perLanguage[language] = (perLanguage[language] || 0) + 1;
+      });
+
+      const failed = Object.entries(result.failedLanguages || {});
+      failedTranslations += failed.length;
+      if (failed.length > 0 || !result.success) {
         logger.error("Translation failed for key", {
           key: result.key,
           error: result.error,
@@ -256,44 +303,42 @@ async function processTranslations({
       }
     });
 
-    // Generate updated file contents
-    const generatedFiles = updatedFiles.map((file) => {
-      const content = fileParser.generateFileContent(
-        file.keys,
-        file.type,
-        file.content
-      );
-      return {
+    // Only files that received a translation are regenerated.
+    const generatedFiles = files
+      .filter((file) => changedFiles.has(file))
+      .map((file) => ({
         filename: file.filename,
         filePath: file.filePath,
         language: file.language,
-        content,
+        content: fileParser.generateFileContent(file.keys, file.type, file.content),
         type: file.type,
         keysCount: Object.keys(file.keys).length,
-      };
-    });
+      }));
 
-    const successCount = translationResults.filter((r) => r.success).length;
-    const failureCount = translationResults.filter((r) => !r.success).length;
+    const keysTranslated = translationResults.filter((r) => r.success).length;
+    const keysFailed = translationResults.length - keysTranslated;
 
     logger.info("Translation process completed", {
-      successCount,
-      failureCount,
+      successfulTranslations,
+      failedTranslations,
       totalTasks: translationResults.length,
       generatedFiles: generatedFiles.length,
     });
 
     return {
-      success: true,
-      message: `Translation completed. ${successCount} keys translated successfully, ${failureCount} failed.`,
+      success: failedTranslations === 0,
+      message: `Translation completed. ${successfulTranslations} translations written, ${failedTranslations} failed.`,
       data: {
         missingKeys: keysToTranslate,
         translations,
         files: generatedFiles,
         statistics: {
           totalTasks: translationResults.length,
-          successfulTranslations: successCount,
-          failedTranslations: failureCount,
+          successfulTranslations,
+          failedTranslations,
+          keysTranslated,
+          keysFailed,
+          perLanguage,
           languagesProcessed: Object.keys(translations).length,
           filesGenerated: generatedFiles.length,
         },
@@ -310,11 +355,41 @@ async function processTranslations({
 }
 
 /**
+ * Reference keys per catalog: the source file when one is given and found,
+ * otherwise every key seen in that catalog.
+ */
+function referenceKeysByGroup(files, sourceLanguage) {
+  const source = sourceLanguage ? canonicalizeLanguageCode(sourceLanguage) : null;
+  const result = [];
+  let foundSource = false;
+
+  groupFilesByNamespace(files).forEach((groupFiles, group) => {
+    const sourceFile = source ? findSourceFile(groupFiles, source) : null;
+    let referenceKeys;
+    if (sourceFile) {
+      foundSource = true;
+      referenceKeys = Object.keys(sourceFile.keys).filter(
+        (key) => !isMissingValue(sourceFile.keys[key])
+      );
+    } else {
+      const all = new Set();
+      groupFiles.forEach((file) => Object.keys(file.keys).forEach((key) => all.add(key)));
+      referenceKeys = [...all];
+    }
+    result.push({ group, groupFiles, referenceKeys });
+  });
+
+  if (source && !foundSource && files.length > 0) throw sourceNotFound(source);
+  return result;
+}
+
+/**
  * Validate translation files consistency
  * @param {Array} files - Array of parsed files
+ * @param {string} [sourceLanguage] - Reference language; otherwise all keys of each catalog
  * @returns {Object} Validation results
  */
-function validateTranslationConsistency(files) {
+function validateTranslationConsistency(files, sourceLanguage) {
   const validation = {
     isValid: true,
     issues: [],
@@ -331,41 +406,30 @@ function validateTranslationConsistency(files) {
     return validation;
   }
 
-  // Collect all keys from all files
-  const allKeys = new Set();
-  const languageKeys = {};
+  const groups = referenceKeysByGroup(files, sourceLanguage);
+  const multipleGroups = groups.length > 1;
 
-  files.forEach((file) => {
-    validation.statistics.languages.push(file.language);
-    languageKeys[file.language] = Object.keys(file.keys);
-    Object.keys(file.keys).forEach((key) => allKeys.add(key));
-  });
+  groups.forEach(({ group, groupFiles, referenceKeys }) => {
+    validation.statistics.totalKeys += referenceKeys.length;
 
-  validation.statistics.totalKeys = allKeys.size;
-
-  // Check for missing keys in each language
-  files.forEach((file) => {
-    const missingKeys = Array.from(allKeys).filter(
-      (key) => !(key in file.keys)
-    );
-    if (missingKeys.length > 0) {
-      validation.issues.push(
-        `Language ${file.language} is missing ${
-          missingKeys.length
-        } keys: ${missingKeys.slice(0, 5).join(", ")}${
-          missingKeys.length > 5 ? "..." : ""
-        }`
+    groupFiles.forEach((file) => {
+      if (!validation.statistics.languages.includes(file.language)) {
+        validation.statistics.languages.push(file.language);
+      }
+      const missingKeys = referenceKeys.filter((key) =>
+        isMissingValue(file.keys[key])
       );
-    }
-  });
-
-  // Check for duplicate keys within the same file
-  files.forEach((file) => {
-    const keys = Object.keys(file.keys);
-    const uniqueKeys = new Set(keys);
-    if (keys.length !== uniqueKeys.size) {
-      validation.issues.push(`Language ${file.language} has duplicate keys`);
-    }
+      if (missingKeys.length > 0) {
+        const where = multipleGroups ? ` (${group})` : "";
+        validation.issues.push(
+          `Language ${file.language}${where} is missing ${
+            missingKeys.length
+          } keys: ${missingKeys.slice(0, 5).join(", ")}${
+            missingKeys.length > 5 ? "..." : ""
+          }`
+        );
+      }
+    });
   });
 
   validation.isValid = validation.issues.length === 0;
@@ -374,11 +438,13 @@ function validateTranslationConsistency(files) {
 }
 
 /**
- * Get translation statistics
+ * Get translation statistics. Nested keys are counted as flattened leaves
+ * (a.b.c) and empty strings count as missing.
  * @param {Array} files - Array of parsed files
+ * @param {string} [sourceLanguage] - Reference language; otherwise all keys of each catalog
  * @returns {Object} Statistics
  */
-function getTranslationStatistics(files) {
+function getTranslationStatistics(files, sourceLanguage) {
   const stats = {
     totalFiles: files.length,
     languages: [],
@@ -387,27 +453,37 @@ function getTranslationStatistics(files) {
     fileTypes: {},
   };
 
-  const allKeys = new Set();
-
   files.forEach((file) => {
-    stats.languages.push(file.language);
+    if (!stats.languages.includes(file.language)) {
+      stats.languages.push(file.language);
+    }
     stats.fileTypes[file.type] = (stats.fileTypes[file.type] || 0) + 1;
-
-    Object.keys(file.keys).forEach((key) => allKeys.add(key));
   });
 
-  stats.totalKeys = allKeys.size;
-  stats.languages = [...new Set(stats.languages)];
+  const totals = {};
+  referenceKeysByGroup(files, sourceLanguage).forEach(
+    ({ groupFiles, referenceKeys }) => {
+      stats.totalKeys += referenceKeys.length;
+      const seen = new Set();
+      groupFiles.forEach((file) => {
+        if (seen.has(file.language)) return;
+        seen.add(file.language);
+        const entry = totals[file.language] || { present: 0, expected: 0 };
+        entry.present += referenceKeys.filter(
+          (key) => !isMissingValue(file.keys[key])
+        ).length;
+        entry.expected += referenceKeys.length;
+        totals[file.language] = entry;
+      });
+    }
+  );
 
-  // Calculate completeness for each language
-  files.forEach((file) => {
-    const languageKeys = Object.keys(file.keys);
-    stats.completeness[file.language] = {
-      totalKeys: languageKeys.length,
-      percentage:
-        stats.totalKeys > 0
-          ? Math.round((languageKeys.length / stats.totalKeys) * 100)
-          : 0,
+  stats.languages.forEach((language) => {
+    const { present, expected } = totals[language] || { present: 0, expected: 0 };
+    stats.completeness[language] = {
+      totalKeys: present,
+      expectedKeys: expected,
+      percentage: expected > 0 ? Math.floor((present / expected) * 100) : 0,
     };
   });
 
@@ -418,51 +494,53 @@ function getTranslationStatistics(files) {
  * Purge keys that don't exist in the source language
  * @param {Array} files - Array of parsed files
  * @param {string} sourceLanguage - Source language code
- * @returns {Object} Purge results
+ * @returns {Object} Purge results; updatedFiles lists the files that changed
  */
 function purgeKeys(files, sourceLanguage) {
   const purgeResults = {
     purgedKeys: {},
     totalPurged: 0,
     filesUpdated: 0,
+    updatedFiles: [],
   };
   sourceLanguage = canonicalizeLanguageCode(sourceLanguage);
+  let foundSource = false;
+  let totalSourceKeys = 0;
 
-  // Find the source file
-  const sourceFile = files.find(
-    (file) => canonicalizeLanguageCode(file.language) === sourceLanguage
-  );
-  if (!sourceFile) {
-    throw new Error(`Source language file (${sourceLanguage}) not found`);
-  }
+  groupFilesByNamespace(files).forEach((groupFiles) => {
+    const sourceFile = findSourceFile(groupFiles, sourceLanguage);
+    if (!sourceFile) return;
+    foundSource = true;
 
-  const sourceKeys = Object.keys(sourceFile.keys);
+    const sourceKeys = new Set(Object.keys(sourceFile.keys));
+    totalSourceKeys += sourceKeys.size;
 
-  // Check each file for keys that don't exist in source
-  files.forEach((file) => {
-    const language = canonicalizeLanguageCode(file.language);
-    if (language !== sourceLanguage) {
+    groupFiles.forEach((file) => {
+      const language = canonicalizeLanguageCode(file.language);
+      if (language === sourceLanguage) return;
+
       const keysToPurge = Object.keys(file.keys).filter(
-        (key) => !sourceKeys.includes(key)
+        (key) => !sourceKeys.has(key)
       );
+      if (keysToPurge.length === 0) return;
 
-      if (keysToPurge.length > 0) {
-        purgeResults.purgedKeys[language] = keysToPurge;
-        purgeResults.totalPurged += keysToPurge.length;
-
-        // Remove the keys from the file
-        keysToPurge.forEach((key) => {
-          delete file.keys[key];
-        });
-
-        purgeResults.filesUpdated++;
-      }
-    }
+      purgeResults.purgedKeys[language] = (
+        purgeResults.purgedKeys[language] || []
+      ).concat(keysToPurge);
+      purgeResults.totalPurged += keysToPurge.length;
+      keysToPurge.forEach((key) => {
+        delete file.keys[key];
+      });
+      purgeResults.filesUpdated++;
+      purgeResults.updatedFiles.push(file);
+    });
   });
+
+  if (!foundSource) throw sourceNotFound(sourceLanguage);
 
   logger.info("Key purging completed", {
     sourceLanguage,
-    totalSourceKeys: sourceKeys.length,
+    totalSourceKeys,
     languagesPurged: Object.keys(purgeResults.purgedKeys).length,
     totalPurgedKeys: purgeResults.totalPurged,
     filesUpdated: purgeResults.filesUpdated,
@@ -475,6 +553,9 @@ module.exports = {
   processTranslations,
   findMissingKeys,
   findKeysToTranslate,
+  buildTranslationTasks,
+  groupFilesByNamespace,
+  isMissingValue,
   purgeKeys,
   validateTranslationConsistency,
   getTranslationStatistics,

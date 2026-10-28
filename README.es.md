@@ -198,6 +198,7 @@ ai-locale translate <pattern> [options]
 - `-s, --source <lang>` - Código de idioma fuente (por defecto: "en")
 - `-t, --target <langs>` - Idiomas objetivo separados por comas (detectados automáticamente si no se proporcionan)
 - `-o, --output <dir>` - Directorio de salida (por defecto: sobrescribir archivos originales)
+- `-c, --context <text>` - Breve descripción de tu aplicación para el traductor (vacío por defecto)
 - `--dry-run` - Mostrar qué se traduciría sin hacer cambios
 - `--verbose` - Mostrar salida detallada
 - `--no-backup` - No crear archivos de respaldo
