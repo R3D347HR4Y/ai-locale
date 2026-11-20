@@ -41,7 +41,7 @@ const program = new Command();
 program
   .name("ai-locale")
   .description("CLI tool for translating localization files using OpenAI")
-  .version("1.0.15");
+  .version("1.1.0");
 
 program
   .command("translate")
@@ -77,14 +77,26 @@ program
   .option("-y, --yes", "Skip confirmation prompt")
   .option("--non-interactive", "Skip confirmation prompt (same as --yes)")
   .option(
-    "--batch-size <size>",
-    "Number of translations to process in parallel (default: 5)",
-    "5"
+    "-m, --model <model>",
+    "Model id, e.g. gpt-6-luna, gpt-6.1-terra, deepseek-flash, gemini-3.5-flash-lite (or set OPENAI_MODEL)"
   )
   .option(
+    "--base-url <url>",
+    "OpenAI-compatible endpoint (or set OPENAI_BASE_URL). deepseek-* and gemini-* models pick theirs automatically"
+  )
+  .option(
+    "--reasoning <effort>",
+    "reasoning_effort sent to the model: none, minimal, low, medium, high, or default to send nothing"
+  )
+  .option(
+    "--concurrency <n>",
+    "Maximum requests in flight at once (default: 16)"
+  )
+  .option("--batch-size <size>", "Deprecated alias of --concurrency")
+  .option(
     "--batch-delay <ms>",
-    "Delay between batches in milliseconds (default: 1000)",
-    "1000"
+    "Minimum delay between two request starts, to smooth rate limits",
+    "0"
   )
   .action(async (pattern, options) => {
     try {
@@ -179,21 +191,31 @@ async function translateFiles(pattern, options) {
   const spinner = ora("Discovering translation files...").start();
 
   try {
-    // Get API key
-    const apiKey = options.apiKey || process.env.OPENAI_API_KEY;
-    if (!apiKey) {
+    openaiService.configure({
+      model: options.model,
+      baseURL: options.baseUrl,
+      apiKey: options.apiKey,
+      reasoningEffort: options.reasoning,
+    });
+    const modelSettings = openaiService.resolveSettings();
+    if (!modelSettings.apiKey) {
+      const keyEnv = modelSettings.provider
+        ? `${modelSettings.provider.keyEnv} or OPENAI_API_KEY`
+        : "OPENAI_API_KEY";
       throw new Error(
-        "OpenAI API key is required. Set OPENAI_API_KEY env var or use --api-key option"
+        `API key is required for ${modelSettings.model}. Set ${keyEnv} or use --api-key`
       );
     }
-    process.env.OPENAI_API_KEY = apiKey;
 
-    // Validate batch options
-    const batchSize = parseInt(options.batchSize, 10);
+    // Validate parallelism options
+    const batchSize = parseInt(
+      options.concurrency || options.batchSize || openaiService.DEFAULT_CONCURRENCY,
+      10
+    );
     const batchDelay = parseInt(options.batchDelay, 10);
 
-    if (isNaN(batchSize) || batchSize < 1 || batchSize > 50) {
-      throw new Error("Batch size must be a number between 1 and 50");
+    if (isNaN(batchSize) || batchSize < 1 || batchSize > 200) {
+      throw new Error("Concurrency must be a number between 1 and 200");
     }
 
     if (isNaN(batchDelay) || batchDelay < 0 || batchDelay > 10000) {
@@ -301,11 +323,21 @@ async function translateFiles(pattern, options) {
       console.log(chalk.blue(`   📝 Context: ${context}`));
     }
 
-    // Show batch configuration in verbose mode
+    console.log(
+      chalk.blue(
+        `   🤖 Model: ${chalk.bold(modelSettings.model)}${
+          modelSettings.reasoningEffort
+            ? ` (reasoning: ${modelSettings.reasoningEffort})`
+            : ""
+        }, ${chalk.bold(batchSize)} requests in parallel`
+      )
+    );
     if (options.verbose) {
-      console.log(chalk.gray(`   ⚙️  Batch size: ${chalk.bold(batchSize)}`));
+      if (modelSettings.baseURL) {
+        console.log(chalk.gray(`   🌐 Endpoint: ${modelSettings.baseURL}`));
+      }
       console.log(
-        chalk.gray(`   ⏱️  Batch delay: ${chalk.bold(batchDelay)}ms`)
+        chalk.gray(`   ⏱️  Delay between requests: ${chalk.bold(batchDelay)}ms`)
       );
     }
 
@@ -372,7 +404,7 @@ async function translateFiles(pattern, options) {
       targetLanguages,
       sourceLanguage: options.source,
       context,
-      batchSize: batchSize,
+      concurrency: batchSize,
       batchDelay: batchDelay,
       onProgress: (completed, total, currentKey, translations) => {
         // Create translation preview

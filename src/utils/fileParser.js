@@ -324,9 +324,19 @@ function stripJsComments(source) {
  * @returns {Object} Parsed keys and values
  */
 function parseTSJSFile(content) {
+  return flattenObject(parseTSJSObject(content));
+}
+
+/**
+ * Evaluate the object a TS/JS catalog exports, before flattening.
+ * @param {string} content
+ * @returns {Object}
+ */
+function parseTSJSObject(content) {
+  let cleanedContent = "";
   try {
     // Remove export default and any trailing semicolons/TypeScript syntax
-    let cleanedContent = content
+    cleanedContent = content
       .replace(/^export\s+default\s+/, "")
       .replace(/;\s*$/, "")
       .replace(/\s+as\s+const\s*;?\s*$/m, ""); // Remove "as const" syntax (multiline)
@@ -353,7 +363,7 @@ function parseTSJSFile(content) {
     const parsedObject = eval(`(${cleanedContent})`);
 
     // Flatten nested objects into dot notation
-    return flattenObject(parsedObject);
+    return parsedObject;
   } catch (error) {
     // Provide more detailed error information
     const errorMessage = error.message.includes("Unexpected identifier")
@@ -478,9 +488,9 @@ function generateFileContent(keys, type, originalContent = "", referenceContent 
   } else if (type === "xml") {
     content = generateXMLContent(keys, originalContent);
   } else if (type === "json") {
-    content = generateJSONContent(keys);
+    content = generateJSONContent(keys, originalContent, referenceContent);
   } else if (type === "tsjs") {
-    content = generateTSJSContent(keys, originalContent);
+    content = generateTSJSContent(keys, originalContent, referenceContent);
   } else if (type === "po") {
     content = generatePOContent(keys, originalContent);
   } else {
@@ -591,9 +601,12 @@ function generateXMLContent(keys, originalContent = "") {
  * @param {Object} keys - Flattened keys object
  * @returns {string} Generated JSON content
  */
-function generateJSONContent(keys) {
-  // Convert flattened keys back to nested structure
-  const nestedObject = unflattenObject(keys);
+function generateJSONContent(keys, originalContent = "", referenceContent = "") {
+  const paths = keyPathsFromContents(
+    [originalContent, referenceContent],
+    (content) => JSON.parse(content)
+  );
+  const nestedObject = unflattenObject(keys, paths);
 
   // Generate JSON with proper formatting
   return JSON.stringify(nestedObject, null, 2);
@@ -605,9 +618,9 @@ function generateJSONContent(keys) {
  * @param {string} originalContent - Original file content for structure preservation
  * @returns {string} Generated TS/JS content
  */
-function generateTSJSContent(keys, originalContent) {
-  // Convert flattened keys back to nested structure
-  const nestedObject = unflattenObject(keys);
+function generateTSJSContent(keys, originalContent = "", referenceContent = "") {
+  const paths = keyPathsFromContents([originalContent, referenceContent], parseTSJSObject);
+  const nestedObject = unflattenObject(keys, paths);
 
   // Try to preserve original structure and formatting
   if (originalContent.includes("export default")) {
@@ -672,26 +685,86 @@ function generatePOContent(keys, originalContent = "") {
 }
 
 /**
+ * Map each flattened key to the path it had in a nested object, so that
+ * {"a.b": x} and {"a": {"b": x}} are written back the way they were read.
+ * @param {Object} obj
+ * @param {string[]} [prefix]
+ * @param {Object} [out]
+ * @returns {Object<string, string[]>}
+ */
+function collectKeyPaths(obj, prefix = [], out = {}) {
+  Object.keys(obj || {}).forEach((key) => {
+    const path = [...prefix, key];
+    const value = obj[key];
+    if (typeof value === "object" && value !== null && !Array.isArray(value)) {
+      collectKeyPaths(value, path, out);
+    } else {
+      const flat = path.join(".");
+      if (!(flat in out)) out[flat] = path;
+    }
+  });
+  return out;
+}
+
+/**
+ * Key paths from the file itself first, then from the source catalog for
+ * keys the file did not have yet. Unparseable contents are skipped.
+ * @param {string[]} contents
+ * @param {function(string): Object} parse
+ * @returns {Object<string, string[]>}
+ */
+function keyPathsFromContents(contents, parse) {
+  const paths = {};
+  contents.forEach((content) => {
+    if (!content || !String(content).trim()) return;
+    let parsed;
+    try {
+      parsed = parse(content);
+    } catch (error) {
+      return;
+    }
+    Object.entries(collectKeyPaths(parsed)).forEach(([flat, path]) => {
+      if (!(flat in paths)) paths[flat] = path;
+    });
+  });
+  return paths;
+}
+
+/**
  * Convert flattened object back to nested structure
  * @param {Object} flattened - Flattened object
+ * @param {Object<string, string[]>} [paths] - Original paths (from collectKeyPaths);
+ *   keys without one are split on "."
  * @returns {Object} Nested object
  */
-function unflattenObject(flattened) {
+function unflattenObject(flattened, paths = {}) {
   const nested = {};
+  const isObject = (value) =>
+    typeof value === "object" && value !== null && !Array.isArray(value);
 
   for (const [key, value] of Object.entries(flattened)) {
-    const keys = key.split(".");
+    const segments = paths[key] || key.split(".");
     let current = nested;
+    let blocked = false;
 
-    for (let i = 0; i < keys.length - 1; i++) {
-      const currentKey = keys[i];
-      if (!(currentKey in current)) {
-        current[currentKey] = {};
+    for (let i = 0; i < segments.length - 1; i++) {
+      const segment = segments[i];
+      if (!(segment in current)) current[segment] = {};
+      if (!isObject(current[segment])) {
+        blocked = true;
+        break;
       }
-      current = current[currentKey];
+      current = current[segment];
     }
 
-    current[keys[keys.length - 1]] = value;
+    const leaf = segments[segments.length - 1];
+    if (blocked || isObject(current[leaf])) {
+      // "a" is a string and "a.b" also exists: keep "a.b" as a literal key
+      // rather than overwrite one of them.
+      nested[key] = value;
+    } else {
+      current[leaf] = value;
+    }
   }
 
   return nested;
@@ -713,4 +786,6 @@ module.exports = {
   detectLanguage,
   flattenObject,
   unflattenObject,
+  collectKeyPaths,
+  parseTSJSObject,
 };

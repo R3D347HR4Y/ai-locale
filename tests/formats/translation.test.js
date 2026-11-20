@@ -27,6 +27,42 @@ function createMockClient({ onRequest } = {}) {
       completions: {
         create: async (body) => {
           const prompt = body.messages[1].content;
+          const packed = prompt.match(/Items to translate \(JSON\)[^\n]*\n(.*)\n/);
+          if (packed) {
+            const items = JSON.parse(packed[1]);
+            const languages = prompt
+              .match(/these language codes: (.+?), and whose values/)[1]
+              .split(",")
+              .map((s) => s.trim());
+            const request = {
+              packed: true,
+              languages,
+              sources: Object.values(items).map((item) => item.text),
+              prompt,
+              maxTokens: body.max_tokens || body.max_completion_tokens,
+            };
+            requests.push(request);
+            const translations = {};
+            let truncated = false;
+            Object.entries(items).forEach(([id, item]) => {
+              const perItem = {};
+              languages.forEach((language) => {
+                perItem[language] = `[${language}] ${item.text}`;
+              });
+              const override = onRequest
+                ? onRequest({ ...request, source: item.text }, perItem)
+                : null;
+              if (override && override.truncated) truncated = true;
+              if (!(override && override.drop)) translations[id] = perItem;
+            });
+            return {
+              choices: [
+                truncated
+                  ? { finish_reason: "length", message: { content: '{"translations": {"1": {' } }
+                  : { finish_reason: "stop", message: { content: JSON.stringify({ translations }) } },
+              ],
+            };
+          }
           const languages = prompt
             .match(/Its keys are exactly these language codes: ([^.]+)\./)[1]
             .split(",")
@@ -34,7 +70,7 @@ function createMockClient({ onRequest } = {}) {
           const source = JSON.parse(
             prompt.match(/as a JSON string: (".*")\nTarget languages/)[1]
           );
-          const request = { languages, source, prompt, maxTokens: body.max_tokens };
+          const request = { languages, source, prompt, maxTokens: body.max_tokens || body.max_completion_tokens };
           requests.push(request);
 
           const translations = {};
@@ -392,6 +428,227 @@ class TranslationTest extends BaseFormatTest {
         );
       });
     });
+  }
+
+  async testRequestsRunInParallelUpToTheLimit() {
+    await this.withTempDir(async (root) => {
+      const source = {};
+      for (let i = 0; i < 12; i++) source[`k${i}`] = `Texte ${i}`;
+      const catalogs = { fr: JSON.stringify(source) };
+      TARGETS.forEach((language) => {
+        catalogs[language] = "{}";
+      });
+      writeCatalogs(root, "common.json", catalogs);
+
+      const mock = createMockClient();
+      let inFlight = 0;
+      let peak = 0;
+      openaiService.setClient({
+        chat: {
+          completions: {
+            create: async (body) => {
+              inFlight++;
+              peak = Math.max(peak, inFlight);
+              await new Promise((r) => setTimeout(r, 5));
+              inFlight--;
+              return mock.chat.completions.create(body);
+            },
+          },
+        },
+      });
+
+      const progress = [];
+      const files = await parseAll(this.fileParser, root);
+      const result = await translationService.processTranslations({
+        files,
+        sourceLanguage: "fr",
+        concurrency: 3,
+        onProgress: (completed) => progress.push(completed),
+      });
+
+      this.assertEqual(peak, 3, "The limiter should keep exactly 3 requests in flight");
+      this.assertEqual(result.data.statistics.failedTranslations, 0, "Nothing fails");
+      this.assertEqual(result.data.statistics.successfulTranslations, 12 * 32, "Every pair is translated");
+      this.assertEqual(progress.join(","), [...Array(12).keys()].map((i) => i + 1).join(","), "Progress counts up once per key");
+    });
+  }
+
+  async testShortKeysArePackedIntoFewRequests() {
+    await this.withTempDir(async (root) => {
+      const source = {};
+      for (let i = 0; i < 60; i++) source[`k${i}`] = `Bouton ${i} {{count}}`;
+      const catalogs = { fr: JSON.stringify(source) };
+      TARGETS.forEach((language) => {
+        catalogs[language] = "{}";
+      });
+      writeCatalogs(root, "common.json", catalogs);
+      const client = createMockClient();
+      openaiService.setClient(client);
+
+      const files = await parseAll(this.fileParser, root);
+      const tasks = translationService.buildTranslationTasks(
+        translationService.findKeysToTranslate(files, "fr"),
+        "fr"
+      );
+      const estimate = openaiService.getCostEstimate(tasks);
+      const result = await translationService.processTranslations({ files, sourceLanguage: "fr" });
+
+      // 32 languages -> 6 groups; 60 keys -> 3 packs of at most 25 per group,
+      // a few more where dense scripts hit the output budget first.
+      this.assertTrue(
+        client.requests.length >= 18 && client.requests.length <= 24,
+        `60 keys x 32 languages took ${client.requests.length} requests instead of ~18 (360 unpacked)`
+      );
+      this.assertEqual(estimate.estimatedRequests, client.requests.length, "The estimate counts packed requests");
+      this.assertTrue(client.requests.every((r) => r.packed && r.languages.length <= 6), "Packs keep at most 6 languages");
+      this.assertEqual(result.data.statistics.failedTranslations, 0, "Nothing fails");
+      const ja = JSON.parse(result.data.files.find((f) => f.language === "ja").content);
+      this.assertEqual(ja.k42, "[ja] Bouton 42 {{count}}", "Each item lands on its own key");
+    });
+  }
+
+  async testPackFailuresFallBackToSingleKeys() {
+    await this.withTempDir(async (root) => {
+      writeCatalogs(root, "common.json", {
+        fr: JSON.stringify({ a: "Salut {{name}}", b: "Oui", c: "Non", d: "Peut-être" }),
+        de: "{}",
+        es: "{}",
+      });
+      let truncatedOnce = false;
+      const client = createMockClient({
+        onRequest: (request, translations) => {
+          if (!request.packed) return null;
+          if (!truncatedOnce && request.sources.length === 4) {
+            truncatedOnce = true;
+            return { truncated: true };
+          }
+          if (request.source === "Salut {{name}}") translations.de = "Hallo name";
+          if (request.source === "Oui") return { drop: true };
+          return null;
+        },
+      });
+      openaiService.setClient(client);
+
+      const files = await parseAll(this.fileParser, root);
+      const result = await translationService.processTranslations({ files, sourceLanguage: "fr" });
+
+      this.assertTrue(truncatedOnce, "The first pack is truncated");
+      this.assertTrue(
+        client.requests.some((r) => r.packed && r.sources.length === 2),
+        "A truncated pack is split in half"
+      );
+      const strict = client.requests.find(
+        (r) => !r.packed && r.prompt.includes("A previous answer changed the placeholders")
+      );
+      this.assertTrue(strict && strict.languages.join() === "de", "Broken placeholders are redone alone, strictly");
+      this.assertTrue(
+        client.requests.some((r) => !r.packed && r.source === "Oui"),
+        "A key missing from the pack is redone alone"
+      );
+      this.assertEqual(result.data.statistics.failedTranslations, 0, "Everything ends up translated");
+      const de = JSON.parse(result.data.files.find((f) => f.language === "de").content);
+      this.assertEqual(de.a, "[de] Salut {{name}}", "The strict retry is kept");
+      this.assertEqual(de.b, "[de] Oui", "The dropped key is filled");
+    });
+  }
+
+  async testRejectedParameterIsDroppedOnce() {
+    await this.withTempDir(async (root) => {
+      writeCatalogs(root, "common.json", { fr: '{"a": "Oui", "b": "Non"}', de: "{}", es: "{}" });
+      const mock = createMockClient();
+      let rejected = 0;
+      openaiService.setClient({
+        chat: {
+          completions: {
+            create: async (body) => {
+              if ("temperature" in body || "max_completion_tokens" in body) {
+                rejected++;
+                const param = "temperature" in body ? "temperature" : "max_completion_tokens";
+                const error = new Error(`400 Unsupported parameter: '${param}' is not supported with this model.`);
+                error.status = 400;
+                error.param = param;
+                throw error;
+              }
+              return mock.chat.completions.create(body);
+            },
+          },
+        },
+      });
+
+      const files = await parseAll(this.fileParser, root);
+      const result = await translationService.processTranslations({
+        files,
+        sourceLanguage: "fr",
+        concurrency: 1,
+      });
+
+      this.assertEqual(result.data.statistics.failedTranslations, 0, "Translations succeed once the parameters are dropped");
+      this.assertEqual(rejected, 2, "Each parameter is rejected only once");
+      this.assertTrue(mock.requests.every((r) => r.maxTokens > 0), "max_tokens replaces max_completion_tokens");
+    });
+  }
+
+  testProviderIsPickedFromModelName() {
+    const saved = { ...process.env };
+    try {
+      process.env.DEEPSEEK_API_KEY = "ds-key";
+      delete process.env.OPENAI_BASE_URL;
+      delete process.env.OPENAI_REASONING_EFFORT;
+      openaiService.configure({ model: "deepseek-flash" });
+      const ds = openaiService.resolveSettings();
+      this.assertEqual(ds.baseURL, "https://api.deepseek.com", "DeepSeek endpoint");
+      this.assertEqual(ds.apiKey, "ds-key", "DeepSeek key");
+
+      openaiService.configure({});
+      delete process.env.OPENAI_MODEL;
+      const def = openaiService.resolveSettings();
+      this.assertEqual(def.model, openaiService.DEFAULT_MODEL, "Default model");
+      this.assertEqual(def.reasoningEffort, "none", "Luna runs without reasoning");
+      this.assertEqual(def.baseURL, undefined, "OpenAI endpoint by default");
+    } finally {
+      process.env = saved;
+      openaiService.configure({});
+    }
+  }
+
+  async testDottedKeysKeepTheirShape() {
+    await this.withTempDir(async (root) => {
+      writeCatalogs(root, "common.json", {
+        fr: JSON.stringify({ "ui.save": "Enregistrer", nested: { title: "Titre" }, "a.b": "flat" }),
+        de: JSON.stringify({ "ui.save": "Speichern" }),
+        es: "{}",
+      });
+      openaiService.setClient(createMockClient());
+
+      const files = await parseAll(this.fileParser, root);
+      const result = await translationService.processTranslations({ files, sourceLanguage: "fr" });
+
+      const de = JSON.parse(result.data.files.find((f) => f.language === "de").content);
+      this.assertEqual(de["ui.save"], "Speichern", "An existing flat key stays flat");
+      this.assertEqual(de.nested.title, "[de] Titre", "A nested source key is written nested");
+      this.assertEqual(de["a.b"], "[de] flat", "A new flat key follows the source shape");
+      this.assertFalse("ui" in de || "a" in de, "No nesting invented from the dots");
+
+      const es = JSON.parse(result.data.files.find((f) => f.language === "es").content);
+      this.assertEqual(Object.keys(es).sort().join(","), "a.b,nested,ui.save", "An empty target copies the source shape");
+    });
+  }
+
+  testConflictingKeysAreNotLost() {
+    const json = this.fileParser.generateFileContent({ a: "x", "a.b": "y" }, "json");
+    const parsed = JSON.parse(json);
+    this.assertEqual(parsed.a, "x", "The string is kept");
+    this.assertEqual(parsed["a.b"], "y", "The dotted key is kept as a literal key");
+
+    const ts = this.fileParser.generateFileContent(
+      { "ui.save": "Save", "deep.x": "X" },
+      "tsjs",
+      "",
+      'export default { "ui.save": "Sauver", deep: { x: "x" } } as const;\n'
+    );
+    const object = this.fileParser.parseTSJSObject(ts);
+    this.assertEqual(object["ui.save"], "Save", "TS flat key stays flat");
+    this.assertEqual(object.deep.x, "X", "TS nested key stays nested");
   }
 
   async testTrailingNewlineIsPreserved() {

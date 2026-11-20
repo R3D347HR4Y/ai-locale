@@ -221,8 +221,11 @@ ai-locale translate <pattern> [options]
 - `--verbose` - Show detailed output
 - `--no-backup` - Don't create backup files
 - `--yes` - Skip confirmation prompt
-- `--batch-size <size>` - Number of translations to process in parallel (default: 5)
-- `--batch-delay <ms>` - Delay between batches in milliseconds (default: 1000)
+- `-m, --model <model>` - Model id (default: `gpt-6-luna`, or `OPENAI_MODEL`). `deepseek-*` and `gemini-*` models use their provider's endpoint and `DEEPSEEK_API_KEY` / `GEMINI_API_KEY`
+- `--base-url <url>` - Any OpenAI-compatible endpoint, e.g. OpenRouter (or `OPENAI_BASE_URL`)
+- `--reasoning <effort>` - `reasoning_effort` sent to the model (`none` by default for Luna/Terra, `minimal` for Gemini; `default` sends nothing)
+- `--concurrency <n>` - Maximum requests in flight (default: 16, max 200). `--batch-size` is kept as an alias
+- `--batch-delay <ms>` - Minimum delay between two request starts (default: 0)
 
 **Examples:**
 
@@ -242,8 +245,8 @@ ai-locale translate "locales/#locale/messages.json" --output ./translated/
 # Use specific API key
 ai-locale translate "locales/#locale/messages.json" --api-key sk-your-key
 
-# Control batch processing
-ai-locale translate "locales/#locale/messages.json" --batch-size 3 --batch-delay 2000
+# Pick a model and run more requests at once
+ai-locale translate "locales/#locale/messages.json" --model deepseek-flash --concurrency 48
 ```
 
 ### `validate` - Validate Translation Files
@@ -415,24 +418,30 @@ AI receives: "Translate 'Save' to German and Italian, considering existing trans
 
 The CLI is optimized for cost and speed:
 
-- **Parallel Processing**: Translates multiple keys simultaneously using `Promise.all`
-- **Configurable Batching**: Control batch size and delay with `--batch-size` and `--batch-delay` options
+- **Parallel Processing**: Every key and language group goes into one queue; `--concurrency` requests stay in flight, so a slow request never holds the rest back
+- **Key Packing**: Short keys that miss the same languages share one request (up to 25 keys × 6 languages); long texts keep their own requests, and anything a pack gets wrong is redone key by key
+- **Retries**: 429 and 5xx answers are retried with backoff (Retry-After honoured)
 - **Cost Estimation**: Shows estimated costs before processing
-- **Efficient Model**: Uses GPT-4o-mini for optimal cost/quality ratio
+- **Efficient Model**: Uses `gpt-6-luna` without reasoning by default; parameters a model rejects (temperature, max_tokens…) are dropped automatically
 - **Context Optimization**: Uses ALL existing translations as context for maximum accuracy
-- **Rate Limit Management**: Built-in delays and batch processing to respect API limits
 
-### Batch Control Examples
+### Choosing a Model
+
+| Model | $/1M in / out | Notes |
+| --- | --- | --- |
+| `gpt-6-luna` (default) | 0.10 / 0.50 | Cheapest OpenAI model, fast, runs with `reasoning_effort: none` |
+| `deepseek-flash` | 0.30 / 1.20 (half off-peak) | Top score on the OpenMark Nov 2026 translation benchmark; needs `DEEPSEEK_API_KEY` |
+| `gpt-6.1-terra` | 1.00 / 5.00 | Better tone on marketing copy |
+| `gemini-3.5-flash-lite` | 0.30 / 2.50 | Google's model for bulk translation; thinking cannot be turned off |
+
+### Concurrency Examples
 
 ```bash
-# Conservative approach (smaller batches, longer delays)
-ai-locale translate "locales/#locale/messages.json" --batch-size 2 --batch-delay 2000
+# Low rate-limit tier: fewer requests, spaced out
+ai-locale translate "locales/#locale/messages.json" --concurrency 4 --batch-delay 250
 
-# Aggressive approach (larger batches, shorter delays)
-ai-locale translate "locales/#locale/messages.json" --batch-size 10 --batch-delay 500
-
-# Default settings (balanced)
-ai-locale translate "locales/#locale/messages.json" --batch-size 5 --batch-delay 1000
+# Large files with many languages
+ai-locale translate "locales/#locale/messages.json" --concurrency 64
 ```
 
 ### Cost Estimation Example
@@ -476,6 +485,10 @@ npm run build
 | Variable         | Description    | Default     |
 | ---------------- | -------------- | ----------- |
 | `OPENAI_API_KEY` | OpenAI API key | Required    |
+| `OPENAI_MODEL` | Model id | `gpt-6-luna` |
+| `OPENAI_BASE_URL` | OpenAI-compatible endpoint | OpenAI |
+| `OPENAI_REASONING_EFFORT` | `reasoning_effort` override | per model |
+| `DEEPSEEK_API_KEY` / `GEMINI_API_KEY` | Keys for `deepseek-*` / `gemini-*` models | — |
 | `NODE_ENV`       | Environment    | development |
 
 ### Project Structure

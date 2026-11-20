@@ -216,8 +216,11 @@ ai-locale translate <pattern> [options]
 - `--verbose` - Afficher la sortie détaillée
 - `--no-backup` - Ne pas créer de fichiers de sauvegarde
 - `--yes` - Ignorer l'invite de confirmation
-- `--batch-size <size>` - Nombre de traductions à traiter en parallèle (par défaut : 5)
-- `--batch-delay <ms>` - Délai entre les lots en millisecondes (par défaut : 1000)
+- `-m, --model <model>` - Modèle (par défaut : `gpt-6-luna`, ou `OPENAI_MODEL`). Les modèles `deepseek-*` et `gemini-*` utilisent l'endpoint de leur fournisseur et `DEEPSEEK_API_KEY` / `GEMINI_API_KEY`
+- `--base-url <url>` - N'importe quel endpoint compatible OpenAI, ex. OpenRouter (ou `OPENAI_BASE_URL`)
+- `--reasoning <effort>` - `reasoning_effort` envoyé au modèle (`none` par défaut pour Luna/Terra, `minimal` pour Gemini ; `default` n'envoie rien)
+- `--concurrency <n>` - Nombre maximum de requêtes simultanées (par défaut : 16, max 200). `--batch-size` reste un alias
+- `--batch-delay <ms>` - Délai minimum entre deux démarrages de requête (par défaut : 0)
 
 **Exemples :**
 
@@ -237,8 +240,8 @@ ai-locale translate "locales/#locale/messages.json" --output ./translated/
 # Utiliser une clé API spécifique
 ai-locale translate "locales/#locale/messages.json" --api-key sk-your-key
 
-# Contrôler le traitement par lots
-ai-locale translate "locales/#locale/messages.json" --batch-size 3 --batch-delay 2000
+# Choisir un modèle et lancer plus de requêtes à la fois
+ai-locale translate "locales/#locale/messages.json" --model deepseek-flash --concurrency 48
 ```
 
 ### `validate` - Valider les Fichiers de Traduction
@@ -410,24 +413,30 @@ L'IA reçoit : "Traduire 'Save' en allemand et italien, en considérant les trad
 
 Le CLI est optimisé pour le coût et la vitesse :
 
-- **Traitement Parallèle** : Traduit plusieurs clés simultanément en utilisant `Promise.all`
-- **Lots Configurables** : Contrôlez la taille des lots et le délai avec les options `--batch-size` et `--batch-delay`
+- **Traitement Parallèle** : Chaque clé et groupe de langues passe dans une file unique ; `--concurrency` requêtes tournent en même temps, une requête lente ne bloque pas les autres
+- **Regroupement des Clés** : Les clés courtes auxquelles il manque les mêmes langues partagent une requête (jusqu'à 25 clés × 6 langues) ; les textes longs gardent leurs propres requêtes, et ce qu'un groupe rate est refait clé par clé
+- **Reprises** : Les réponses 429 et 5xx sont relancées avec backoff (Retry-After respecté)
 - **Estimation des Coûts** : Affiche les coûts estimés avant le traitement
-- **Modèle Efficace** : Utilise GPT-4o-mini pour un ratio coût/qualité optimal
+- **Modèle Efficace** : Utilise `gpt-6-luna` sans raisonnement par défaut ; les paramètres refusés par un modèle (temperature, max_tokens…) sont retirés automatiquement
 - **Optimisation du Contexte** : Utilise TOUTES les traductions existantes comme contexte pour une précision maximale
-- **Gestion des Limites de Taux** : Délais intégrés et traitement par lots pour respecter les limites de l'API
 
-### Exemples de Contrôle de Lot
+### Choisir un Modèle
+
+| Modèle | $/1M entrée / sortie | Notes |
+| --- | --- | --- |
+| `gpt-6-luna` (défaut) | 0,10 / 0,50 | Modèle OpenAI le moins cher, rapide, lancé avec `reasoning_effort: none` |
+| `deepseek-flash` | 0,30 / 1,20 (moitié prix hors pointe) | Meilleur score du benchmark traduction OpenMark de nov. 2026 ; demande `DEEPSEEK_API_KEY` |
+| `gpt-6.1-terra` | 1,00 / 5,00 | Meilleur ton sur les textes marketing |
+| `gemini-3.5-flash-lite` | 0,30 / 2,50 | Modèle Google pour la traduction en masse ; la réflexion ne peut pas être coupée |
+
+### Exemples de Parallélisme
 
 ```bash
-# Approche conservatrice (lots plus petits, délais plus longs)
-ai-locale translate "locales/#locale/messages.json" --batch-size 2 --batch-delay 2000
+# Petit quota : moins de requêtes, espacées
+ai-locale translate "locales/#locale/messages.json" --concurrency 4 --batch-delay 250
 
-# Approche agressive (lots plus grands, délais plus courts)
-ai-locale translate "locales/#locale/messages.json" --batch-size 10 --batch-delay 500
-
-# Paramètres par défaut (équilibrés)
-ai-locale translate "locales/#locale/messages.json" --batch-size 5 --batch-delay 1000
+# Gros fichiers avec beaucoup de langues
+ai-locale translate "locales/#locale/messages.json" --concurrency 64
 ```
 
 ### Exemple d'Estimation des Coûts
