@@ -20,7 +20,7 @@ const logger = winston.createLogger({
 });
 
 const DEFAULT_MODEL = "gpt-6-luna";
-const DEFAULT_CONCURRENCY = 16;
+const DEFAULT_CONCURRENCY = 32;
 const MODEL_MAX_OUTPUT_TOKENS = 16384;
 
 // OpenAI-compatible providers picked from the model name when no base URL is given.
@@ -917,13 +917,20 @@ async function translateKeysInParallel(translationTasks, options = {}) {
     states.forEach((state, index) => {
       if (state.pending === 0) finish(index);
     });
-    await Promise.all([
-      ...packs.map(runPack),
-      ...solos.map(async ({ index, languages }) => {
-        await runSolo(index, languages);
-        settle(index);
-      }),
-    ]);
+    // Queue key by key, not language group by language group: the limiter is
+    // FIFO, so a key's groups then finish close together and progress moves
+    // steadily instead of jumping at the very end.
+    const jobs = [
+      ...packs.map((pack) => ({ first: pack.units[0].index, run: () => runPack(pack) })),
+      ...solos.map(({ index, languages }) => ({
+        first: index,
+        run: async () => {
+          await runSolo(index, languages);
+          settle(index);
+        },
+      })),
+    ].sort((a, b) => a.first - b.first);
+    await Promise.all(jobs.map((job) => job.run()));
     return results;
   } finally {
     limiter = previousLimiter;

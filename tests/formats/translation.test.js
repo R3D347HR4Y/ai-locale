@@ -552,6 +552,37 @@ class TranslationTest extends BaseFormatTest {
     });
   }
 
+  async testProgressStartsEarlyOnBigRuns() {
+    await this.withTempDir(async (root) => {
+      const source = {};
+      for (let i = 0; i < 200; i++) source[`k${i}`] = `Libellé ${i}`;
+      const catalogs = { fr: JSON.stringify(source) };
+      TARGETS.forEach((language) => {
+        catalogs[language] = "{}";
+      });
+      writeCatalogs(root, "common.json", catalogs);
+      const client = createMockClient();
+      openaiService.setClient(client);
+
+      let requestsAtFirstProgress = null;
+      const files = await parseAll(this.fileParser, root);
+      await translationService.processTranslations({
+        files,
+        sourceLanguage: "fr",
+        concurrency: 2,
+        onProgress: () => {
+          if (requestsAtFirstProgress === null) requestsAtFirstProgress = client.requests.length;
+        },
+      });
+
+      const total = client.requests.length;
+      this.assertTrue(
+        requestsAtFirstProgress <= 12,
+        `First key finished after ${requestsAtFirstProgress} of ${total} requests`
+      );
+    });
+  }
+
   async testRejectedParameterIsDroppedOnce() {
     await this.withTempDir(async (root) => {
       writeCatalogs(root, "common.json", { fr: '{"a": "Oui", "b": "Non"}', de: "{}", es: "{}" });

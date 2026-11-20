@@ -219,7 +219,7 @@ ai-locale translate <pattern> [options]
 - `-m, --model <model>` - Modèle (par défaut : `gpt-6-luna`, ou `OPENAI_MODEL`). Les modèles `deepseek-*` et `gemini-*` utilisent l'endpoint de leur fournisseur et `DEEPSEEK_API_KEY` / `GEMINI_API_KEY`
 - `--base-url <url>` - N'importe quel endpoint compatible OpenAI, ex. OpenRouter (ou `OPENAI_BASE_URL`)
 - `--reasoning <effort>` - `reasoning_effort` envoyé au modèle (`none` par défaut pour Luna/Terra, `minimal` pour Gemini ; `default` n'envoie rien)
-- `--concurrency <n>` - Nombre maximum de requêtes simultanées (par défaut : 16, max 200). `--batch-size` reste un alias
+- `--concurrency <n>` - Nombre maximum de requêtes simultanées (par défaut : 32, max 200). `--batch-size` reste un alias
 - `--batch-delay <ms>` - Délai minimum entre deux démarrages de requête (par défaut : 0)
 
 **Exemples :**

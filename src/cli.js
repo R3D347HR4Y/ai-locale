@@ -41,7 +41,7 @@ const program = new Command();
 program
   .name("ai-locale")
   .description("CLI tool for translating localization files using OpenAI")
-  .version("1.1.0");
+  .version("1.1.1");
 
 program
   .command("translate")
@@ -90,7 +90,7 @@ program
   )
   .option(
     "--concurrency <n>",
-    "Maximum requests in flight at once (default: 16)"
+    "Maximum requests in flight at once (default: 32)"
   )
   .option("--batch-size <size>", "Deprecated alias of --concurrency")
   .option(
